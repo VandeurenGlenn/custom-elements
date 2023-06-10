@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"module": "ES2022",
+		"target": "ES2022",
+		"moduleResolution": "nodenext",
+		"outDir": "exports",
+		"declaration": true,
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"useDefineForClassFields": false
+	},
+	"include": [
+		"./**/*"
+, ".vscode/elements.ts"	]
+}
