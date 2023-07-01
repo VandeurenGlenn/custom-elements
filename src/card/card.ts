@@ -1,10 +1,9 @@
 import { customElement } from 'custom-element-decorator'
-import { CustomElement } from '../element.js'
 import { propertiesConfig } from '../types.js'
-import { html, nothing } from 'lit-html'
 import '../button/button.js'
 import '../divider/divider.js'
 import '../elevation/elevation.js'
+import { LitElement, html, nothing } from 'lit'
 
 @customElement()
 /**
@@ -15,7 +14,7 @@ import '../elevation/elevation.js'
  * <custom-card type="filled"></custom-card> // default is elevated
  * ```
  */
-export class CustomCard extends CustomElement {
+export class CustomCard extends LitElement {
   dividerType: 'full' | 'inset' | 'middle-inset'
   type: 'elevated' | 'filled' | 'outlined' = 'elevated'
   elevationLevel: Number = 0;
@@ -48,37 +47,47 @@ export class CustomCard extends CustomElement {
         nothing;
   }
 
-  template() {
+  render() {
     return html`
       <style>
         :host {
           box-sizing: border-box;
-          display: inline-block;
+          display: flex;
           margin: 8px;
           position: relative;
+          height: fit-content;
+          max-height: 320px;
+          width: 100%;
+          max-width: 320px;
         }
 
         .container {
           display: flex;
           flex-direction: column;
-          box-sizing: border-box;
           border: 1px solid;
-          padding: 16px;
           border-radius: 12px;
           max-width: 320px;
-          height: 100%;
+          height: max-content;
           max-height: 320px;
           border-color: transparent;
           color: var(--md-sys-color-on-surface-variant);
           background: var(--md-sys-color-surface-variant);
-          position: relative;
+          /* position: absolute; */
+        }
+
+        .content-container {
+          display: flex;
+          flex-direction: column;
+          box-sizing: border-box;
+          padding: 16px;
+          height: 100%;
         }
 
         custom-elevation {
           --md-elevation-level: 1;
         }
 
-        :host() :slotted(*) {
+        :host() ::slotted(*) {
           font-family: var(--md-sys-typescale-display-small-font-family-name);
           font-weight: var(--md-sys-typescale-display-small-font-family-style);
         }
@@ -107,6 +116,9 @@ export class CustomCard extends CustomElement {
 
           line-height: var(--md-sys-typescale-body-medium-line-height);
           letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
+
+          max-height: 144px;
+          overflow-y: auto;
         }
 
         .supporting-text {
@@ -125,11 +137,13 @@ export class CustomCard extends CustomElement {
           border-color: var(--md-sys-color-outline);
         }
 
-        :host([type="filled"]) custom-elevation {
-          --md-elevation-level: 0;
+        :host([type="tertiary"]) .container {
+          color: var(--md-sys-color-on-tertiary-container);
+          background: var(--md-sys-color-tertiary-container);
+          border-color: var(--md-sys-color-outline);
         }
 
-        :host([type="outlined"]) custom-elevation {
+        :host([type="filled"]) custom-elevation, :host([type="outlined"]) custom-elevation, :host([type="tertiary"]) custom-elevation  {
           --md-elevation-level: 0;
         }
 
@@ -137,20 +151,29 @@ export class CustomCard extends CustomElement {
           height: 44px;
         }
         
+        ::slotted(*) {
+          overflow: hidden;
+          border-radius: 12px;
+        }
       </style>
+       <custom-elevation></custom-elevation>
       <span class="container">
 
-        <custom-elevation></custom-elevation>
+        
         <slot name="image"></slot>
-        <slot name="headline"></slot>
-        <slot name="subline"></slot>
-        <span class="supporting-text">
-          <slot name="supportingText"></slot>
+
+        <span class="content-container">
+          <slot name="headline"></slot>
+          <slot name="subline"></slot>
+          <span class="supporting-text">
+            <slot name="supportingText"></slot>
+          </span>
+          ${this.renderDivider()}
+          <span class="actions">
+            <slot name="actions"></slot>
+          </span>
         </span>
-        ${this.renderDivider()}
-        <span class="actions">
-          <slot name="actions"></slot>
-        </span>
+        
         
       </span>
     `

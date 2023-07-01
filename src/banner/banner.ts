@@ -1,35 +1,26 @@
 import { customElement } from 'custom-element-decorator'
 import '../button/button.js'
 import { LitElement, html } from 'lit'
+import '@vandeurenglenn/flex-elements'
 
 @customElement()
-export class CustomDivider extends LitElement {
-
-  static properties = {
-    inset: { type: Boolean },
-    middleInset: { type: Boolean }
-  }
+export class CustomBanner extends LitElement {
 
   constructor() {
     super()
   }
-
-  async connectedCallback(): Promise<void> {
-    super.connectedCallback()
-    await this.updateComplete
-    this.requestUpdate()
-  }
-
   render() {
     return html`
       <style>
         :host {
-          display: block;
+          display: flex;
+          align-items: center;
           box-sizing: border-box;
           width: 100%;
-          height: 1px;
-          margin: 8px 0 16px 0;
-          background: var(--md-sys-color-outline);
+          height: 40px;
+          padding: 8px 16px;
+          background: var(--md-sys-color-tertiary);
+          color: var(--md-sys-color-on-tertiary);
         }
 
         :host([inset]) {
@@ -42,6 +33,12 @@ export class CustomDivider extends LitElement {
           margin-right: 16px;
         }
       </style>
+      <slot></slot>
+      <flex-it flex="1"></flex-it>
+      <custom-button type="tertiary">
+        <span slot="icon">x</span>
+        
+      </custom-button>
     `
   }
 }

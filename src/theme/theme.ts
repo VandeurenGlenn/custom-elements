@@ -1,38 +1,9 @@
 import { customElement } from 'custom-element-decorator'
-import { CustomElement } from '../element.js'
-import { propertiesConfig } from '../types.js'
+import { LitElement } from 'lit'
+
 
 @customElement()
-export class CustomTheme extends CustomElement {
-  fontSize: string
-  styleAppended: Boolean = false
-
-  static properties: propertiesConfig = {
-    styleAppended: { type: Boolean },
-    fontSize: {
-      type: String,
-      renders: false,
-      attribute: true,
-      // @ts-ignore
-      observer: function (oldValue, value) {
-        // console.log('observes');
-        
-        // // @ts-ignore
-        // if (!this.styleAppended) {
-        //   this.styleAppended = true
-        //   const style = document.createElement('style')
-        //   style.innerHTML = `
-        //   :root {
-        //     font-family: system-ui, sans-serif;
-        //     font-size: var(--custom-theme-font-size, 1.2px);
-        //   }`
-        //   document.body.appendChild(style)
-        // }
-        // document.body.style.setProperty('--custom-theme-font-size', value)
-        
-    }
-    }
-  }
+export class CustomTheme extends LitElement {
   
   constructor() {
     super()

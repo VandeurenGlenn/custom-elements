@@ -5,12 +5,11 @@
   */
 
 import { customElement } from 'custom-element-decorator'
-import { CustomElement } from '../element.js'
 import { propertiesConfig } from '../types.js'
-import { html } from 'lit-html'
+import { LitElement, html } from 'lit'
 
 @customElement()
-export class CustomElevation extends CustomElement {
+export class CustomElevation extends LitElement {
 
   static properties: propertiesConfig = {
     level: {
@@ -32,7 +31,7 @@ export class CustomElevation extends CustomElement {
     this.requestUpdate()
   }
 
-  template() {
+  render() {
     return html`
       <style>
         :host{
