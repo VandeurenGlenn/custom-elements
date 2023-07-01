@@ -29,7 +29,7 @@ export class CustomBanner extends LitElement {
         }
 
         :host([middle-inset]) {
-          magin-left: 16px;
+          margin-left: 16px;
           margin-right: 16px;
         }
       </style>

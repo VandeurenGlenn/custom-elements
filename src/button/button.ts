@@ -86,9 +86,6 @@ export class CustomButton extends LitElement {
         background: var(--md-sys-color-tertiary);
         color: var(--md-sys-color-on-tertiary);
       }
-      button:hover, button:focus, button:active  {
-        --elevation-level: 2;
-      }
 
       custom-elevation {
         --md-elevation-level: var(--elevation-level);
@@ -98,8 +95,16 @@ export class CustomButton extends LitElement {
         --md-elevation-level: 1;
       }
 
-      :host([type="filled"]) custom-elevation, :host([type="outlined"]) custom-elevation, :host([type="outlined"]) custom-elevation {
-        --md-elevation-level: 0;
+      button:hover, button:active  {
+        --elevation-level: 2;
+      }
+
+      button:focus {
+        --elevation-level: 0;
+      }
+
+      :host([type="filled"]), :host([type="outlined"]), :host([type="text"]) {
+        --elevation-level: 0;
       }
 
       :host([has-label]) .label {
@@ -118,6 +123,10 @@ export class CustomButton extends LitElement {
       }
       :host([has-icon][has-label]) slot[name="icon"]::slotted(*) {
         padding-left: 16px;
+      }
+
+      :host([disabled]) .label, slot[name="icon"]::slotted(*) {
+        opacity: 0.38;
       }
     </style>
     <button label=${this.label}>
