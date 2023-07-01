@@ -1,5 +1,6 @@
 import nodeResolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import { cp } from "fs/promises";
 import { globby } from 'globby'
 import { rimraf } from "rimraf";
 
@@ -19,6 +20,7 @@ const cleanBuild = () => ({
   }
 })
 
+await cp('src/theme/themes/default', 'exports/themes/default', {recursive: true})
 export default [{
   input,
   output: [{
@@ -31,10 +33,11 @@ export default [{
     onlyUsedVariables(),
     typescript()
   ]
-}, {
-  input: ['src/theme/themes/default/tokens.js'],
-  output: [{
-    dir: 'exports/themes/default',
-    format: 'es'
-  }]
 }]
+// , {
+//   input: ['src/theme/themes/default/tokens.js'],
+//   output: [{
+//     dir: 'exports/themes/default',
+//     format: 'es'
+//   }]
+// }]
