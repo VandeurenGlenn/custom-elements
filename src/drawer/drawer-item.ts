@@ -15,6 +15,7 @@ export class CustomDrawerItem extends LitElement {
         box-sizing: border-box;
         border-radius: var(--md-sys-shape-corner-extra-large);
         align-items: center;
+        cursor: pointer;
       }
 
       ::slotted(*) {

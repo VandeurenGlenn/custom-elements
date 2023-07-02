@@ -50,9 +50,9 @@
 			"import": "./exports/banner.js",
 			"types": "./exports/banner/banner.d.ts"
 		},
-		"./button.js": {
-			"import": "./exports/button.js",
-			"types": "./exports/button/button.d.ts"
+		"./card.js": {
+			"import": "./exports/card.js",
+			"types": "./exports/card/card.d.ts"
 		},
 		"./drawer-item.js": {
 			"import": "./exports/drawer-item.js",
@@ -62,13 +62,17 @@
 			"import": "./exports/drawer.js",
 			"types": "./exports/drawer/drawer.d.ts"
 		},
-		"./card.js": {
-			"import": "./exports/card.js",
-			"types": "./exports/card/card.d.ts"
+		"./button.js": {
+			"import": "./exports/button.js",
+			"types": "./exports/button/button.d.ts"
 		},
 		"./divider.js": {
 			"import": "./exports/divider.js",
 			"types": "./exports/divider/divider.d.ts"
+		},
+		"./elevation.js": {
+			"import": "./exports/elevation.js",
+			"types": "./exports/elevation/elevation.d.ts"
 		},
 		"./select-mixin.js": {
 			"import": "./exports/select-mixin.js",
@@ -78,9 +82,9 @@
 			"import": "./exports/selector-mixin.js",
 			"types": "./exports/mixins/selector-mixin.d.ts"
 		},
-		"./elevation.js": {
-			"import": "./exports/elevation.js",
-			"types": "./exports/elevation/elevation.d.ts"
+		"./selector.js": {
+			"import": "./exports/selector.js",
+			"types": "./exports/selector/selector.d.ts"
 		},
 		"./pages.js": {
 			"import": "./exports/pages.js",
@@ -109,10 +113,6 @@
 		"./time-picker.js": {
 			"import": "./exports/time-picker.js",
 			"types": "./exports/time-picker/time-picker.d.ts"
-		},
-		"./selector.js": {
-			"import": "./exports/selector.js",
-			"types": "./exports/selector/selector.d.ts"
 		}
 	}
 }

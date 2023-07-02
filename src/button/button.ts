@@ -56,6 +56,7 @@ export class CustomButton extends LitElement {
         border: none;
         user-select: none;
         outline: none;
+        cursor: pointer;
       }
 
       .label, ::slotted(*) {
