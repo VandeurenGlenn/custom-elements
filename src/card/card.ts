@@ -59,13 +59,14 @@ export class CustomCard extends LitElement {
           max-height: 320px;
           width: 100%;
           max-width: 320px;
+          border-radius: 12px;
+          border: 1px solid;
+          overflow: hidden;
         }
 
         .container {
           display: flex;
           flex-direction: column;
-          border: 1px solid;
-          border-radius: 12px;
           max-width: 320px;
           height: max-content;
           max-height: 320px;
@@ -134,12 +135,18 @@ export class CustomCard extends LitElement {
         :host([type="outlined"]) .container {
           color: var(--md-sys-color-on-surface);
           background: var(--md-sys-color-surface);
+        }
+
+        :host([type="outlined"]) {
           border-color: var(--md-sys-color-outline);
         }
 
         :host([type="tertiary"]) .container {
           color: var(--md-sys-color-on-tertiary-container);
           background: var(--md-sys-color-tertiary-container);
+        }
+
+        :host([type="tertiary"]) {
           border-color: var(--md-sys-color-outline);
         }
 
