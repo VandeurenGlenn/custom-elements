@@ -8,6 +8,10 @@
 		"build": "rollup -c",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
+	"files": [
+		"./exports",
+		"LICENSE"
+	],
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
@@ -50,17 +54,21 @@
 			"import": "./exports/button.js",
 			"types": "./exports/button/button.d.ts"
 		},
-		"./card.js": {
-			"import": "./exports/card.js",
-			"types": "./exports/card/card.d.ts"
+		"./elevation.js": {
+			"import": "./exports/elevation.js",
+			"types": "./exports/elevation/elevation.d.ts"
 		},
 		"./divider.js": {
 			"import": "./exports/divider.js",
 			"types": "./exports/divider/divider.d.ts"
 		},
-		"./elevation.js": {
-			"import": "./exports/elevation.js",
-			"types": "./exports/elevation/elevation.d.ts"
+		"./card.js": {
+			"import": "./exports/card.js",
+			"types": "./exports/card/card.d.ts"
+		},
+		"./pages.js": {
+			"import": "./exports/pages.js",
+			"types": "./exports/pages/pages.d.ts"
 		},
 		"./select-mixin.js": {
 			"import": "./exports/select-mixin.js",
@@ -69,10 +77,6 @@
 		"./selector-mixin.js": {
 			"import": "./exports/selector-mixin.js",
 			"types": "./exports/mixins/selector-mixin.d.ts"
-		},
-		"./pages.js": {
-			"import": "./exports/pages.js",
-			"types": "./exports/pages/pages.d.ts"
 		},
 		"./selector.js": {
 			"import": "./exports/selector.js",
