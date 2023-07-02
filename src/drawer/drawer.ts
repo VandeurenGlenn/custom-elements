@@ -61,6 +61,7 @@ export class CustomDrawer extends LitElement {
         text-transform: var(--md-sys-typescale-title-small-text-transform);
         text-decoration: var(--md-sys-typescale-title-small-text-decoration);
         text-transform: capitalize;
+        margin: 0;
       }
       ::slotted([slot="footer"]) {
         display: block;
@@ -73,6 +74,10 @@ export class CustomDrawer extends LitElement {
         flex-direction: column;
         height: 100%;
         width: 100%;
+      }
+
+      ::slotted(*) {
+        pointer-events: none;
       }
     </style>
     <custom-elevation></custom-elevation>

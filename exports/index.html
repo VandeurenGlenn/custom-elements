@@ -27,6 +27,10 @@
     [non-interactive] {
       pointer-events: none;
     }
+
+    h4 {
+      margin: 0;
+    }
   </style>
   <custom-theme language="css" font-size="1px"></custom-theme>
 
@@ -34,14 +38,11 @@
     <custom-drawer open type="modal"> 
       <flex-column  slot="content">
         
-        <custom-selector attr-for-selected="route" default-selected="filled">
-          <h4 non-interactive>Cards</h4>
+        <custom-selector attr-for-selected="route" default-selected="banner">
           
-          <custom-drawer-item route="filled">filled</custom-drawer-item>
-          <custom-drawer-item route="elevated">elevated</custom-drawer-item>
-          <custom-drawer-item route="outlined">outlined</custom-drawer-item>
-          <custom-drawer-item route="tertiary">tertiary</custom-drawer-item>
-          
+          <custom-drawer-item route="banner">banner</custom-drawer-item>
+          <custom-drawer-item route="divider">divider</custom-drawer-item>
+
           <custom-divider></custom-divider>
           <h4 non-interactive>Buttons</h4>
 
@@ -51,6 +52,16 @@
           <custom-drawer-item route="outlined-button">outlined</custom-drawer-item>
           <custom-drawer-item route="tertiary-button">tertiary</custom-drawer-item>
           <custom-drawer-item route="tonal-button">tonal</custom-drawer-item>
+
+          <custom-divider></custom-divider>
+          <h4 non-interactive>Cards</h4>
+          
+          <custom-drawer-item route="filled">filled</custom-drawer-item>
+          <custom-drawer-item route="elevated">elevated</custom-drawer-item>
+          <custom-drawer-item route="outlined">outlined</custom-drawer-item>
+          <custom-drawer-item route="tertiary">tertiary</custom-drawer-item>
+          
+          
         </custom-selector>
 
         
@@ -59,9 +70,14 @@
       
     </custom-drawer>
     <flex-column>
-      <custom-banner>BANNER</custom-banner>
-      <custom-pages attr-for-selected="route" default-selected="filled">
-        <section route="filled">
+      <custom-pages attr-for-selected="route" default-selected="banner">
+        <demo-section route="banner">
+          <custom-banner>Banner</custom-banner>
+        </demo-section>
+        <demo-section route="divider">
+          <custom-divider></custom-divider>
+        </demo-section>
+        <demo-section route="filled">
           <custom-card type="filled">
             <span slot="headline">filled</span>
             <span slot="subline">subline</span>
@@ -72,9 +88,9 @@
               <custom-button type="filled" label="YES"></custom-button>
             </span>
           </custom-card>
-        </section>
+        </demo-section>
         
-        <section route="elevated">
+        <demo-section route="elevated">
           <custom-card type="elevated">
             <span slot="headline">elevated</span>
             <span slot="subline">subline</span>
@@ -84,9 +100,9 @@
               <custom-button type="elevated" label="YES"></custom-button>
             </span>
           </custom-card>
-        </section>
+        </demo-section>
   
-        <section route="outlined">
+        <demo-section route="outlined">
           <custom-card type="outlined">
     
             <span slot="headline">outlined</span>
@@ -97,9 +113,9 @@
               <custom-button type="outlined" label="YES"></custom-button>
             </span>
           </custom-card>
-        </section>
+        </demo-section>
       
-        <section route="tertiary">
+        <demo-section route="tertiary">
           <custom-card type="tertiary">
             <img slot="image" src="https://lh3.googleusercontent.com/9NBw6U14z6f-EAnwPqfcX-mIkxNdpK0IXvwiun9w84JkMcZfBT0bfRqn7QWdBVqnCYC5hsDEnGhSjbaWcgi1HT_Q6pCioSRTgMFODqZdAXw=s0">
             <span slot="headline">tertiary</span>
@@ -110,55 +126,55 @@
               <custom-button type="tertiary" label="YES"></custom-button>
             </span>
           </custom-card>
-        </section>
+        </demo-section>
   
-        <section route="text-button">
+        <demo-section route="text-button">
           <custom-button type="text" label="text"></custom-button>
           
           <custom-button type="text" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </section>
+        </demo-section>
   
-        <section route="filled-button">
+        <demo-section route="filled-button">
           <custom-button type="filled" label="filled"></custom-button>
           
           <custom-button type="filled" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </section>
+        </demo-section>
   
-        <section route="elevated-button">
+        <demo-section route="elevated-button">
           <custom-button type="elevated" label="elevated"></custom-button>
           
           <custom-button type="elevated" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </section>
+        </demo-section>
 
-        <section route="outlined-button">
+        <demo-section route="outlined-button">
           <custom-button type="outlined" label="outlined"></custom-button>
           
           <custom-button type="outlined" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </section>
+        </demo-section>
   
-        <section route="tonal-button">
+        <demo-section route="tonal-button">
           <custom-button type="tonal" label="tonal"></custom-button>
           
           <custom-button type="tonal" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </section>
+        </demo-section>
   
-        <section route="tertiary-button">
+        <demo-section route="tertiary-button">
           <custom-button type="tertiary" label="tertiary"></custom-button>
           
           <custom-button type="tertiary" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </section>
+        </demo-section>
       </custom-pages>
     </flex-column>
 
@@ -167,6 +183,7 @@
 
   <script type="module">
     import './elements.js'
+    import './demo-elements.js'
 
     const selector = document.querySelector('custom-selector')
     const pages = document.querySelector('custom-pages')

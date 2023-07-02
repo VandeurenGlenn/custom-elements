@@ -4,6 +4,7 @@ import { cp, readFile, writeFile } from "fs/promises";
 import { globby } from 'globby'
 import { parse } from "path";
 import { rimraf } from "rimraf";
+import commonJs from '@rollup/plugin-commonjs'
 
 const input = await globby('src/**/*.ts')
 
@@ -53,6 +54,7 @@ export default [{
   plugins: [
     cleanBuild(),
     nodeResolve(),
+    commonJs(),
     onlyUsedVariables(),
     typescript()
   ]
