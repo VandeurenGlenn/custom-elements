@@ -7,7 +7,24 @@ import'./../elevation/elevation.js'
 export class CustomDrawer extends LitElement {
   @property({ type: Boolean, reflect: true })
   open: boolean = false
+
+  @property({ type: Boolean, reflect: true })
+  mobile: boolean = false
   
+  connectedCallback(): void {
+    super.connectedCallback()
+    const media = matchMedia('(max-width: 720px)')
+   
+    const mediaQueryChange = ({matches}) => {
+      this.mobile = matches
+    }
+    media.onchange = mediaQueryChange
+    mediaQueryChange({ matches: media.matches })
+    this.addEventListener('click', () => {
+      if (this.mobile) this.open = !this.open
+    })
+    document.addEventListener('toggle-drawer', () => this.open = !this.open)
+  }
   render() {
     return html`<style>
       :host {
@@ -30,9 +47,14 @@ export class CustomDrawer extends LitElement {
         --md-elevation-level: 0;
       }
 
-      :host([type="modal"]) {
-        background: var(--md-sys-color-surface-container-low);
+      :host([mobile]) {
+        position: fixed;
+        z-index: 1000;
+        background: var(--md-sys-color-surface);
         color: var(--md-sys-color-on-surface);
+      }
+
+      :host([type="modal"]) {
         --md-elevation-level: 1;
       }
 

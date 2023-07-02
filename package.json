@@ -62,13 +62,21 @@
 			"import": "./exports/button.js",
 			"types": "./exports/button/button.d.ts"
 		},
+		"./divider.js": {
+			"import": "./exports/divider.js",
+			"types": "./exports/divider/divider.d.ts"
+		},
+		"./section.js": {
+			"import": "./exports/section.js",
+			"types": "./exports/section/section.d.ts"
+		},
 		"./card.js": {
 			"import": "./exports/card.js",
 			"types": "./exports/card/card.d.ts"
 		},
-		"./divider.js": {
-			"import": "./exports/divider.js",
-			"types": "./exports/divider/divider.d.ts"
+		"./drawer-button.js": {
+			"import": "./exports/drawer-button.js",
+			"types": "./exports/drawer/drawer-button.d.ts"
 		},
 		"./drawer-item.js": {
 			"import": "./exports/drawer-item.js",
@@ -78,6 +86,10 @@
 			"import": "./exports/drawer.js",
 			"types": "./exports/drawer/drawer.d.ts"
 		},
+		"./elevation.js": {
+			"import": "./exports/elevation.js",
+			"types": "./exports/elevation/elevation.d.ts"
+		},
 		"./select-mixin.js": {
 			"import": "./exports/select-mixin.js",
 			"types": "./exports/mixins/select-mixin.d.ts"
@@ -86,25 +98,13 @@
 			"import": "./exports/selector-mixin.js",
 			"types": "./exports/mixins/selector-mixin.d.ts"
 		},
-		"./elevation.js": {
-			"import": "./exports/elevation.js",
-			"types": "./exports/elevation/elevation.d.ts"
-		},
-		"./section.js": {
-			"import": "./exports/section.js",
-			"types": "./exports/section/section.d.ts"
+		"./pages.js": {
+			"import": "./exports/pages.js",
+			"types": "./exports/pages/pages.d.ts"
 		},
 		"./selector.js": {
 			"import": "./exports/selector.js",
 			"types": "./exports/selector/selector.d.ts"
-		},
-		"./theme.js": {
-			"import": "./exports/theme.js",
-			"types": "./exports/theme/theme.d.ts"
-		},
-		"./pages.js": {
-			"import": "./exports/pages.js",
-			"types": "./exports/pages/pages.d.ts"
 		},
 		"./dial.js": {
 			"import": "./exports/dial.js",
@@ -125,6 +125,10 @@
 		"./time-picker.js": {
 			"import": "./exports/time-picker.js",
 			"types": "./exports/time-picker/time-picker.d.ts"
+		},
+		"./theme.js": {
+			"import": "./exports/theme.js",
+			"types": "./exports/theme/theme.d.ts"
 		}
 	}
 }

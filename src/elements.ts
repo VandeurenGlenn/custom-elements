@@ -6,6 +6,7 @@ import { CustomBanner } from './banner/banner.js'
 import { CustomSelector } from './selector/selector.js'
 import { CustomPages } from './pages/pages.js'
 import { CustomDrawer } from './drawer/drawer.js'
+import { CustomDrawerButton } from './drawer/drawer-button.js'
 import { CustomDrawerItem } from './drawer/drawer-item.js'
 import { CustomSection } from './section/section.js'
 
@@ -15,6 +16,7 @@ export {
   CustomButton,
   CustomCard,
   CustomDrawer,
+  CustomDrawerButton,
   CustomDrawerItem,
   CustomBanner,
   CustomSection,
@@ -28,6 +30,7 @@ declare global {
     'custom-divider': CustomDivider
     'custom-card': CustomCard
     'custom-drawer': CustomDrawer
+    'custom-drawer-button': CustomDrawerButton
     'custom-drawer-item': CustomDrawerItem
     'custom-button': CustomButton
     'custom-banner': CustomBanner
