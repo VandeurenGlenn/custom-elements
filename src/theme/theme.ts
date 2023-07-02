@@ -18,8 +18,24 @@ export class CustomTheme extends LitElement {
       margin: 0;
       background: var(--md-sys-color-background)
     }`
-    document.body.appendChild(style)
+    document.head.appendChild(style)
+
+    let link = document.createElement('link')
+
+    link.rel = 'preconnect'
+    link.href = 'https://fonts.googleapis.com'
+
+    document.head.appendChild(link.cloneNode(true))
+
+    link.href = 'https://fonts.gstatic.com'
+    link.setAttribute('crossorigin', '')
+
+    document.head.appendChild(link.cloneNode(true))
     
+    link.rel = 'stylesheet'
+    link.href = 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'
+    link.removeAttribute('crossorigin')
+    document.head.appendChild(link.cloneNode(true))
   }
 
   set language(value) {

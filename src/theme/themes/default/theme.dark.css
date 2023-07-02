@@ -6,6 +6,7 @@
  --md-sys-color-secondary: var(--md-sys-color-secondary-dark);
  --md-sys-color-on-secondary: var(--md-sys-color-on-secondary-dark);
  --md-sys-color-secondary-container: var(--md-sys-color-secondary-container-dark);
+ --md-sys-color-secondary-container-hover: var(--md-sys-color-secondary-container-hover-dark);
  --md-sys-color-on-secondary-container: var(--md-sys-color-on-secondary-container-dark);
  --md-sys-color-tertiary: var(--md-sys-color-tertiary-dark);
  --md-sys-color-on-tertiary: var(--md-sys-color-on-tertiary-dark);

@@ -16,6 +16,7 @@ export class CustomPages extends SelectMixin(HTMLElement) {
           --primary-background-color: #ECEFF1;
           overflow: hidden;
           height: 100%;
+          width: 100%;
         }
         ::slotted(*) {
           display: flex;

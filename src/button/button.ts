@@ -7,7 +7,7 @@ export class CustomButton extends LitElement {
   label: string
   hasIcon: boolean
   hasLabel: boolean
-  type: 'elevated' | 'filled' | 'text' | 'outlined' = 'text'
+  type: 'elevated' | 'filled' | 'text' | 'tonal' | 'outlined' = 'text'
 
   static properties = {
     label: { type: String },
@@ -58,11 +58,15 @@ export class CustomButton extends LitElement {
         outline: none;
       }
 
-      .label {
+      .label, ::slotted(*) {
         font-family: var(--md-sys-typescale-label-large-font-family-name);
+        font-style: var(--md-sys-typescale-label-large-font-family-style);
+        font-weight: var(--md-sys-typescale-label-large-font-weight);
         font-size: var(--md-sys-typescale-label-large-font-size);
-        line-height: var(--md-sys-typescale-label-large-line-height);
-        letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+        letter-spacing: var(--md-sys-typescale-label-large-tracking);
+        line-height: var(--md-sys-typescale-label-large-height);
+        text-transform: var(--md-sys-typescale-label-large-text-transform);
+        text-decoration: var(--md-sys-typescale-label-large-text-decoration);
       }
 
       :host([type="filled"]) button {
@@ -78,13 +82,18 @@ export class CustomButton extends LitElement {
       }
 
       :host([type="elevated"]) button {
-        color: var(--md-sys-color-on-secondary-container);
-        background: var(--md-sys-color-secondary-container);
+        color: var(--md-sys-color-primary);
+        background: var(--md-sys-color-surface-container-low);
       }
 
-      :host([type="tertiary"]) button {
+      :host([type="tertiary"]) button, :host([type="tertiary"]) ::slotted(*) {
         background: var(--md-sys-color-tertiary);
         color: var(--md-sys-color-on-tertiary);
+      }
+
+      :host([type="tonal"]) button, :host([type="tonal"]) ::slotted(*) {
+        background: var(--md-sys-color-secondary-container);
+        color: var(--md-sys-color-on-seconday-container);
       }
 
       custom-elevation {
@@ -103,7 +112,7 @@ export class CustomButton extends LitElement {
         --elevation-level: 0;
       }
 
-      :host([type="filled"]), :host([type="outlined"]), :host([type="text"]) {
+      :host([type="filled"]), :host([type="outlined"]), :host([type="text"]), :host([type="tonal"]) {
         --elevation-level: 0;
       }
 
