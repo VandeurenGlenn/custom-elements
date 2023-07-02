@@ -20,9 +20,9 @@ const onlyUsedVariables = () => ({
     
     for (const path of glob) {
       const parsed = parse(path)
-      const name = `./${parsed.name.replace('.d', '')}.js`
+      const name = `./${parsed.name.replace('.d', '.js')}`
       packageExports[name] = {
-        import: `./${path.replace('.d.ts', '.js')}`,
+        import: `./exports/${parsed.name.replace('.d', '.js')}`,
         types: `./${path}`
       }
     }

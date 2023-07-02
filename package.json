@@ -43,63 +43,63 @@
 			"types": "./exports/types.d.ts"
 		},
 		"./banner.js": {
-			"import": "./exports/banner/banner.js",
+			"import": "./exports/banner.js",
 			"types": "./exports/banner/banner.d.ts"
 		},
 		"./button.js": {
-			"import": "./exports/button/button.js",
+			"import": "./exports/button.js",
 			"types": "./exports/button/button.d.ts"
 		},
-		"./divider.js": {
-			"import": "./exports/divider/divider.js",
-			"types": "./exports/divider/divider.d.ts"
-		},
 		"./card.js": {
-			"import": "./exports/card/card.js",
+			"import": "./exports/card.js",
 			"types": "./exports/card/card.d.ts"
 		},
-		"./pages.js": {
-			"import": "./exports/pages/pages.js",
-			"types": "./exports/pages/pages.d.ts"
+		"./divider.js": {
+			"import": "./exports/divider.js",
+			"types": "./exports/divider/divider.d.ts"
 		},
 		"./elevation.js": {
-			"import": "./exports/elevation/elevation.js",
+			"import": "./exports/elevation.js",
 			"types": "./exports/elevation/elevation.d.ts"
 		},
-		"./selector.js": {
-			"import": "./exports/selector/selector.js",
-			"types": "./exports/selector/selector.d.ts"
-		},
 		"./select-mixin.js": {
-			"import": "./exports/mixins/select-mixin.js",
+			"import": "./exports/select-mixin.js",
 			"types": "./exports/mixins/select-mixin.d.ts"
 		},
 		"./selector-mixin.js": {
-			"import": "./exports/mixins/selector-mixin.js",
+			"import": "./exports/selector-mixin.js",
 			"types": "./exports/mixins/selector-mixin.d.ts"
 		},
+		"./pages.js": {
+			"import": "./exports/pages.js",
+			"types": "./exports/pages/pages.d.ts"
+		},
+		"./selector.js": {
+			"import": "./exports/selector.js",
+			"types": "./exports/selector/selector.d.ts"
+		},
 		"./theme.js": {
-			"import": "./exports/theme/theme.js",
+			"import": "./exports/theme.js",
 			"types": "./exports/theme/theme.d.ts"
 		},
 		"./dial.js": {
-			"import": "./exports/time-picker/dial.js",
+			"import": "./exports/dial.js",
 			"types": "./exports/time-picker/dial.d.ts"
 		},
 		"./hour-field.js": {
-			"import": "./exports/time-picker/hour-field.js",
+			"import": "./exports/hour-field.js",
 			"types": "./exports/time-picker/hour-field.d.ts"
 		},
 		"./input.js": {
-			"import": "./exports/time-picker/input.js",
+			"import": "./exports/input.js",
 			"types": "./exports/time-picker/input.d.ts"
 		},
 		"./minute-field.js": {
-			"import": "./exports/time-picker/minute-field.js",
+			"import": "./exports/minute-field.js",
 			"types": "./exports/time-picker/minute-field.d.ts"
 		},
 		"./time-picker.js": {
-			"import": "./exports/time-picker/time-picker.js",
+			"import": "./exports/time-picker.js",
 			"types": "./exports/time-picker/time-picker.d.ts"
 		}
 	}
