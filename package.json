@@ -1,32 +1,106 @@
 {
-  "name": "@vandeurenglenn/custom-elements",
-  "version": "0.1.0",
-  "description": "set of custom (vanilla) elements following Material Design 3 spec",
-  "type": "module",
-  "scripts": {
-    "watch": "rollup -c -w",
-    "build": "rollup -c",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "@material/web": "^1.0.0-pre.10",
-    "@vandeurenglenn/flex-elements": "^0.3.2",
-    "custom-element-decorator": "^0.5.1",
-    "lit-css": "^0.1.3",
-    "lit-html": "^2.7.4"
-  },
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-typescript": "^11.1.1",
-    "@types/node": "^20.3.0",
-    "globby": "^13.1.4",
-    "lit": "^2.7.5",
-    "rimraf": "^5.0.1",
-    "rollup": "^3.24.1",
-    "tslib": "^2.5.3",
-    "typescript": "^5.1.3"
-  }
+	"name": "@vandeurenglenn/custom-elements",
+	"version": "0.1.0",
+	"description": "set of custom (vanilla) elements following Material Design 3 spec",
+	"type": "module",
+	"scripts": {
+		"watch": "rollup -c -w",
+		"build": "rollup -c",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"@material/web": "^1.0.0-pre.10",
+		"@vandeurenglenn/flex-elements": "^0.3.2",
+		"custom-element-decorator": "^0.6.0",
+		"lit-css": "^0.1.3",
+		"lit-html": "^2.7.4"
+	},
+	"devDependencies": {
+		"@rollup/plugin-node-resolve": "^15.1.0",
+		"@rollup/plugin-typescript": "^11.1.1",
+		"@types/node": "^20.3.0",
+		"globby": "^13.1.4",
+		"lit": "^2.7.5",
+		"rimraf": "^5.0.1",
+		"rollup": "^3.24.1",
+		"tslib": "^2.5.3",
+		"typescript": "^5.1.3"
+	},
+	"exports": {
+		".": {
+			"import": "./exports/custom-elements.js",
+			"types": "./exports/custom-elements.d.ts"
+		},
+		"./elements.js": {
+			"import": "./exports/elements.js",
+			"types": "./exports/elements.d.ts"
+		},
+		"./types.js": {
+			"import": "./exports/types.js",
+			"types": "./exports/types.d.ts"
+		},
+		"./banner.js": {
+			"import": "./exports/banner/banner.js",
+			"types": "./exports/banner/banner.d.ts"
+		},
+		"./button.js": {
+			"import": "./exports/button/button.js",
+			"types": "./exports/button/button.d.ts"
+		},
+		"./divider.js": {
+			"import": "./exports/divider/divider.js",
+			"types": "./exports/divider/divider.d.ts"
+		},
+		"./card.js": {
+			"import": "./exports/card/card.js",
+			"types": "./exports/card/card.d.ts"
+		},
+		"./pages.js": {
+			"import": "./exports/pages/pages.js",
+			"types": "./exports/pages/pages.d.ts"
+		},
+		"./elevation.js": {
+			"import": "./exports/elevation/elevation.js",
+			"types": "./exports/elevation/elevation.d.ts"
+		},
+		"./selector.js": {
+			"import": "./exports/selector/selector.js",
+			"types": "./exports/selector/selector.d.ts"
+		},
+		"./select-mixin.js": {
+			"import": "./exports/mixins/select-mixin.js",
+			"types": "./exports/mixins/select-mixin.d.ts"
+		},
+		"./selector-mixin.js": {
+			"import": "./exports/mixins/selector-mixin.js",
+			"types": "./exports/mixins/selector-mixin.d.ts"
+		},
+		"./theme.js": {
+			"import": "./exports/theme/theme.js",
+			"types": "./exports/theme/theme.d.ts"
+		},
+		"./dial.js": {
+			"import": "./exports/time-picker/dial.js",
+			"types": "./exports/time-picker/dial.d.ts"
+		},
+		"./hour-field.js": {
+			"import": "./exports/time-picker/hour-field.js",
+			"types": "./exports/time-picker/hour-field.d.ts"
+		},
+		"./input.js": {
+			"import": "./exports/time-picker/input.js",
+			"types": "./exports/time-picker/input.d.ts"
+		},
+		"./minute-field.js": {
+			"import": "./exports/time-picker/minute-field.js",
+			"types": "./exports/time-picker/minute-field.d.ts"
+		},
+		"./time-picker.js": {
+			"import": "./exports/time-picker/time-picker.js",
+			"types": "./exports/time-picker/time-picker.d.ts"
+		}
+	}
 }
