@@ -6,8 +6,8 @@ import { LitElement, html } from 'lit'
 export class CustomDivider extends LitElement {
 
   static properties = {
-    inset: { type: Boolean },
-    middleInset: { type: Boolean }
+    inset: { type: Boolean, reflect: true, attribute: 'inset' },
+    middleInset: { type: Boolean, reflect: true, attribute: 'middle-inset' }
   }
 
   constructor() {
@@ -38,7 +38,7 @@ export class CustomDivider extends LitElement {
         }
 
         :host([middle-inset]) {
-          magin-left: 16px;
+          margin-left: 16px;
           margin-right: 16px;
         }
       </style>
