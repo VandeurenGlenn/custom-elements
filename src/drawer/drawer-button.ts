@@ -10,16 +10,24 @@ export class CustomDrawerButton extends LitElement {
     css`
       :host {
         display: block;
+        height: 24px;
+        width: 24px;
+      }
+
+      :host(:not([mobile])) {
+        opacity: 0;
+        pointer-events: none;
       }
       
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48;
-  font-family: 'Material Symbols Outlined' 
-}
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48;
+        font-size: 24px;
+        font-family: 'Material Symbols Outlined' 
+      }
     `
   ];
 
@@ -41,9 +49,9 @@ export class CustomDrawerButton extends LitElement {
   render() {
     return html`
     <custom-button>
-   <span class="material-symbols-outlined" slot="icon">
+   <div class="material-symbols-outlined" slot="icon">
    menu
-   </span>
+   </div>
     </custom-button>
     `;
   }

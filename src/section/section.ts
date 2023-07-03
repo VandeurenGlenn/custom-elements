@@ -15,7 +15,7 @@ export class CustomSection extends LitElement {
       }
 
       flex-column {
-        max-width: 440px;
+        max-width: 720px;
       }
     `
   ];

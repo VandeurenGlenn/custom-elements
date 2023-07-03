@@ -16,7 +16,8 @@ export class CustomTheme extends LitElement {
       inset: 0;
       position: absolute;
       margin: 0;
-      background: var(--md-sys-color-background)
+      background: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
     }`
     document.head.appendChild(style)
 

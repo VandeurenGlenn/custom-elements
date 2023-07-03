@@ -2,7 +2,10 @@ import { customElement } from 'custom-element-decorator';
 import { LitElement, html, css } from 'lit';
 import './../section/section.js'
 import converter from 'html-to-markdown'
+import './code.js'
 
+const replaceHtmlEntities = str => str
+  .replace(/(\  <\/(?=[^<\/]*$))/g, '<')
 @customElement()
 export class DemoSection extends LitElement {
   async connectedCallback(): Promise<void> {
@@ -10,30 +13,20 @@ export class DemoSection extends LitElement {
     await this.updateComplete
     const assignedElements = this.shadowRoot.querySelector('slot').assignedElements()
     for (const element of assignedElements) {
-      const pre = document.createElement('pre')
-      const code = document.createElement('code')
+      const code = document.createElement('demo-code')
 
-      code.innerHTML = await converter.convert(JSON.parse(JSON.stringify(element.outerHTML.replaceAll('<', '&lt;'), null, '\t')))
-      console.log(code.innerHTML);
-      
-      pre.appendChild(code.cloneNode(true))
+      code.code = await replaceHtmlEntities(element.outerHTML)  
 
-      element.after(pre)
+      element.after(code)
     }
-    
-    
-
   }
+
   static styles = [
     css`
       :host {
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-      }
-
-      code {
-        
       }
     `
   ];
