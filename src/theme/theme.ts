@@ -18,6 +18,7 @@ export class CustomTheme extends LitElement {
       margin: 0;
       background: var(--md-sys-color-background);
       color: var(--md-sys-color-on-background);
+      overflow: hidden;
     }`
     document.head.appendChild(style)
 

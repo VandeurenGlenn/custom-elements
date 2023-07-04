@@ -10,8 +10,6 @@ export class CustomDrawerButton extends LitElement {
     css`
       :host {
         display: block;
-        height: 24px;
-        width: 24px;
       }
 
       :host(:not([mobile])) {
@@ -26,7 +24,9 @@ export class CustomDrawerButton extends LitElement {
         'GRAD' 0,
         'opsz' 48;
         font-size: 24px;
-        font-family: 'Material Symbols Outlined' 
+        font-family: 'Material Symbols Outlined';
+        height: 24px;
+        width: 24px;
       }
     `
   ];

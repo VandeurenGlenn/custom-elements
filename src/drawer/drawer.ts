@@ -1,6 +1,6 @@
 import { customElement } from "custom-element-decorator";
 import { LitElement, html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import'./../elevation/elevation.js'
 
 @customElement()
@@ -10,46 +10,36 @@ export class CustomDrawer extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   mobile: boolean = false
-  
-  connectedCallback(): void {
-    super.connectedCallback()
-    const media = matchMedia('(max-width: 720px)')
-   
-    const mediaQueryChange = ({matches}) => {
-      this.mobile = matches
-    }
-    media.onchange = mediaQueryChange
-    mediaQueryChange({ matches: media.matches })
-    this.addEventListener('click', () => {
-      if (this.mobile) this.open = !this.open
-    })
-    document.addEventListener('toggle-drawer', () => this.open = !this.open)
-  }
+
   render() {
     return html`<style>
       :host {
+        --custom-drawer-width: 360px;
         display: flex;
-        flex-direction: column;
-        max-width: var(--custom-drawer-width, 360px);
+        flex-direction: row;
         width: 100%;
         height: 100%;
         background: var(--md-sys-color-surface);
         color: var(--md-sys-color-on-surface);
         background-blend-mode: hue;
-        
-        opacity: 0;
-        transform: translateX(-110%);
         position: relative;
-        pointer-events: none;
         /* border-radius: 12px; */
 
         border-radius: var(--md-sys-shape-corner-large-end);
         --md-elevation-level: 0;
+
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(-110%);
+        position: relative;
+        width: 100%;
+        max-width: var(--custom-drawer-width);
+
       }
 
       :host([mobile]) {
         position: fixed;
-        z-index: 1000;
+        z-index: 1001;
         background: var(--md-sys-color-surface);
         color: var(--md-sys-color-on-surface);
       }
@@ -85,31 +75,41 @@ export class CustomDrawer extends LitElement {
         text-transform: capitalize;
         margin: 0;
       }
+
       ::slotted([slot="footer"]) {
         display: block;
         box-sizing: border-box;
         min-height: 48px;
         border-top: 1px solid rgba(0, 0, 0, 0.14);
       }
+
       ::slotted([slot="content"]) {
         display: flex;
         flex-direction: column;
         height: 100%;
         width: 100%;
+        overflow-y: auto;
       }
 
       ::slotted(*) {
         pointer-events: none;
       }
+
+      aside {
+        width: 100%;
+      }
     </style>
-    <custom-elevation></custom-elevation>
-    <flex-column class="container">
-      <slot name="header">
-        <slot name="headline"></slot>
-      </slot>
-      <slot name="content"></slot>
-      <slot name="footer"></slot>  
-    </flex-column>
+    <aside>
+      <custom-elevation></custom-elevation>
+      <flex-column class="container">
+        <slot name="header">
+          <slot name="headline"></slot>
+        </slot>
+        <slot name="content"></slot>
+        <slot name="footer"></slot>  
+      </flex-column>
+    </aside>
+    
     `;
     
   }

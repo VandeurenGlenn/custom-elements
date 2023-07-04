@@ -30,13 +30,19 @@
 
     h4 {
       margin: 0;
+      padding-top: 16px;
+      padding-bottom: 12px;
+    }
+
+    custom-drawer custom-divider {
+      margin-top: 16px;
     }
   </style>
   <custom-theme language="css" font-size="1px"></custom-theme>
 
-  <flex-row class="demo-container">
-    <custom-drawer open type="modal"> 
-      <flex-column  slot="content">
+  <custom-drawer-layout class="demo-container">
+
+      <flex-column  slot="drawer-content">
         
         <custom-selector attr-for-selected="route" default-selected="banner">
           
@@ -68,11 +74,8 @@
       </flex-column>
       
       
-    </custom-drawer>
+      
     <flex-column>
-      <custom-drawer-button>
-        menu
-      </custom-drawer-button>
       <custom-pages attr-for-selected="route" default-selected="banner">
         <demo-section route="banner">
           <custom-banner>Banner</custom-banner>
@@ -182,8 +185,9 @@
       </custom-pages>
     </flex-column>
 
+  </custom-drawer-layout>
     
-  </flex-row>
+  <!-- </flex-row> -->
 
   <script type="module">
     import './elements.js'
