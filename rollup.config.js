@@ -8,8 +8,8 @@ import commonJs from '@rollup/plugin-commonjs'
 
 const input = await globby('src/**/*.ts')
 
-const onlyUsedVariables = () => ({
-  name: 'rollup-plugin-only-used-variables',
+const autoExports = () => ({
+  name: 'rollup-plugin-auto-exports',
   writeBundle: async (options, bundle) => {
     const packageExports = {
       '.': {
@@ -18,9 +18,11 @@ const onlyUsedVariables = () => ({
       }
     }
     const glob = await globby('exports/**/*.d.ts')
-    
-    for (const path of glob) {
-      const parsed = parse(path)
+    let sorted = glob.map(path => ({ parsed: parse(path), path}))
+    sorted.sort((a, b) => {
+      return a.parsed.name.localeCompare(b.parsed.name)
+    })
+    for (const {path, parsed} of sorted) {
       const name = `./${parsed.name.replace('.d', '.js')}`
       packageExports[name] = {
         import: `./exports/${parsed.name.replace('.d', '.js')}`,
@@ -55,7 +57,7 @@ export default [{
     cleanBuild(),
     nodeResolve(),
     commonJs(),
-    onlyUsedVariables(),
+    autoExports(),
     typescript()
   ]
 }]
