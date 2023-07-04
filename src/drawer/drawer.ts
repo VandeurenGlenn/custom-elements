@@ -11,13 +11,15 @@ export class CustomDrawer extends LitElement {
   @property({ type: Boolean, reflect: true })
   mobile: boolean = false
 
+  @property({ type: String, reflect: true })
+  type: 'modal' | undefined
+
   render() {
     return html`<style>
       :host {
         --custom-drawer-width: 360px;
         display: flex;
         flex-direction: row;
-        width: 100%;
         height: 100%;
         background: var(--md-sys-color-surface);
         color: var(--md-sys-color-on-surface);
@@ -26,12 +28,12 @@ export class CustomDrawer extends LitElement {
         /* border-radius: 12px; */
 
         border-radius: var(--md-sys-shape-corner-large-end);
+
         --md-elevation-level: 0;
 
         pointer-events: none;
         opacity: 0;
         transform: translateX(-110%);
-        position: relative;
         width: 100%;
         max-width: var(--custom-drawer-width);
 
@@ -99,8 +101,8 @@ export class CustomDrawer extends LitElement {
         width: 100%;
       }
     </style>
+    <custom-elevation></custom-elevation>
     <aside>
-      <custom-elevation></custom-elevation>
       <flex-column class="container">
         <slot name="header">
           <slot name="headline"></slot>
