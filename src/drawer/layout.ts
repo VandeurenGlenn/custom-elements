@@ -53,11 +53,8 @@ export class CustomDrawerLayout extends LitElement {
 
       main {
         width: 100%;
+        height: 100%;
         overflow-y: auto;
-      }
-
-      :host([drawer-open]:not([mobile])) main {
-        width: calc(100% - var(--custom-drawer-width));
       }
 
       :host([drawer-open][mobile]) .scrim {
@@ -68,6 +65,9 @@ export class CustomDrawerLayout extends LitElement {
         opacity: 0.44;
       }
     </style>
+    <span class="scrim" @click=${this.#click}></span>
+
+
     <custom-drawer @click=${this.#click} .mobile=${this.mobile} .open=${this.drawerOpen} .type=${this.drawerType}>
       <slot name="drawer-header" slot="header">
         <slot name="drawer-headline" slot="headline"></slot>
@@ -75,15 +75,30 @@ export class CustomDrawerLayout extends LitElement {
       <slot name="drawer-content" slot="content"></slot>
       <slot name="drawer-footer" slot="footer"></slot>
     </custom-drawer>
-    
-    <span class="scrim" @click=${this.#click}></span>
-    <main>
 
-      <custom-drawer-button @click=${this.#click}>
-        menu
-      </custom-drawer-button>
-      <slot></slot>
-    </main>
+    <flex-column style="height: 100%;">
+
+
+    <!--  TODO: do we want a header? -->
+    <slot name="header"></slot>
+
+    <slot name="top-app-bar">
+      <custom-top-app-bar>
+        <slot name="top-app-bar-start" slot="start">
+          <slot name="drawer-menu-button">
+            <custom-drawer-button @click=${this.#click}>  
+              menu
+            </custom-drawer-button>
+          </slot>
+        </slot>
+        <slot name="top-app-bar-title" slot="title"></slot>
+        <slot name="top-app-bar-end" slot="end"></slot>
+      </custom-top-app-bar>
+    </slot>
+      <main>
+        <slot></slot>
+      </main>
+    </flex-column>
     `;
     
   }

@@ -177,6 +177,7 @@ export class CustomCard extends LitElement {
           </span>
           ${this.renderDivider()}
           <span class="actions">
+            <flex-it flex="1"></flex-it>
             <slot name="actions"></slot>
           </span>
         </span>

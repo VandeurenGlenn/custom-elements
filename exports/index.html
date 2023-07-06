@@ -43,49 +43,32 @@
   <custom-drawer-layout class="demo-container">
 
       <flex-column  slot="drawer-content">
-        
         <custom-selector attr-for-selected="route" default-selected="banner">
-          
           <custom-drawer-item route="banner">banner</custom-drawer-item>
           <custom-drawer-item route="divider">divider</custom-drawer-item>
-
-          <custom-divider></custom-divider>
-          <h4 non-interactive>Buttons</h4>
-
-          <custom-drawer-item route="text-button">text</custom-drawer-item>
-          <custom-drawer-item route="filled-button">filled</custom-drawer-item>
-          <custom-drawer-item route="elevated-button">elevated</custom-drawer-item>
-          <custom-drawer-item route="outlined-button">outlined</custom-drawer-item>
-          <custom-drawer-item route="tertiary-button">tertiary</custom-drawer-item>
-          <custom-drawer-item route="tonal-button">tonal</custom-drawer-item>
-
-          <custom-divider></custom-divider>
-          <h4 non-interactive>Cards</h4>
-          
-          <custom-drawer-item route="filled">filled</custom-drawer-item>
-          <custom-drawer-item route="elevated">elevated</custom-drawer-item>
-          <custom-drawer-item route="outlined">outlined</custom-drawer-item>
-          <custom-drawer-item route="tertiary">tertiary</custom-drawer-item>
-          
-          
+          <custom-drawer-item route="buttons">buttons</custom-drawer-item>
+          <custom-drawer-item route="cards">cards</custom-drawer-item>
+          <custom-drawer-item route="top-app-bar">top-app-bar</custom-drawer-item>
         </custom-selector>
-
-        
       </flex-column>
       
       
-      
+    <span slot="top-app-bar-title">custom-elements</span>
+
     <flex-column>
+      
       <custom-pages attr-for-selected="route" default-selected="banner">
         <demo-section route="banner">
           <custom-banner>Banner</custom-banner>
         </demo-section>
+
         <demo-section route="divider">
           <custom-divider></custom-divider>
           <custom-divider inset></custom-divider>
           <custom-divider middle-inset></custom-divider>
         </demo-section>
-        <demo-section route="filled">
+
+        <demo-section route="cards">
           <custom-card type="filled">
             <span slot="headline">filled</span>
             <span slot="subline">subline</span>
@@ -96,9 +79,7 @@
               <custom-button type="filled" label="YES"></custom-button>
             </span>
           </custom-card>
-        </demo-section>
-        
-        <demo-section route="elevated">
+
           <custom-card type="elevated">
             <span slot="headline">elevated</span>
             <span slot="subline">subline</span>
@@ -108,9 +89,7 @@
               <custom-button type="elevated" label="YES"></custom-button>
             </span>
           </custom-card>
-        </demo-section>
-  
-        <demo-section route="outlined">
+
           <custom-card type="outlined">
     
             <span slot="headline">outlined</span>
@@ -120,9 +99,7 @@
               <custom-button type="outlined" label="YES"></custom-button>
             </span>
           </custom-card>
-        </demo-section>
-      
-        <demo-section route="tertiary">
+
           <custom-card type="tertiary">
             <img slot="image" src="https://lh3.googleusercontent.com/9NBw6U14z6f-EAnwPqfcX-mIkxNdpK0IXvwiun9w84JkMcZfBT0bfRqn7QWdBVqnCYC5hsDEnGhSjbaWcgi1HT_Q6pCioSRTgMFODqZdAXw=s0">
             <span slot="headline">tertiary</span>
@@ -135,52 +112,48 @@
           </custom-card>
         </demo-section>
   
-        <demo-section route="text-button">
+        <demo-section route="buttons">
           <custom-button type="text" label="text"></custom-button>
           
           <custom-button type="text" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </demo-section>
-  
-        <demo-section route="filled-button">
+
           <custom-button type="filled" label="filled"></custom-button>
           
           <custom-button type="filled" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </demo-section>
-  
-        <demo-section route="elevated-button">
+
           <custom-button type="elevated" label="elevated"></custom-button>
           
           <custom-button type="elevated" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </demo-section>
 
-        <demo-section route="outlined-button">
           <custom-button type="outlined" label="outlined"></custom-button>
           
           <custom-button type="outlined" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </demo-section>
-  
-        <demo-section route="tonal-button">
+
           <custom-button type="tonal" label="tonal"></custom-button>
           
           <custom-button type="tonal" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
-        </demo-section>
-  
-        <demo-section route="tertiary-button">
+          
           <custom-button type="tertiary" label="tertiary"></custom-button>
           
           <custom-button type="tertiary" label="with icon">
             <span slot="icon">+</span>
           </custom-button>
+        </demo-section>
+
+        <demo-section route="top-app-bar">
+          <custom-top-app-bar>
+            <span slot="title">title</span>
+          </custom-top-app-bar>
         </demo-section>
       </custom-pages>
     </flex-column>

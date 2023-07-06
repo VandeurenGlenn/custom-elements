@@ -40,6 +40,7 @@ export class CustomDrawer extends LitElement {
       }
 
       :host([mobile]) {
+        top: 0;
         position: fixed;
         z-index: 1001;
         background: var(--md-sys-color-surface);

@@ -10,6 +10,7 @@ import { CustomDrawerButton } from './drawer/drawer-button.js'
 import { CustomDrawerItem } from './drawer/drawer-item.js'
 import { CustomSection } from './section/section.js'
 import { CustomDrawerLayout } from './drawer/layout.js'
+import { CustomTopAppBar } from './bar/top-app.js'
 
 export {
   CustomTheme,
@@ -23,7 +24,8 @@ export {
   CustomBanner,
   CustomSection,
   CustomSelector,
-  CustomPages
+  CustomPages,
+  CustomTopAppBar
 }
 
 declare global {
@@ -40,5 +42,6 @@ declare global {
     'custom-section': CustomSection
     'custom-selector': CustomSelector
     'custom-pages': CustomPages
+    'custom-top-app-bar': CustomTopAppBar
   }
 }
