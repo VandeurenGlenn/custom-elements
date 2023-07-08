@@ -1,7 +1,6 @@
 import { customElement } from 'custom-element-decorator';
 import { LitElement, html, css } from 'lit';
 import './../section/section.js'
-import converter from 'html-to-markdown'
 import './code.js'
 
 const replaceHtmlEntities = str => str
