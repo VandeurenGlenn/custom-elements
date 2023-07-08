@@ -19,22 +19,7 @@ export class CustomDrawerButton extends LitElement {
       }
     `
   ];
-
-  connectedCallback(): void {
-    super.connectedCallback()
-    const media = matchMedia('(max-width: 720px)')
-   
-    const mediaQueryChange = ({matches}) => {
-      this.mobile = matches
-    }
-    media.onchange = mediaQueryChange
-    mediaQueryChange({ matches: media.matches })
-    this.addEventListener('click', () => {
-      if (this.mobile) document.dispatchEvent(new CustomEvent('toggle-drawer'))
-    })
-    
-  }
-
+  
   render() {
     return html`
     <custom-button>
