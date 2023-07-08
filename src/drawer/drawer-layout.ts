@@ -1,10 +1,9 @@
-import { customElement } from "custom-element-decorator";
 import { LitElement, html } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property, query, customElement } from "lit/decorators.js";
 import './drawer.js'
 import './drawer-button.js'
 
-@customElement()
+@customElement('custom-drawer-layout')
 export class CustomDrawerLayout extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'drawer-open' })
   drawerOpen: boolean = false
@@ -45,10 +44,6 @@ export class CustomDrawerLayout extends LitElement {
         background-blend-mode: hue;
         position: absolute;
         --md-elevation-level: 0;
-      }
-
-      ::slotted(*) {
-        pointer-events: none;
       }
 
       main {

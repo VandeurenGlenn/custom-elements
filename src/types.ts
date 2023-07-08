@@ -19,3 +19,5 @@ export declare type attributeConfig = {
 export declare type propertiesConfig = {
   [index: string]: propertyConfig
 } 
+
+export declare type ButtonType = 'elevated' | 'filled' | 'text' | 'tonal' | 'outlined'

@@ -9,8 +9,11 @@ import { CustomDrawer } from './drawer/drawer.js'
 import { CustomDrawerButton } from './drawer/drawer-button.js'
 import { CustomDrawerItem } from './drawer/drawer-item.js'
 import { CustomSection } from './section/section.js'
-import { CustomDrawerLayout } from './drawer/layout.js'
+import { CustomDrawerLayout } from './drawer/drawer-layout.js'
 import { CustomTopAppBar } from './bar/top-app.js'
+import { CustomIcon } from './icon/icon.js'
+import { CustomThemeMode } from './theme/mode.js'
+import { CustomIconButton } from './button/icon-button.js'
 
 export {
   CustomTheme,
@@ -25,7 +28,10 @@ export {
   CustomSection,
   CustomSelector,
   CustomPages,
-  CustomTopAppBar
+  CustomTopAppBar,
+  CustomIcon,
+  CustomThemeMode,
+  CustomIconButton
 }
 
 declare global {
@@ -43,5 +49,8 @@ declare global {
     'custom-selector': CustomSelector
     'custom-pages': CustomPages
     'custom-top-app-bar': CustomTopAppBar
+    'custom-icon': CustomIcon
+    'custom-theme-mode': CustomThemeMode
+    'custom-icon-button': CustomIconButton
   }
 }

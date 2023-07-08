@@ -31,11 +31,10 @@ export class CustomTopAppBar extends LitElement {
         padding-bottom: 28px;
       }
 
-      :host([type="center-aligned"]) ::slotted(*) {
+      :host([type="center-aligned"]) slot[name="title"]::slotted(*) {
         position: absolute;
         left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%)
+        transform: translateX(-50%)
       }
     `
   ];
@@ -45,6 +44,7 @@ export class CustomTopAppBar extends LitElement {
     <flex-row>
       <slot name="start"></slot>
       <slot name="title"></slot>
+      <flex-one></flex-one>
       <slot name="end"></slot>
     </flex-row>
     <flex-column>

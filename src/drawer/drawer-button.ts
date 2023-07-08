@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
+import './../icon/icon.js'
 
 @customElement('custom-drawer-button')
 export class CustomDrawerButton extends LitElement {
@@ -15,18 +16,6 @@ export class CustomDrawerButton extends LitElement {
       :host(:not([mobile])) {
         opacity: 0;
         pointer-events: none;
-      }
-      
-      .material-symbols-outlined {
-        font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48;
-        font-size: 24px;
-        font-family: 'Material Symbols Outlined';
-        height: 24px;
-        width: 24px;
       }
     `
   ];
@@ -49,9 +38,9 @@ export class CustomDrawerButton extends LitElement {
   render() {
     return html`
     <custom-button>
-   <div class="material-symbols-outlined" slot="icon">
-   menu
-   </div>
+      <custom-icon slot="icon">
+      menu
+      </custom-icon>
     </custom-button>
     `;
   }
