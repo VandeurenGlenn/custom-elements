@@ -21,6 +21,7 @@ export class CustomThemeMode extends LitElement {
   #switchMode() {
     this.mode = this.mode === 'light' ? 'dark' : 'light'
     this._icon = `${this.mode}_mode`
+    this.requestUpdate('_icon')
     localStorage.setItem('custom-theme-mode', this.mode)
     
   }
