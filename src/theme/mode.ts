@@ -26,7 +26,7 @@ export class CustomThemeMode extends LitElement {
     return html`
     <custom-button @click=${this.#switchMode}>
       <custom-icon slot="icon">
-        ${this.mode}_mode
+        ${this.mode + '_mode'}
       </custom-icon>
     </custom-button>
     `;
