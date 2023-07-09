@@ -24,7 +24,7 @@ export class CustomTopAppBar extends LitElement {
       }
 
       .container {
-        padding: 20px 0 24px 0;
+        padding: 20px 16px 24px 16px;
         box-sizing: border-box;
         position: relative;
         height: 64px;
