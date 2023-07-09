@@ -1,9 +1,10 @@
+import { LitElement } from 'lit';
 import SelectMixin from '../mixins/select-mixin.js';
 
 /**
  * @extends HTMLElement
  */
-export class CustomPages extends SelectMixin(HTMLElement) {
+export class CustomPages extends SelectMixin(LitElement) {
   constructor() {
     super();
     this.slotchange = this.slotchange.bind(this);

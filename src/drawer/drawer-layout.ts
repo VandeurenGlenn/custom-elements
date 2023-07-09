@@ -2,9 +2,12 @@ import { LitElement, html } from "lit";
 import { property, query, customElement } from "lit/decorators.js";
 import './drawer.js'
 import './drawer-button.js'
+// import { publish, subscribe } from "../decorators/pubsub.js";
 
 @customElement('custom-drawer-layout')
 export class CustomDrawerLayout extends LitElement {
+
+  // @subscribe('drawer-open', (value) => {return value})
   @property({ type: Boolean, reflect: true, attribute: 'drawer-open' })
   drawerOpen: boolean = false
 
@@ -81,7 +84,7 @@ export class CustomDrawerLayout extends LitElement {
       <custom-top-app-bar>
         <slot name="top-app-bar-start" slot="start">
           <slot name="drawer-menu-button">
-            <custom-drawer-button @click=${this.#click}>  
+            <custom-drawer-button @click=${this.#click} .mobile=${this.mobile}>  
               menu
             </custom-drawer-button>
           </slot>

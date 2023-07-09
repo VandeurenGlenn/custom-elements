@@ -1,14 +1,18 @@
+import { LitElement } from 'lit';
 import SelectMixin from './select-mixin.js'
 
 export default base =>
   class SelectorMixin extends SelectMixin(base) {
+    multi: Boolean
+
     constructor() {
       super();
       this.multi = this.hasAttribute('multi');
     }
 
-    connectedCallback() {
-      super.connectedCallback && super.connectedCallback();
+    async connectedCallback() {
+      super.connectedCallback && await super.connectedCallback();
+      this.updateComplete && await this.updateComplete
       this.slotted.addEventListener('click', this.#onClick.bind(this));
     }
 
@@ -17,8 +21,8 @@ export default base =>
       this.slotted.removeEventListener('click', this.#onClick.bind(this));
     }
 
-    #onClick(event) {
-      const target = event.composedPath()[0];
+    #onClick(event: Event) {
+      const target = event.composedPath()[0] as HTMLElement
 
       if (target.localName === this.localName) {
         // was just a click in the host element so we don't need todo anything  
@@ -37,8 +41,6 @@ export default base =>
         // trigger observer
         this.select(this.selected);
       } else this.selected = selected;
-
-        // if (this.selected) this.selected = selected;
         
       this.dispatchEvent(new CustomEvent('selected', { detail: selected }));
     }
