@@ -8,7 +8,7 @@ export class CustomThemeMode extends LitElement {
   _icon: string
 
   @property({ type: String })
-  mode: 'dark' | 'light' = localStorage.getItem('custom-theme-mode') || matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light'
+  mode: 'dark' | 'light'
 
   static styles = [
     css`
@@ -18,10 +18,15 @@ export class CustomThemeMode extends LitElement {
     `
   ];
 
+  async connectedCallback(): void {
+    super.connectedCallback()
+    this.mode = localStorage.getItem('custom-theme-mode') || matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light'
+    this._icon = `${this.mode}_mode`
+  }
+
   #switchMode() {
     this.mode = this.mode === 'light' ? 'dark' : 'light'
     this._icon = `${this.mode}_mode`
-    this.requestUpdate('_icon')
     localStorage.setItem('custom-theme-mode', this.mode)
     
   }
