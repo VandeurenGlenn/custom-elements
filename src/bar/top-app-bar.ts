@@ -18,8 +18,6 @@ export class CustomTopAppBar extends LitElement {
         width: calc(100% - 2px);
         background-color: var(--md-sys-color-surface);
         color: var(--md-sys-color-on-surface);
-
-        padding: 0 16px;
         box-sizing: border-box;
       }
 
@@ -51,6 +49,7 @@ export class CustomTopAppBar extends LitElement {
 
       :host([scrolling]) {
         --md-elevation-level: 2;
+        padding: 0 16px;
       }
 
       flex-row {
