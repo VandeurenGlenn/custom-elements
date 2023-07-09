@@ -20,7 +20,7 @@ export class CustomThemeMode extends LitElement {
 
   #switchMode() {
     this.mode = this.mode === 'light' ? 'dark' : 'light'
-    this._icon = this.mode + '_mode'
+    this._icon = `${this.mode}_mode`
     localStorage.setItem('custom-theme-mode', this.mode)
     
   }
