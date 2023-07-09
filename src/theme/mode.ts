@@ -4,6 +4,8 @@ import '../icon/icon.js'
 
 @customElement('custom-theme-mode')
 export class CustomThemeMode extends LitElement {
+  @property({ type: String })
+  _icon: string
 
   @property({ type: String })
   mode: 'dark' | 'light' = localStorage.getItem('custom-theme-mode') || matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light'
@@ -18,6 +20,7 @@ export class CustomThemeMode extends LitElement {
 
   #switchMode() {
     this.mode = this.mode === 'light' ? 'dark' : 'light'
+    this._icon = this.mode + '_mode'
     localStorage.setItem('custom-theme-mode', this.mode)
     
   }
@@ -26,7 +29,7 @@ export class CustomThemeMode extends LitElement {
     return html`
     <custom-button @click=${this.#switchMode}>
       <custom-icon slot="icon">
-        ${this.mode + '_mode'}
+        ${this._icon}
       </custom-icon>
     </custom-button>
     `;
