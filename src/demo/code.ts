@@ -30,6 +30,10 @@ export class DemoCode extends LitElement {
         padding: 0;
         overflow: auto;
       }
+      pre {
+        margin-bottom: -12px;
+        margin-left: -46px;
+      }
     `
   ];
 

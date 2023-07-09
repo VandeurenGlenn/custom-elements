@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
 
 @customElement('custom-top-app-bar')
@@ -40,11 +40,22 @@ export class CustomTopAppBar extends LitElement {
         padding-bottom: 28px;
       }
 
+      :host([type="medium"]) .container {
+        height: 112px;
+      }
+      :host([type="large"]) .container {
+        height: 152px;
+      }
+
       :host([type="center-aligned"]) slot[name="title"]::slotted(*) {
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%)
+      }
+
+      :host(:not([type="center-aligned"])) slot[name="title"]::slotted(*) {
+        padding-left: 6px;
       }
 
       :host([scrolling]) {
@@ -76,12 +87,22 @@ export class CustomTopAppBar extends LitElement {
       <custom-elevation></custom-elevation>
       <flex-row>
         <slot name="start"></slot>
-        <custom-typography>
-          <slot name="title"></slot>
-        </custom-typography>
+        ${this.type === 'center-aligned' || this.type === 'small' ? html`
+          <custom-typography>
+            <slot name="title"></slot>
+          </custom-typography>
+          ` : nothing
+        }
         <flex-one></flex-one>
         <slot name="end"></slot>
       </flex-row>
+      ${this.type === 'medium' || this.type === 'large' ? html`
+        <flex-it></flex-it>
+        <custom-typography type="headline" size="small">
+          <slot name="title"></slot>
+        </custom-typography>
+        ` : nothing
+      }
     </flex-column>
     
     `;

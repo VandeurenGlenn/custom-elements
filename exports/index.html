@@ -162,12 +162,20 @@
           </custom-top-app-bar>
 
           <custom-top-app-bar type="small">
+            <custom-icon-button slot="start">menu</custom-icon-button>
+            <span slot="title">title</span>
+          </custom-top-app-bar>
+
+          <custom-top-app-bar type="medium">
+            <custom-icon-button slot="start">menu</custom-icon-button>
             <span slot="title">title</span>
           </custom-top-app-bar>
 
           <custom-top-app-bar type="large">
+            <custom-icon-button slot="start">menu</custom-icon-button>
             <span slot="title">title</span>
           </custom-top-app-bar>
+          
         </demo-section>
 
         <demo-section route="typography">
@@ -245,7 +253,10 @@
     const selector = document.querySelector('custom-selector')
     const pages = document.querySelector('custom-pages')
 
-    const onSelected = async ({detail}) => pages.select(detail)
+    const onSelected = async ({detail}) => {
+      document.dispatchEvent(new CustomEvent('custom-scroll', { detail: {scrolling: false}}))
+      pages.select(detail)
+    }
 
     selector.addEventListener('selected', onSelected)
   </script>
