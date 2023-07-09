@@ -26,7 +26,6 @@ export class DemoSection extends LitElement {
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        overflow-y: auto;
       }
     `
   ];

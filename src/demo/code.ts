@@ -9,25 +9,34 @@ export class DemoCode extends LitElement {
   static styles = [
     css`
       :host {
-        display: block;
-        background: var(--md-sys-color-surface-variant);
+        display: flex;
+      
         color: var(--md-sys-color-on-surface-variant);
         box-sizing: border-box;
         width: 100%;
-        overflow: hidden;
         box-sizing: border-box;
+        background: var(--md-sys-color-surface-variant);
+        border: 1px solid var(--md-sys-color-outline);
+        border-radius: var(--md-sys-shape-corner-large);
+    
         /* margin-left: -100%; */
         /* display: inline-block; */
-        overflow-x: auto;
         margin: 12px 0 24px 0;
+
+        align-items: center;
+      }
+      pre, code {
+        margin: 0;
+        padding: 0;
+        overflow: auto;
       }
     `
   ];
 
   render() {
     return html`
-    <pre>
-      <code>
+    <pre class="language-html">
+      <code class="language-html">
         ${this.code}
       </code>
       </pre>

@@ -122,6 +122,10 @@
 			"import": "./exports/pubsub.js",
 			"types": "./exports/decorators/pubsub.d.ts"
 		},
+		"./scroll-mixin.js": {
+			"import": "./exports/scroll-mixin.js",
+			"types": "./exports/mixins/scroll-mixin.d.ts"
+		},
 		"./section.js": {
 			"import": "./exports/section.js",
 			"types": "./exports/section/section.d.ts"
@@ -146,13 +150,21 @@
 			"import": "./exports/time-picker.js",
 			"types": "./exports/time-picker/time-picker.d.ts"
 		},
-		"./top-app.js": {
-			"import": "./exports/top-app.js",
-			"types": "./exports/bar/top-app.d.ts"
+		"./title.js": {
+			"import": "./exports/title.js",
+			"types": "./exports/typography/title.d.ts"
+		},
+		"./top-app-bar.js": {
+			"import": "./exports/top-app-bar.js",
+			"types": "./exports/bar/top-app-bar.d.ts"
 		},
 		"./types.js": {
 			"import": "./exports/types.js",
 			"types": "./exports/types.d.ts"
+		},
+		"./typography.js": {
+			"import": "./exports/typography.js",
+			"types": "./exports/typography/typography.d.ts"
 		}
 	}
 }

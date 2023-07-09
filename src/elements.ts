@@ -10,10 +10,11 @@ import { CustomDrawerButton } from './drawer/drawer-button.js'
 import { CustomDrawerItem } from './drawer/drawer-item.js'
 import { CustomSection } from './section/section.js'
 import { CustomDrawerLayout } from './drawer/drawer-layout.js'
-import { CustomTopAppBar } from './bar/top-app.js'
+import { CustomTopAppBar } from './bar/top-app-bar.js'
 import { CustomIcon } from './icon/icon.js'
 import { CustomThemeMode } from './theme/mode.js'
 import { CustomIconButton } from './button/icon-button.js'
+import { CustomTypography } from './typography/typography.js'
 
 export {
   CustomTheme,
@@ -31,7 +32,8 @@ export {
   CustomTopAppBar,
   CustomIcon,
   CustomThemeMode,
-  CustomIconButton
+  CustomIconButton,
+  CustomTypography
 }
 
 declare global {
@@ -51,6 +53,7 @@ declare global {
     'custom-top-app-bar': CustomTopAppBar
     'custom-icon': CustomIcon
     'custom-theme-mode': CustomThemeMode
-    'custom-icon-button': CustomIconButton
+    'custom-icon-button': CustomIconButton,
+    'custom-typography': CustomTypography
   }
 }

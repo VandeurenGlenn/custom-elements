@@ -47,6 +47,10 @@ export class CustomDrawerLayout extends LitElement {
         background-blend-mode: hue;
         position: absolute;
         --md-elevation-level: 0;
+
+
+        padding: 12px 0 16px;
+        box-sizing: border-box;
       }
 
       main {
