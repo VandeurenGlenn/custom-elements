@@ -12,7 +12,7 @@ export default base =>
 
     async connectedCallback() {
       super.connectedCallback && await super.connectedCallback();
-      this.updateComplete && await this.updateComplete
+      // this.updateComplete && await this.updateComplete
       this.slotted.addEventListener('click', this.#onClick.bind(this));
     }
 

@@ -6,12 +6,6 @@ export default base => {
       super();
     }
 
-    async connectedCallback() {
-      super.connectedCallback && super.connectedCallback();
-      this.updateComplete && await this.updateComplete
-      this.selected = this.getAttribute('default-selected') || 0
-    }
-
     set selected(value) {
       this.#selected = value
       this.#requestSelectedUpdate()
@@ -22,7 +16,9 @@ export default base => {
     }
 
     get slotted() {
-      return this.renderRoot ? this.renderRoot.querySelector('slot') : this;
+      if (this.renderRoot) return this.renderRoot.querySelector('slot')
+      if (this.shadowRoot) return this.shadowRoot.querySelector('slot')
+      return this;
     }
 
     get #assignedNodes() {

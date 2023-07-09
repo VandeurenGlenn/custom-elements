@@ -106,7 +106,7 @@
           </custom-card>
 
           <custom-card type="tertiary">
-            <img slot="image" src="https://lh3.googleusercontent.com/9NBw6U14z6f-EAnwPqfcX-mIkxNdpK0IXvwiun9w84JkMcZfBT0bfRqn7QWdBVqnCYC5hsDEnGhSjbaWcgi1HT_Q6pCioSRTgMFODqZdAXw=s0">
+            <img loading="lazy" slot="image" src="https://lh3.googleusercontent.com/9NBw6U14z6f-EAnwPqfcX-mIkxNdpK0IXvwiun9w84JkMcZfBT0bfRqn7QWdBVqnCYC5hsDEnGhSjbaWcgi1HT_Q6pCioSRTgMFODqZdAXw=s0">
             <span slot="headline">tertiary</span>
             <span slot="subline">subline</span>
             
@@ -173,8 +173,9 @@
 
     const selector = document.querySelector('custom-selector')
     const pages = document.querySelector('custom-pages')
-    
-    const onSelected = ({detail}) => pages.select(detail)
+
+    const onSelected = async ({detail}) => pages.select(detail)
+
     selector.addEventListener('selected', onSelected)
   </script>
   

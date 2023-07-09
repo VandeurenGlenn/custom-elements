@@ -6,7 +6,7 @@ import { parse } from "path";
 import { rimraf } from "rimraf";
 import commonJs from '@rollup/plugin-commonjs'
 
-const input = await globby('src/**/*.ts')
+const input = await globby(['src/**/*.ts'])
 
 const autoExports = () => ({
   name: 'rollup-plugin-auto-exports',

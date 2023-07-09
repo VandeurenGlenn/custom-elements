@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/custom-elements",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "set of custom (vanilla) elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -19,7 +19,8 @@
 		"@material/web": "^1.0.0-pre.10",
 		"@vandeurenglenn/flex-elements": "^0.3.2",
 		"custom-element-decorator": "^0.6.0",
-		"lit": "^2.7.6"
+		"lit": "^2.7.6",
+		"scoped-pubsub": "^1.0.3"
 	},
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^25.0.2",
@@ -116,6 +117,10 @@
 		"./pages.js": {
 			"import": "./exports/pages.js",
 			"types": "./exports/pages/pages.d.ts"
+		},
+		"./pubsub.js": {
+			"import": "./exports/pubsub.js",
+			"types": "./exports/decorators/pubsub.d.ts"
 		},
 		"./section.js": {
 			"import": "./exports/section.js",

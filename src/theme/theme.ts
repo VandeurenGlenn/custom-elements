@@ -4,7 +4,34 @@ import { LitElement } from 'lit'
 
 @customElement()
 export class CustomTheme extends LitElement {
-  
+
+  #preconnect(href, attributes?: string[]) {
+    let link = document.createElement('link')
+
+    link.rel = 'preconnect'
+    link.href = href
+    if (attributes) {
+      for (const attribute of attributes) {
+        link.setAttribute(attribute, '')
+      }
+    }
+    document.head.appendChild(link)
+  }
+
+  #stylesheet(href, attributes?: string[]) {
+    let link = document.createElement('link')
+
+    link.rel = 'stylesheet'
+    link.href = href
+    if (attributes) {
+      for (const attribute of attributes) {
+        link.setAttribute(attribute, '')
+      }
+    }
+    document.head.appendChild(link)
+
+  }
+   
   constructor() {
     super()
 
@@ -22,26 +49,11 @@ export class CustomTheme extends LitElement {
     }`
     document.head.appendChild(style)
 
-    let link = document.createElement('link')
-
-    link.rel = 'preconnect'
-    link.href = 'https://fonts.googleapis.com'
-
-    document.head.appendChild(link.cloneNode(true))
-
-    link.href = 'https://fonts.gstatic.com'
-    link.setAttribute('crossorigin', '')
-
-    document.head.appendChild(link.cloneNode(true))
-    
-    link.rel = 'stylesheet'
-    link.href = 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'
-    link.removeAttribute('crossorigin')
-    document.head.appendChild(link.cloneNode(true))
-
-    link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0'
-    
-    document.head.appendChild(link.cloneNode(true))
+    this.#preconnect('https://fonts.googleapis.com'),
+    this.#preconnect('https://fonts.gstatic.com', ['crossorigin']),
+    this.#stylesheet('https://fonts.googleapis.com/css2?family=Roboto&display=swap'),
+    this.#stylesheet('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap')
+     
   }
 
   set language(value) {

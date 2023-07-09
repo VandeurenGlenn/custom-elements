@@ -1,8 +1,7 @@
-import { customElement } from 'custom-element-decorator';
 import { LitElement, html, css } from 'lit';
-import { property } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 
-@customElement()
+@customElement('custom-section')
 export class CustomSection extends LitElement {
   static styles = [
     css`

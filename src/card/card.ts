@@ -161,6 +161,8 @@ export class CustomCard extends LitElement {
         ::slotted(*) {
           overflow: hidden;
           border-radius: 12px;
+          height: 100%;
+          width: 100%;
         }
       </style>
        <custom-elevation></custom-elevation>
