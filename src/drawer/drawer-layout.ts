@@ -38,7 +38,6 @@ export class CustomDrawerLayout extends LitElement {
   render() {
     return html`<style>
       :host {
-        --custom-drawer-width: 360px;
         display: flex;
         flex-direction: row;
         inset: 0;
@@ -46,10 +45,6 @@ export class CustomDrawerLayout extends LitElement {
         color: var(--md-sys-color-on-surface);
         background-blend-mode: hue;
         position: absolute;
-        --md-elevation-level: 0;
-
-
-        padding: 12px 0 16px;
         box-sizing: border-box;
       }
 
@@ -65,6 +60,10 @@ export class CustomDrawerLayout extends LitElement {
         inset: 0;
         background-color: var(--md-sys-color-scrim);
         opacity: 0.44;
+      }
+
+      custom-drawer {
+        width: var(--custom-drawer-width, 320px);
       }
     </style>
     <span class="scrim" @click=${this.#click}></span>
