@@ -66,7 +66,7 @@ export class CustomDrawerLayout extends LitElement {
         width: var(--custom-drawer-width, 320px);
       }
 
-      .content {
+      .middle-pane {
         width: 100%;
         height: 100%;
       }
@@ -84,7 +84,7 @@ export class CustomDrawerLayout extends LitElement {
       </custom-drawer>
     </slot>
 
-    <flex-column class="content">
+    <flex-column class="middle-pane">
       <!--  TODO: do we want a header? -->
       <slot name="header"></slot>
 
@@ -101,9 +101,12 @@ export class CustomDrawerLayout extends LitElement {
           <slot name="top-app-bar-end" slot="end"></slot>
         </custom-top-app-bar>
       </slot>
-      <main>
-        <slot></slot>
-      </main>
+
+      <slot name="content">
+        <main>
+          <slot></slot>
+        </main>
+      </slot>
     </flex-column>
     `;
     
