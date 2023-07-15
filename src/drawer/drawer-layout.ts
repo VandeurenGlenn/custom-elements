@@ -30,10 +30,17 @@ export class CustomDrawerLayout extends LitElement {
     media.onchange = mediaQueryChange
     mediaQueryChange({ matches: media.matches })
 
-    document.addEventListener('custom-pane-close', () => this.drawerOpen = false && this.requestUpdate())
+    document.addEventListener('custom-pane-close', () => {
+      this.drawerOpen = false
+    })
   }
 
   #click = () => {
+    if (this.mobile) this.drawerOpen = !this.drawerOpen
+  }
+
+  #toggleDrawer = (event: Event) => {
+    event.stopPropagation()
     this.drawerOpen = !this.drawerOpen
   }
 
@@ -69,7 +76,7 @@ export class CustomDrawerLayout extends LitElement {
         --custom-pane-width: var(--custom-drawer-width, 320px);
       }
 
-      .middle-pane {
+      :host(:not([mobile])) .middle-pane {
         will-change: width, transform;
         width: calc(100% - var(--custom-drawer-width));
         height: 100%;
@@ -83,7 +90,12 @@ export class CustomDrawerLayout extends LitElement {
         transition: var(--md-sys-motion-easing-emphasized-decelerate) 200ms width, var(--md-sys-motion-easing-emphasized-decelerate) 200ms transform;
         transform: translateX(0);
         width: 100%;
-        
+      }
+
+      :host([mobile]) .middle-pane {
+        width: 100%;
+        transform: 0;
+        left: 0;
       }
     </style>
     <span class="scrim" @click=${this.#click}></span>
@@ -107,7 +119,7 @@ export class CustomDrawerLayout extends LitElement {
         <custom-top-app-bar>
           <slot name="top-app-bar-start" slot="start">
             <slot name="drawer-menu-button">
-              <custom-drawer-button @click=${this.#click} .mobile=${this.mobile} ?drawer-open=${this.drawerOpen}>
+              <custom-drawer-button @click=${this.#toggleDrawer} .mobile=${this.mobile} ?drawer-open=${this.drawerOpen}>
                 menu
               </custom-drawer-button>
             </slot>
