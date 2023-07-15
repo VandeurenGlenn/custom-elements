@@ -29,15 +29,18 @@ export class CustomDrawerLayout extends LitElement {
 
     media.onchange = mediaQueryChange
     mediaQueryChange({ matches: media.matches })
+
+    document.addEventListener('custom-pane-close', () => this.drawerOpen = false && this.requestUpdate())
   }
 
   #click = () => {
-    if (this.mobile) this.drawerOpen = !this.drawerOpen
+    this.drawerOpen = !this.drawerOpen
   }
 
   render() {
     return html`<style>
       :host {
+        --custom-drawer-width: 320px;
         display: flex;
         flex-direction: row;
         inset: 0;
@@ -63,12 +66,24 @@ export class CustomDrawerLayout extends LitElement {
       }
 
       custom-drawer {
-        width: var(--custom-drawer-width, 320px);
+        --custom-pane-width: var(--custom-drawer-width, 320px);
       }
 
       .middle-pane {
-        width: 100%;
+        will-change: width, transform;
+        width: calc(100% - var(--custom-drawer-width));
         height: 100%;
+        position: absolute;
+        transform: translateX(var(--custom-drawer-width));
+
+        transition: var(--md-sys-motion-easing-emphasized-accelerate) 500ms width, var(--md-sys-motion-easing-emphasized-accelerate) 500ms transform;
+      }
+
+      :host(:not([drawer-open])) .middle-pane {
+        transition: var(--md-sys-motion-easing-emphasized-decelerate) 200ms width, var(--md-sys-motion-easing-emphasized-decelerate) 200ms transform;
+        transform: translateX(0);
+        width: 100%;
+        
       }
     </style>
     <span class="scrim" @click=${this.#click}></span>
@@ -92,7 +107,7 @@ export class CustomDrawerLayout extends LitElement {
         <custom-top-app-bar>
           <slot name="top-app-bar-start" slot="start">
             <slot name="drawer-menu-button">
-              <custom-drawer-button @click=${this.#click} .mobile=${this.mobile}>  
+              <custom-drawer-button @click=${this.#click} .mobile=${this.mobile} ?drawer-open=${this.drawerOpen}>
                 menu
               </custom-drawer-button>
             </slot>

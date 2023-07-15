@@ -8,8 +8,7 @@ export class CustomDrawerButton extends LitElement {
   @property({ type: Boolean, reflect: true })
   mobile: boolean = false
 
-  // @publish('drawer-open', false)
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, attribute: 'drawer-open' })
   drawerOpen: boolean
 
 
@@ -17,9 +16,11 @@ export class CustomDrawerButton extends LitElement {
     css`
       :host {
         display: block;
+        opacity: 1;
+        pointer-events: auto;
       }
 
-      :host(:not([mobile])) {
+      :host([drawer-open]) {
         opacity: 0;
         pointer-events: none;
       }

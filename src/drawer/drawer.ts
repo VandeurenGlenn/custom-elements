@@ -2,6 +2,8 @@ import { customElement } from "custom-element-decorator";
 import { LitElement, html } from "lit";
 import { property, query } from "lit/decorators.js";
 import'./../elevation/elevation.js'
+import './../button/button.js'
+import './../pane/pane.js'
 
 @customElement()
 export class CustomDrawer extends LitElement {
@@ -14,55 +16,20 @@ export class CustomDrawer extends LitElement {
   @property({ type: String, reflect: true })
   type: 'modal' | undefined
 
+  @property({ type: Boolean })
+  right: boolean = false
+
   render() {
     return html`<style>
       :host {
-        --custom-drawer-width: 360px;
-        display: flex;
-        flex-direction: row;
-        height: 100%;
-        background: var(--md-sys-color-surface);
-        color: var(--md-sys-color-on-surface);
-        background-blend-mode: hue;
-        position: relative;
-        /* border-radius: 12px; */
-
-        border-radius: var(--md-sys-shape-corner-large-end);
-
-        --md-elevation-level: 0;
-
-        pointer-events: none;
-        opacity: 0;
-        transform: translateX(-110%);
-        width: 100%;
-        max-width: var(--custom-drawer-width);
-
+        display: contents;
       }
 
-      :host([mobile]) {
-        top: 0;
-        position: fixed;
-        z-index: 1001;
-        background: var(--md-sys-color-surface);
-        color: var(--md-sys-color-on-surface);
-      }
-
-      :host([type="modal"]) {
-        --md-elevation-level: 1;
-      }
-
-      .container {
+      custom-pane {
         box-sizing: border-box;
         padding: 12px 24px;
         height: 100%;
-        width: 100%;
-      }
-
-      :host([open]) {
-        transform: translateX(0);
-        opacity: 1;
-        pointer-events: auto;
-        /* transition: ; */
+        --custom-pane-width: var(--custom-drawer-with, 320px)
       }
 
       slot[name="headline"]::slotted(*) {
@@ -102,16 +69,15 @@ export class CustomDrawer extends LitElement {
         width: 100%;
       }
     </style>
-    <custom-elevation></custom-elevation>
-    <aside>
-      <flex-column class="container">
-        <slot name="header">
-          <slot name="headline"></slot>
-        </slot>
-        <slot name="content"></slot>
-        <slot name="footer"></slot>  
-      </flex-column>
-    </aside>
+
+    <custom-pane .open=${this.open} .mobile=${this.mobile} .type=${this.type}>
+      <slot name="header">
+        <slot name="headline" slot="headline"></slot>
+        <slot name="menu-button" slot="menu-button"></slot>
+      </slot>
+      <slot name="content" slot="content"></slot>
+      <slot name="footer" slot="footer"></slot>
+    </custom-pane>
     
     `;
     
