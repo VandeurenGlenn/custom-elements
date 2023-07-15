@@ -2,6 +2,7 @@ import { customElement } from "custom-element-decorator";
 import { LitElement, html } from "lit";
 import { property, query } from "lit/decorators.js";
 import'./../elevation/elevation.js'
+import './../button/icon-button.js'
 
 @customElement()
 export class CustomPane extends LitElement {

@@ -1,11 +1,12 @@
 {
 	"name": "@vandeurenglenn/custom-elements",
-	"version": "0.1.13",
+	"version": "0.1.14",
 	"description": "set of custom (vanilla) elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
 		"watch": "rollup -c -w",
 		"build": "rollup -c",
+		"serve": "jsproject --serve ./exports --port 8888",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"files": [
@@ -118,9 +119,17 @@
 			"import": "./exports/pages.js",
 			"types": "./exports/pages/pages.d.ts"
 		},
+		"./pane.js": {
+			"import": "./exports/pane.js",
+			"types": "./exports/pane/pane.d.ts"
+		},
 		"./pubsub.js": {
 			"import": "./exports/pubsub.js",
 			"types": "./exports/decorators/pubsub.d.ts"
+		},
+		"./rail.js": {
+			"import": "./exports/rail.js",
+			"types": "./exports/rail/rail.d.ts"
 		},
 		"./scroll-mixin.js": {
 			"import": "./exports/scroll-mixin.js",
