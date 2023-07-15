@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/custom-elements",
-	"version": "0.1.14",
+	"version": "0.1.15",
 	"description": "set of custom (vanilla) elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
