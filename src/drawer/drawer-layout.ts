@@ -105,9 +105,8 @@ export class CustomDrawerLayout extends LitElement {
     
     <slot name="drawer">
       <custom-drawer @click=${this.#click} .mobile=${this.mobile} .open=${this.drawerOpen} .type=${this.drawerType}>
-        <slot name="drawer-header" slot="header">
-          <slot name="drawer-headline" slot="headline"></slot>
-        </slot>
+        <slot name="drawer-headline" slot="headline"></slot>
+        <slot name="drawer-menu-button" slot="menu-button"></slot>
         <slot name="drawer-content" slot="content"></slot>
         <slot name="drawer-footer" slot="footer"></slot>
       </custom-drawer>

@@ -57,6 +57,6 @@ declare global {
     'custom-icon': CustomIcon
     'custom-theme-mode': CustomThemeMode
     'custom-icon-button': CustomIconButton,
-    'custom-typography': CustomTypography,
+    'custom-typography': CustomTypography
   }
 }

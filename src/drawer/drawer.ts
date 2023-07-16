@@ -71,10 +71,10 @@ export class CustomDrawer extends LitElement {
     </style>
 
     <custom-pane .open=${this.open} .mobile=${this.mobile} .type=${this.type}>
-      <slot name="header" slot="header">
-        <slot name="headline" slot="headline"></slot>
-        <slot name="menu-button" slot="menu-button"></slot>
-      </slot>
+     
+      <slot name="headline" slot="headline"></slot>
+      <slot name="menu-button" slot="menu-button"></slot>
+      
       <slot name="content" slot="content"></slot>
       <slot name="footer" slot="footer"></slot>
     </custom-pane>

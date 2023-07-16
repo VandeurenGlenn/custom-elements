@@ -5,6 +5,7 @@ import { globby } from 'globby'
 import { parse } from "path";
 import { rimraf } from "rimraf";
 import commonJs from '@rollup/plugin-commonjs'
+import json from "@rollup/plugin-json";
 
 const input = await globby(['src/**/*.ts'])
 
@@ -54,11 +55,11 @@ export default [{
     format: 'es'
   }],
   plugins: [
+    typescript(),
     cleanBuild(),
     nodeResolve(),
     commonJs(),
-    autoExports(),
-    typescript()
+    autoExports()
   ]
 }]
 // , {

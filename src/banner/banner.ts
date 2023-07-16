@@ -32,12 +32,22 @@ export class CustomBanner extends LitElement {
           margin-left: 16px;
           margin-right: 16px;
         }
+        custom-icon {
+
+
+          --custom-icon-size: 12px; 
+        }
+
+        custom-button {
+          height: 24px;
+          width: 24px;
+        }
+
       </style>
       <slot></slot>
       <flex-it flex="1"></flex-it>
       <custom-button type="tertiary">
-        <span slot="icon">x</span>
-        
+        <custom-icon slot="icon">close</custom-icon>
       </custom-button>
     `
   }

@@ -91,7 +91,7 @@ export class CustomPane extends LitElement {
       }
 
       .content {
-        height: 100%;
+        height: calc(100% - 54px);
         width: 100%;
         overflow-y: auto;
       }
@@ -107,7 +107,7 @@ export class CustomPane extends LitElement {
     <custom-elevation></custom-elevation>
     <aside>
       <slot name="header">
-        <flex-row>
+        <flex-row center>
           <slot name="headline"></slot>
           <flex-it></flex-it>
           <custom-icon-button @click=${this.#closePane}>

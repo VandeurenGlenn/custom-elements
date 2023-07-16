@@ -41,17 +41,20 @@
   <custom-theme language="css" font-size="1px"></custom-theme>
 
   <custom-drawer-layout class="demo-container">
+    <span slot="drawer-headline">
+      menu
+    </span>
 
-      <flex-column  slot="drawer-content">
-        <custom-selector attr-for-selected="route" default-selected="banner">
-          <custom-drawer-item route="banner">banner</custom-drawer-item>
-          <custom-drawer-item route="divider">divider</custom-drawer-item>
-          <custom-drawer-item route="buttons">buttons</custom-drawer-item>
-          <custom-drawer-item route="cards">cards</custom-drawer-item>
-          <custom-drawer-item route="top-app-bar">top-app-bar</custom-drawer-item>
-          <custom-drawer-item route="typography">typography</custom-drawer-item>
-        </custom-selector>
-      </flex-column>
+    <flex-column  slot="drawer-content">
+      <custom-selector attr-for-selected="route" default-selected="banner">
+        <custom-drawer-item route="banner">banner</custom-drawer-item>
+        <custom-drawer-item route="divider">divider</custom-drawer-item>
+        <custom-drawer-item route="buttons">buttons</custom-drawer-item>
+        <custom-drawer-item route="cards">cards</custom-drawer-item>
+        <custom-drawer-item route="top-app-bar">top-app-bar</custom-drawer-item>
+        <custom-drawer-item route="typography">typography</custom-drawer-item>
+      </custom-selector>
+    </flex-column>
       
       
     <span slot="top-app-bar-title">custom-elements</span>
