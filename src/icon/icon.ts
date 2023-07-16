@@ -6,10 +6,16 @@ export class CustomIcon extends LitElement {
   static styles = [
     css`
       :host {
+        display: flex;
         --custom-icon-size: 24px;
+        height: var(--custom-icon-size);
+        width: var(--custom-icon-size);
+        align-items: center;
+        justify-content: center;
       }
 
       slot {
+        display: flex;
         font-variation-settings:
         'FILL' 0,
         'wght' 400,
@@ -17,6 +23,7 @@ export class CustomIcon extends LitElement {
         'opsz' 48;
         font-family: 'Material Symbols Outlined';
         font-size: var(--custom-icon-size);
+        line-height: var(--custom-icon-size);
         height: var(--custom-icon-size);
         width: var(--custom-icon-size);
       }

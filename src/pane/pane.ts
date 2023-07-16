@@ -36,7 +36,7 @@ export class CustomPane extends LitElement {
         height: 100%;
         background: var(--md-sys-color-surface);
         color: var(--md-sys-color-on-surface);
-        position: fixed;
+        position: relative;
         /* border-radius: 12px; */
 
         --md-elevation-level: 0;
@@ -77,8 +77,12 @@ export class CustomPane extends LitElement {
         transition: var(--md-sys-motion-easing-emphasized-accelerate) 500ms opacity, var(--md-sys-motion-easing-emphasized-accelerate) 500ms transform;
       }
 
-      :host([open]:not(:host([mobile]))) {
+      :host([open]) {
         position: relative;
+      }
+
+      :host([open][mobile]) {
+        position: fixed;
       }
 
       aside {
