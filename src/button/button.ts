@@ -47,13 +47,13 @@ export class CustomButton extends LitElement {
         height: 40px;
         box-sizing: border-box;
         cursor: pointer;
+        border: none;
         border-radius: 20px;
         position: relative;
         background: transparent;
         color: inherit;
         align-items: center;
         justify-content: center;
-        border: none;
         user-select: none;
         outline: none;
         cursor: pointer;
