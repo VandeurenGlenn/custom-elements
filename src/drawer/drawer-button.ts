@@ -19,11 +19,13 @@ export class CustomDrawerButton extends LitElement {
         display: block;
         opacity: 1;
         pointer-events: auto;
+        will-change: width, opacity;
       }
 
       :host([drawer-open]) {
         opacity: 0;
         pointer-events: none;
+        width: 0;
       }
     `
   ];

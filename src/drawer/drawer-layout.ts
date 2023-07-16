@@ -2,6 +2,7 @@ import { LitElement, html } from "lit";
 import { property, query, customElement } from "lit/decorators.js";
 import './drawer.js'
 import './drawer-button.js'
+import './drawer-item.js'
 import './../bar/top-app-bar.js'
 // import { publish, subscribe } from "../decorators/pubsub.js";
 
