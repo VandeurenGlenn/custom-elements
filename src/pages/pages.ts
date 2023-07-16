@@ -57,7 +57,7 @@ export class CustomPages extends SelectMixin(LitElement) {
       left: 0;
       right: 0;
       bottom: 0;
-      transition: var(--md-sys-motion-easing-emphasized-decelerate) 200ms opacity, var(--md-sys-motion-easing-emphasized-decelerate) 200ms transform;
+      transition: var(--md-sys-motion-easing-emphasized-accelerate) 200ms opacity, var(--md-sys-motion-easing-emphasized-accelerate) 200ms transform;
       /*transform: scale(0.1);*/
       transform-origin: left;
     }
@@ -71,7 +71,7 @@ export class CustomPages extends SelectMixin(LitElement) {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
-      transition: var(--md-sys-motion-easing-emphasized-accelerate) 500ms width, var(--md-sys-motion-easing-emphasized-accelerate) 500ms transform;
+      transition: var(--md-sys-motion-easing-emphasized-decelerate) 500ms width, var(--md-sys-motion-easing-emphasized-decelerate) 500ms transform;
       max-height: 100%;
       max-width: 100%;
     }

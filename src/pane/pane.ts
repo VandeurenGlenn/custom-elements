@@ -45,7 +45,7 @@ export class CustomPane extends LitElement {
         opacity: 0;
         width: 100%;
         max-width: var(--custom-pane-width);
-        transition: var(--md-sys-motion-easing-emphasized-decelerate) 200ms opacity, var(--md-sys-motion-easing-emphasized-decelerate) 200ms transform;
+        transition: var(--md-sys-motion-easing-emphasized-accelerate) 200ms opacity, var(--md-sys-motion-easing-emphasized-accelerate) 200ms transform;
       }
 
       :host([left]) {
@@ -74,7 +74,7 @@ export class CustomPane extends LitElement {
         transform: translateX(0);
         opacity: 1;
         pointer-events: auto;
-        transition: var(--md-sys-motion-easing-emphasized-accelerate) 500ms opacity, var(--md-sys-motion-easing-emphasized-accelerate) 500ms transform;
+        transition: var(--md-sys-motion-easing-emphasized-decelerate) 500ms opacity, var(--md-sys-motion-easing-emphasized-decelerate) 500ms transform;
       }
 
       :host([open]) {

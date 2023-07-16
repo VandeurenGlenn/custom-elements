@@ -84,11 +84,11 @@ export class CustomDrawerLayout extends LitElement {
         position: absolute;
         transform: translateX(var(--custom-drawer-width));
 
-        transition: var(--md-sys-motion-easing-emphasized-accelerate) 500ms width, var(--md-sys-motion-easing-emphasized-accelerate) 500ms transform;
+        transition: var(--md-sys-motion-easing-emphasized-decelerate) 500ms width, var(--md-sys-motion-easing-emphasized-decelerate) 500ms transform;
       }
 
       :host(:not([drawer-open])) .middle-pane {
-        transition: var(--md-sys-motion-easing-emphasized-decelerate) 200ms width, var(--md-sys-motion-easing-emphasized-decelerate) 200ms transform;
+        transition: var(--md-sys-motion-easing-emphasized-accelerate) 200ms width, var(--md-sys-motion-easing-emphasized-accelerate) 200ms transform;
         transform: translateX(0);
         width: 100%;
       }
