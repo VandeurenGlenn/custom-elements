@@ -15,6 +15,7 @@ import { CustomIcon } from './icon/icon.js'
 import { CustomThemeMode } from './theme/mode.js'
 import { CustomIconButton } from './button/icon-button.js'
 import { CustomTypography } from './typography/typography.js'
+import { CustomPane } from './pane/pane.js'
 
 export {
   CustomTheme,
@@ -26,6 +27,7 @@ export {
   CustomDrawerItem,
   CustomDrawerLayout,
   CustomBanner,
+  CustomPane,
   CustomSection,
   CustomSelector,
   CustomPages,
@@ -47,13 +49,14 @@ declare global {
     'custom-drawer-layout': CustomDrawerLayout
     'custom-button': CustomButton
     'custom-banner': CustomBanner
+    'custom-pane': CustomPane
+    'custom-pages': CustomPages
     'custom-section': CustomSection
     'custom-selector': CustomSelector
-    'custom-pages': CustomPages
     'custom-top-app-bar': CustomTopAppBar
     'custom-icon': CustomIcon
     'custom-theme-mode': CustomThemeMode
     'custom-icon-button': CustomIconButton,
-    'custom-typography': CustomTypography
+    'custom-typography': CustomTypography,
   }
 }
