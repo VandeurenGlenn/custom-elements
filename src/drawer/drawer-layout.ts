@@ -20,7 +20,7 @@ export class CustomDrawerLayout extends LitElement {
   
   connectedCallback(): void {
     super.connectedCallback()
-    const media = matchMedia('(max-width: 640px)')
+    const media = matchMedia('(max-width: 860px)')
    
     const mediaQueryChange = ({matches}) => {
       this.mobile = matches
