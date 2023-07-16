@@ -38,18 +38,21 @@ export class CustomButton extends LitElement {
     return html`
     <style>
       :host {
-        display: contents;
         color: var(--md-sys-color-on-background);
+        display: flex;
+
+        height: 40px;
+        
+        border-radius: 20px;
+        position: relative;
+
+        --elevation-level: 0;
       }
 
       button {
-        display: inline-flex;
-        height: 40px;
         box-sizing: border-box;
         cursor: pointer;
         border: none;
-        border-radius: 20px;
-        position: relative;
         background: transparent;
         color: inherit;
         align-items: center;
@@ -57,6 +60,7 @@ export class CustomButton extends LitElement {
         user-select: none;
         outline: none;
         cursor: pointer;
+        border-radius: inherit;
       }
 
       .label, ::slotted(*) {
@@ -70,29 +74,29 @@ export class CustomButton extends LitElement {
         text-decoration: var(--md-sys-typescale-label-large-text-decoration);
       }
 
-      :host([type="filled"]) button {
+      :host([type="filled"]) {
         color: var(--md-sys-color-on-primary);
         background: var(--md-sys-color-primary);
       }
 
-      :host([type="outlined"]) button {
+      :host([type="outlined"]) {
         color: var(--md-sys-color-on-surface);
         background: var(--md-sys-color-surface);
         border: solid 1px;
         border-color: var(--md-sys-color-outline);
       }
 
-      :host([type="elevated"]) button {
+      :host([type="elevated"]) {
         color: var(--md-sys-color-primary);
         background: var(--md-sys-color-surface-container-low);
       }
 
-      :host([type="tertiary"]) button, :host([type="tertiary"]) ::slotted(*) {
+      :host([type="tertiary"]), :host([type="tertiary"]) ::slotted(*) {
         background: var(--md-sys-color-tertiary);
         color: var(--md-sys-color-on-tertiary);
       }
 
-      :host([type="tonal"]) button, :host([type="tonal"]) ::slotted(*) {
+      :host([type="tonal"]), :host([type="tonal"]) ::slotted(*) {
         background: var(--md-sys-color-secondary-container);
         color: var(--md-sys-color-on-seconday-container);
       }
@@ -102,7 +106,7 @@ export class CustomButton extends LitElement {
       }
 
       :host([type="elevated"]) custom-elevation {
-        --md-elevation-level: 1;
+        --elevation-level: 1;
       }
 
       button:hover, button:active  {
@@ -122,7 +126,7 @@ export class CustomButton extends LitElement {
         padding-right: 24px;
       }
 
-      :host([has-icon]:not([has-label])) button {
+      :host([has-icon]:not([has-label])) {
         border-radius: 50%;
         width: 40px;
       }
@@ -140,7 +144,7 @@ export class CustomButton extends LitElement {
       }
     </style>
     <button label=${this.label}>
-      <custom-elevation></custom-elevation>
+    <custom-elevation></custom-elevation>
       <slot name="icon"></slot>
       <span class="label"> ${this.label} </span>
     </button>
