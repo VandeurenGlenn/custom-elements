@@ -17,6 +17,8 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
+		"@lit-labs/context": "^0.3.3",
+		"@material-design-icons/svg": "^0.14.10",
 		"@material/web": "^1.0.0-pre.10",
 		"@vandeurenglenn/flex-elements": "^0.3.2",
 		"custom-element-decorator": "^0.6.0",
@@ -30,6 +32,7 @@
 		"@rollup/plugin-typescript": "^11.1.1",
 		"@types/node": "^20.3.0",
 		"globby": "^13.1.4",
+		"material-symbols": "^0.10.1",
 		"rimraf": "^5.0.1",
 		"rollup": "^3.24.1",
 		"tslib": "^2.5.3",
@@ -63,6 +66,10 @@
 		"./dial.js": {
 			"import": "./exports/dial.js",
 			"types": "./exports/time-picker/dial.d.ts"
+		},
+		"./dialog.js": {
+			"import": "./exports/dialog.js",
+			"types": "./exports/dialog/dialog.d.ts"
 		},
 		"./divider.js": {
 			"import": "./exports/divider.js",
@@ -100,6 +107,10 @@
 			"import": "./exports/icon-button.js",
 			"types": "./exports/button/icon-button.d.ts"
 		},
+		"./icon-svg.js": {
+			"import": "./exports/icon-svg.js",
+			"types": "./exports/icon/icon-svg.d.ts"
+		},
 		"./icon.js": {
 			"import": "./exports/icon.js",
 			"types": "./exports/icon/icon.d.ts"
@@ -132,6 +143,10 @@
 			"import": "./exports/rail.js",
 			"types": "./exports/rail/rail.d.ts"
 		},
+		"./root.js": {
+			"import": "./exports/root.js",
+			"types": "./exports/root/root.d.ts"
+		},
 		"./scroll-mixin.js": {
 			"import": "./exports/scroll-mixin.js",
 			"types": "./exports/mixins/scroll-mixin.d.ts"
@@ -151,6 +166,14 @@
 		"./selector.js": {
 			"import": "./exports/selector.js",
 			"types": "./exports/selector/selector.d.ts"
+		},
+		"./tab.js": {
+			"import": "./exports/tab.js",
+			"types": "./exports/tabs/tab.d.ts"
+		},
+		"./tabs.js": {
+			"import": "./exports/tabs.js",
+			"types": "./exports/tabs/tabs.d.ts"
 		},
 		"./theme.js": {
 			"import": "./exports/theme.js",
