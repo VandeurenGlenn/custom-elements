@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.1.22",
+	"version": "0.1.1",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -96,6 +96,10 @@
 			"import": "./exports/drawer.js",
 			"types": "./exports/drawer/drawer.d.ts"
 		},
+		"./dropdown.js": {
+			"import": "./exports/dropdown.js",
+			"types": "./exports/dropdown/dropdown.d.ts"
+		},
 		"./elements.js": {
 			"import": "./exports/elements.js",
 			"types": "./exports/elements.d.ts"
@@ -131,6 +135,18 @@
 		"./input.js": {
 			"import": "./exports/input.js",
 			"types": "./exports/time-picker/input.d.ts"
+		},
+		"./list-item.js": {
+			"import": "./exports/list-item.js",
+			"types": "./exports/list/list-item.d.ts"
+		},
+		"./list.js": {
+			"import": "./exports/list.js",
+			"types": "./exports/list/list.d.ts"
+		},
+		"./menu.js": {
+			"import": "./exports/menu.js",
+			"types": "./exports/menu/menu.d.ts"
 		},
 		"./minute-field.js": {
 			"import": "./exports/minute-field.js",
@@ -207,18 +223,6 @@
 		"./typography.js": {
 			"import": "./exports/typography.js",
 			"types": "./exports/typography/typography.d.ts"
-		},
-		"./list-item.js": {
-			"import": "./exports/list-item.js",
-			"types": "./exports/list/list-item.d.ts"
-		},
-		"./menu.js": {
-			"import": "./exports/menu.js",
-			"types": "./exports/menu/menu.d.ts"
-		},
-		"./dropdown.js": {
-			"import": "./exports/dropdown.js",
-			"types": "./exports/dropdown/dropdown.d.ts"
 		}
 	}
 }
