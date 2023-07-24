@@ -1,5 +1,4 @@
 node_modules
-exports/**/*.js
-exports/**/*.d.ts
 .DS_Store
-exports/**/*.css
+
+exports

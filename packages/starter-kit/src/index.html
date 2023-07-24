@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+
+    .demo-container {
+      height: 100%;
+      width: 100%;
+    }
+
+    flex-column {
+      width: 100%;
+      height: 100%;
+    }
+
+    .demo-container section {
+      align-items: center;
+      justify-content: center;
+    }
+
+    [non-interactive] {
+      pointer-events: none;
+    }
+
+    h4 {
+      margin: 0;
+      padding-top: 16px;
+      padding-bottom: 12px;
+    }
+
+    custom-drawer custom-divider {
+      margin-top: 16px;
+    }
+  </style>
+
+  
+  <custom-icon-set>
+
+    <template name="dark_mode">@symbol-dark_mode</template>
+    <template name="menu_open">@symbol-menu_open</template>
+    <template name="more_vert">@symbol-more_vert</template>
+
+  </custom-icon-set>
+
+  <custom-drawer-layout class="demo-container">
+    <span slot="drawer-headline">
+      menu
+    </span>
+
+    <flex-column  slot="drawer-content">
+      <custom-selector attr-for-selected="route" default-selected="home">
+        <custom-drawer-item route="home">home</custom-drawer-item>
+        <custom-drawer-item route="about">about</custom-drawer-item>
+      </custom-selector>
+    </flex-column>
+      
+      
+    <span slot="top-app-bar-title">custom-elements starter-kit</span>
+    <flex-row slot="top-app-bar-end">
+      <custom-theme-mode></custom-theme-mode>
+      <custom-button>
+        <custom-icon-font slot="icon">more_vert</custom-icon-font>
+      </custom-button>
+    </flex-row>
+    
+
+    <flex-column>
+      
+      <custom-pages attr-for-selected="route" default-selected="home">
+        <home-section></home-section>
+        <about-section></about-section>
+      </custom-pages>
+    </flex-column>
+
+  </custom-drawer-layout>
+  <!-- </flex-row> -->
+
+  <script src="./shell.js" type="module"></script>
+  
+</body>
+</html>

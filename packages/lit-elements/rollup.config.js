@@ -20,14 +20,6 @@ const cleanBuild = () => ({
   }
 })
 
-
-const cloneIndex = (options) => ({
-  name: 'clone-index',
-  buildStart: async () => {
-    await cp(options.src || 'src/index.html', options.dest || 'exports/index.html')
-  }
-})
-
 await cp('src/theme/themes/default', 'exports/themes/default', {recursive: true})
 
 export default [{
@@ -48,8 +40,8 @@ export default [{
     autoExports({
       defaultExports: {
         '.': {
-          import: './exports/custom-elements.js',
-          types: './exports/custom-elements.d.ts'
+          import: './exports/lit-elements.js',
+          types: './exports/lit-elements.d.ts'
         }
       }
     })
