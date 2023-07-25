@@ -5,6 +5,7 @@ class IconFont extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, value) {
     if (oldValue !== value) this[name] = value
+    if (name === 'icon') this.shadowRoot.innerHTML = this.render()
   }
   get getIconTemplate() {
     return document.querySelector(`template[id="${this.icon}"]`) as HTMLTemplateElement
@@ -21,18 +22,29 @@ class IconFont extends HTMLElement {
   constructor() {
     super()
     this.attachShadow({mode: 'open'})
+    
+  }
+  connectedCallback() {
     this.icon = this.getAttribute('icon') || this.innerHTML
   }
 
   set icon(value) {
-    if (this.icon !== value) {
-      this.setAttribute('icon', value)
-      this.shadowRoot.innerHTML = this.render()
-    }
+    this.icon !== value && this.setAttribute('icon', value)
   }
 
   get icon() {
     return this.getAttribute('icon')
+  }
+
+  #renderIcon = () => {
+    if (this.getIconTemplate) return this.icon ? html`
+      <span class="icon">${this.iconTemplateTextContent}</span>
+    ` : ''
+
+    console.warn(`icon not included: ${this.icon}
+      be sure to add the tag to your index.html @symbol-${this.icon}`)
+    
+    return ''
   }
 
   render() {
@@ -56,7 +68,7 @@ class IconFont extends HTMLElement {
         }
       </style>
 
-      <span class="icon">${this.iconTemplateTextContent}</span>
+      ${this.#renderIcon()}
     `
   }
 }
