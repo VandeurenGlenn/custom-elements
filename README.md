@@ -4,6 +4,8 @@
 <small>disclaimer: This is not as advanced as the [material-components](https://github.com/material-components/material-web) set</small>
 <br>
 
+[demo](https://vandeurenglenn.github.io/custom-elements/)
+
 ## Elements
 -----------
 <br>
@@ -17,7 +19,7 @@
 &nbsp;&nbsp;<small>note: only JS tokens supported for now.</small>
 &nbsp;&nbsp;
 ```html
-<custom-theme language="js" path="./themes/default/tokens.js"></custom-theme>
+<custom-theme language="css" path="./themes/default/theme.css"></custom-theme>
 ```
 
 <br>
