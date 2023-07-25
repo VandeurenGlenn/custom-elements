@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -223,6 +223,10 @@
 		"./typography.js": {
 			"import": "./exports/typography.js",
 			"types": "./exports/typography/typography.d.ts"
+		},
+		"./icon-button.js": {
+			"import": "./exports/icon-button.js",
+			"types": "./exports/button/icon-button.d.ts"
 		}
 	}
 }
