@@ -21,10 +21,10 @@ export class CustomListItem extends LitElement {
   #startSlotChange = async () => {
     await this.assignedStartElements[0].updateComplete
 
-    console.log(this.assignedStartElements);
+    // console.log(this.assignedStartElements);
     
     
-    console.log(this.startSlot.assignedElements()[0].getBoundingClientRect());
+    // console.log(this.startSlot.assignedElements()[0].getBoundingClientRect());
     this.hasStart = true
   }
 
@@ -33,8 +33,6 @@ export class CustomListItem extends LitElement {
   }
 
   protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-
-    console.log(this.assignedStartElements);
     if (this.assignedStartElements[0]) this.#startSlotChange()
   }
 
