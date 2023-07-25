@@ -67,6 +67,7 @@
           <custom-drawer-item route="pane">pane</custom-drawer-item>
           <custom-drawer-item route="tabs">tabs</custom-drawer-item>
           <custom-drawer-item route="menu">menu</custom-drawer-item>
+          <custom-drawer-item route="dropdown-menu">dropdown-menu</custom-drawer-item>
           <custom-drawer-item route="list-item">list-item</custom-drawer-item>
         </custom-selector>
       </flex-column>
@@ -364,8 +365,11 @@
               </custom-list-item>
 
             </custom-menu>
+          </demo-section>
 
-            <custom-menu type="dropdown">
+          <demo-section route="dropdown-menu">
+
+            <custom-dropdown-menu>
               <custom-list-item type="menu">
                 <custom-icon-font slot="start">info</custom-icon-font>
                 item 1
@@ -381,7 +385,7 @@
                 item 3
               </custom-list-item>
 
-            </custom-menu>
+            </custom-dropdown-menu>
           </demo-section>
 
           <demo-section route="list-item">

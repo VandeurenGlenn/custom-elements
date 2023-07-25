@@ -22,6 +22,8 @@ import { CustomIconSet } from './icon/icon-set.js'
 import { CustomListItem } from './list/list-item.js'
 import { CustomMenu } from './menu/menu.js'
 import { CustomIconButton } from './button/icon-button.js'
+import { CustomDropdownMenu } from './dropdown/dropdown-menu.js'
+import { CustomDropdown } from './dropdown/dropdown.js'
 
 export {
   CustomTheme,
@@ -47,7 +49,9 @@ export {
   CustomTypography,
   CustomListItem,
   CustomMenu,
-  CustomIconButton
+  CustomIconButton,
+  CustomDropdownMenu,
+  CustomDropdown
 }
 
 declare global {
@@ -76,5 +80,7 @@ declare global {
     'custom-list-item': CustomListItem
     'custom-menu': CustomMenu,
     'custom-icon-button': CustomIconButton
+    'custom-dropdown': CustomDropdown
+    'custom-dropdown-menu': CustomDropdownMenu
   }
 }

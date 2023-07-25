@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -95,6 +95,10 @@
 		"./drawer.js": {
 			"import": "./exports/drawer.js",
 			"types": "./exports/drawer/drawer.d.ts"
+		},
+		"./dropdown-menu.js": {
+			"import": "./exports/dropdown-menu.js",
+			"types": "./exports/dropdown/dropdown-menu.d.ts"
 		},
 		"./dropdown.js": {
 			"import": "./exports/dropdown.js",
