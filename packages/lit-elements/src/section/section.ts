@@ -17,7 +17,7 @@ export class CustomSection extends ScrollMixin(LitElement) {
         overflow-y: auto;
       }
       .container {
-        display: block;
+        align-items: center;
         box-sizing: border-box;
         padding: 12px;
         border-radius: var(--md-sys-shape-corner-extra-large);
@@ -30,11 +30,11 @@ export class CustomSection extends ScrollMixin(LitElement) {
 
   render() {
     return html`
-    <span class="container">
+    <flex-column class="container">
       <flex-column class="content">
         <slot></slot>
       </flex-column>
-    </span>
+    </flex-column>
     `;
   }
 }
