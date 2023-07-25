@@ -22,7 +22,7 @@ export const ScrollMixin = (Base) => class ScrollMixin extends Base {
     }, this.scrollTimeout);
   }
 
-  async connectedCallback(options = {scrollElement: this}): Promise<void> {
+  async connectedCallback(options: { scrollElement: undefined | string } = {scrollElement: undefined}): Promise<void> {
     super.connectedCallback && super.connectedCallback()
 
     await this.updateComplete
