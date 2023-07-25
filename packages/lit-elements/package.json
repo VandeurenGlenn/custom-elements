@@ -116,6 +116,10 @@
 			"import": "./exports/hour-field.js",
 			"types": "./exports/time-picker/hour-field.d.ts"
 		},
+		"./icon-button.js": {
+			"import": "./exports/icon-button.js",
+			"types": "./exports/button/icon-button.d.ts"
+		},
 		"./icon-font.js": {
 			"import": "./exports/icon-font.js",
 			"types": "./exports/icon/icon-font.d.ts"
@@ -223,10 +227,6 @@
 		"./typography.js": {
 			"import": "./exports/typography.js",
 			"types": "./exports/typography/typography.d.ts"
-		},
-		"./icon-button.js": {
-			"import": "./exports/icon-button.js",
-			"types": "./exports/button/icon-button.d.ts"
 		}
 	}
 }
