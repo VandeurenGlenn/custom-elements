@@ -21,6 +21,7 @@ import { CustomIconFont } from './icon/icon-font.js'
 import { CustomIconSet } from './icon/icon-set.js'
 import { CustomListItem } from './list/list-item.js'
 import { CustomMenu } from './menu/menu.js'
+import { CustomIconButton } from './button/icon-button.js'
 
 export {
   CustomTheme,
@@ -45,7 +46,8 @@ export {
   CustomIconSet,
   CustomTypography,
   CustomListItem,
-  CustomMenu
+  CustomMenu,
+  CustomIconButton
 }
 
 declare global {
@@ -72,6 +74,7 @@ declare global {
     'custom-icon-set': CustomIconSet
     'custom-typography': CustomTypography
     'custom-list-item': CustomListItem
-    'custom-menu': CustomMenu
+    'custom-menu': CustomMenu,
+    'custom-icon-button': CustomIconButton
   }
 }

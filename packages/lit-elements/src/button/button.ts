@@ -24,13 +24,14 @@ export class CustomButton extends LitElement {
       height: 40px;
       border-radius: 20px;
       position: relative;
+      pointer-events: auto;
+      cursor: pointer;
 
       --elevation-level: 0;
     }
 
     button {
       box-sizing: border-box;
-      cursor: pointer;
       border: none;
       background: transparent;
       color: inherit;
@@ -44,6 +45,7 @@ export class CustomButton extends LitElement {
       width: inherit;
       height: inherit;
       display: flex;
+      pointer-events: none;
     }
 
     .label, ::slotted(*) {
@@ -92,14 +94,6 @@ export class CustomButton extends LitElement {
       --elevation-level: 1;
     }
 
-    button:hover, button:active  {
-      --elevation-level: 2;
-    }
-
-    button:focus {
-      --elevation-level: 0;
-    }
-
     :host([type="filled"]), :host([type="outlined"]), :host([type="text"]), :host([type="tonal"]) {
       --elevation-level: 0;
     }
@@ -124,8 +118,20 @@ export class CustomButton extends LitElement {
       padding-left: 16px;
     }
 
-    :host([disabled]) .label, slot[name="icon"]::slotted(*) {
+    :host([disabled]) .label, :host([disabled]) slot[name="icon"]::slotted(*) {
       opacity: 0.38;
+    }
+
+    ::slotted(*) {
+      pointer-events: none;
+    }
+
+    :host(:focus), :host(:hover) {
+      --elevation-level: 2;
+    }
+
+     :host(:active) {
+      --elevation-level: 0;
     }
     `
   ]
