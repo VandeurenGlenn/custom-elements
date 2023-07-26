@@ -48,6 +48,8 @@
   <template id="close">@symbol-close</template>
   <template id="avatar">@symbol-avatar</template>
   <template id="info">@symbol-info</template>
+  <template id="check_box">@symbol-check_box</template>
+  <template id="check_box_outline_blank">@symbol-check_box_outline_blank</template>
   <!-- <custom-root> -->
     <custom-drawer-layout class="demo-container">
       <span slot="drawer-headline">
@@ -69,6 +71,7 @@
           <custom-drawer-item route="menu">menu</custom-drawer-item>
           <custom-drawer-item route="dropdown-menu">dropdown-menu</custom-drawer-item>
           <custom-drawer-item route="list-item">list-item</custom-drawer-item>
+          <custom-drawer-item route="toggle">toggle</custom-drawer-item>
         </custom-selector>
       </flex-column>
         
@@ -395,7 +398,15 @@
             </custom-list-item>
             
           </demo-section>
-          
+          <demo-section route="toggle">
+            <custom-toggle>
+
+              <custom-icon-font>check_box</custom-icon-font>
+              <custom-icon-font>check_box_outline_blank</custom-icon-font>
+              <custom-icon-font>info</custom-icon-font>
+            </custom-toggle>
+            
+          </demo-section>
         </custom-pages>
       </flex-column>
 

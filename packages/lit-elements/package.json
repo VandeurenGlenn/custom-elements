@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -219,6 +219,10 @@
 		"./title.js": {
 			"import": "./exports/title.js",
 			"types": "./exports/typography/title.d.ts"
+		},
+		"./toggle.js": {
+			"import": "./exports/toggle.js",
+			"types": "./exports/toggle/toggle.d.ts"
 		},
 		"./top-app-bar.js": {
 			"import": "./exports/top-app-bar.js",
