@@ -30,18 +30,6 @@ export class CustomDropdown extends LitElement {
         transition: var(--md-sys-motion-easing-emphasized-accelerate) 200ms opacity, var(--md-sys-motion-easing-emphasized-accelerate) 200ms transform;
       }
 
-      :host([bottom][right]) {
-        transform-origin: bottom right;
-      }
-
-      :host([bottom]) {
-        transform-origin: bottom left;
-      }
-
-      :host([right]) {
-        transform-origin: top right;
-      }
-
       :host([open]) {
         pointer-events: auto;
         opacity: 1;

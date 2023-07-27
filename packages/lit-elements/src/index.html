@@ -39,6 +39,10 @@
     custom-drawer custom-divider {
       margin-top: 16px;
     }
+
+    flex-row {
+      width: 100%;
+    }
   </style>
 
   <template id="dark_mode">@symbol-dark_mode</template>
@@ -390,6 +394,67 @@
               </custom-list-item>
 
             </custom-dropdown-menu>
+
+            <flex-row>
+              <flex-it></flex-it>
+              <custom-dropdown-menu right>
+                <custom-list-item type="menu">
+                  <custom-icon-font slot="start">info</custom-icon-font>
+                  item 1
+                </custom-list-item>
+  
+                <custom-list-item type="menu">
+                  <custom-icon-font slot="start">info</custom-icon-font>
+                  item 2
+                </custom-list-item>
+  
+                <custom-list-item type="menu">
+                  <custom-icon-font slot="start">info</custom-icon-font>
+                  item 3
+                </custom-list-item>
+  
+              </custom-dropdown-menu>
+            </flex-row>
+
+            <custom-dropdown-menu bottom>
+              <custom-list-item type="menu">
+                <custom-icon-font slot="start">info</custom-icon-font>
+                item 1
+              </custom-list-item>
+
+              <custom-list-item type="menu">
+                <custom-icon-font slot="start">info</custom-icon-font>
+                item 2
+              </custom-list-item>
+
+              <custom-list-item type="menu">
+                <custom-icon-font slot="start">info</custom-icon-font>
+                item 3
+              </custom-list-item>
+
+            </custom-dropdown-menu>
+
+            <flex-row>
+              <flex-it></flex-it>
+              <custom-dropdown-menu bottom right>
+                <custom-list-item type="menu">
+                  <custom-icon-font slot="start">info</custom-icon-font>
+                  item 1
+                </custom-list-item>
+  
+                <custom-list-item type="menu">
+                  <custom-icon-font slot="start">info</custom-icon-font>
+                  item 2
+                </custom-list-item>
+  
+                <custom-list-item type="menu">
+                  <custom-icon-font slot="start">info</custom-icon-font>
+                  item 3
+                </custom-list-item>
+  
+              </custom-dropdown-menu>
+            </flex-row>
+            
           </demo-section>
 
           <demo-section route="list-item">
