@@ -13,6 +13,9 @@ export class CustomDrawerLayout extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'drawer-open' })
   drawerOpen: boolean = false
 
+  @property({ type: Boolean, reflect: true, attribute: 'keep-closed' })
+  keepClosed: boolean = false
+
   @property({ type: Boolean, reflect: true })
   narrow: boolean = false
 
@@ -25,16 +28,18 @@ export class CustomDrawerLayout extends LitElement {
   connectedCallback(): void {
     super.connectedCallback()
 
-    document.addEventListener('custom-pane-close', ({detail}) => {
+    document.addEventListener('custom-pane-close', ({detail}: CustomEvent) => {
       if (this.mainDrawerId === detail) this.drawerOpen = false
     })
 
-    document.addEventListener('custom-pane-open', ({detail}) => {
-      if (this.mainDrawerId === detail) this.drawerOpen = true
+    document.addEventListener('custom-pane-open', ({detail}: CustomEvent) => {
+      if (this.mainDrawerId === detail && !this.keepClosed) this.drawerOpen = true
     })
 
-    document.addEventListener('custom-theme-narrow', ({detail}) => {
+    document.addEventListener('custom-theme-narrow', ({detail}: CustomEvent) => {
+      
       this.narrow = detail
+      if (this.keepClosed) return this.drawerOpen = false
       if (detail) this.drawerOpen = false
       else this.drawerOpen = true
     })
