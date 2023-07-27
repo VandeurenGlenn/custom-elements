@@ -25,6 +25,7 @@ import { CustomIconButton } from './button/icon-button.js'
 import { CustomDropdownMenu } from './dropdown/dropdown-menu.js'
 import { CustomDropdown } from './dropdown/dropdown.js'
 import { CustomToggle } from './toggle/toggle.js'
+import { CustomToggleButton } from './toggle/toggle-button.js'
 
 export {
   CustomTheme,
@@ -53,7 +54,8 @@ export {
   CustomIconButton,
   CustomDropdownMenu,
   CustomDropdown,
-  CustomToggle
+  CustomToggle,
+  CustomToggleButton
 }
 
 declare global {
@@ -85,5 +87,6 @@ declare global {
     'custom-dropdown': CustomDropdown
     'custom-dropdown-menu': CustomDropdownMenu,
     'custom-toggle': CustomToggle
+    'custom-toggle-button': CustomToggleButton
   }
 }

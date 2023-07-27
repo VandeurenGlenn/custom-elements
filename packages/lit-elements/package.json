@@ -235,6 +235,10 @@
 		"./typography.js": {
 			"import": "./exports/typography.js",
 			"types": "./exports/typography/typography.d.ts"
+		},
+		"./toggle-button.js": {
+			"import": "./exports/toggle-button.js",
+			"types": "./exports/toggle/toggle-button.d.ts"
 		}
 	}
 }

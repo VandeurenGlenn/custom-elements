@@ -157,7 +157,7 @@ export class CustomButton extends LitElement {
   render() {
     return html`
     <button label=${this.label}>
-    <custom-elevation></custom-elevation>
+      <custom-elevation></custom-elevation>
       <slot name="icon"></slot>
       <span class="label"> ${this.label} </span>
     </button>
