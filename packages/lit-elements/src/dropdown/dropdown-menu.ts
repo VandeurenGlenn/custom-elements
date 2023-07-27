@@ -5,7 +5,13 @@ import './../menu/menu.js'
 
 @customElement('custom-dropdown-menu')
 export class CustomDropdownMenu extends LitElement {
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean})
+  right: boolean
+
+  @property({ type: Boolean})
+  bottom: boolean
+
+  @property({ type: Boolean })
   open: boolean
 
   @property({ type: String })
@@ -26,7 +32,8 @@ export class CustomDropdownMenu extends LitElement {
   static styles = [
     css`
       :host {
-        display: contents;
+        position: relative;
+        display: block;
       }
 
       custom-dropdown {
@@ -35,7 +42,7 @@ export class CustomDropdownMenu extends LitElement {
         width: 100%;
         min-width: 120px;
         max-width: 280px;
-        top: 64px;
+        top: 48px;
         padding: 8px 0;
         border-radius: var(--md-sys-shape-corner-extra-small);
       }
@@ -51,7 +58,7 @@ export class CustomDropdownMenu extends LitElement {
     return html`
     ${this.#renderButton()}
     
-    <custom-dropdown .shown=${this.open}>
+    <custom-dropdown .shown=${this.open} ?right=${this.right} ?bottom=${this.bottom}>
       <custom-elevation></custom-elevation>
       <custom-menu @selected=${this.#onselected}>
         <slot></slot>
