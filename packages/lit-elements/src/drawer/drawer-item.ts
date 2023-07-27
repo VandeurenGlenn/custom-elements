@@ -10,7 +10,8 @@ export class CustomDrawerItem extends LitElement {
         display: flex;
         padding-left: 16px;
         padding-right: 24px;
-        height: 54px;
+        height: 100%;
+        min-height: 54px;
         width: 100%;
         box-sizing: border-box;
         border-radius: var(--md-sys-shape-corner-extra-large);
