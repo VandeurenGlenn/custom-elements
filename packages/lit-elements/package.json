@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.1.7",
+	"version": "0.1.9",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -220,6 +220,10 @@
 			"import": "./exports/title.js",
 			"types": "./exports/typography/title.d.ts"
 		},
+		"./toggle-button.js": {
+			"import": "./exports/toggle-button.js",
+			"types": "./exports/toggle/toggle-button.d.ts"
+		},
 		"./toggle.js": {
 			"import": "./exports/toggle.js",
 			"types": "./exports/toggle/toggle.d.ts"
@@ -235,10 +239,6 @@
 		"./typography.js": {
 			"import": "./exports/typography.js",
 			"types": "./exports/typography/typography.d.ts"
-		},
-		"./toggle-button.js": {
-			"import": "./exports/toggle-button.js",
-			"types": "./exports/toggle/toggle-button.d.ts"
 		}
 	}
 }
