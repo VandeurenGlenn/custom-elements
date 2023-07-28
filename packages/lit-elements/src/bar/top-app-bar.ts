@@ -1,11 +1,13 @@
 import { LitElement, html, css, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
+import '@vandeurenglenn/flex-elements/it.js'
 
+export declare type AppBarTypes = 'center-aligned' | 'small' | 'medium' | 'large'
 @customElement('custom-top-app-bar')
 export class CustomTopAppBar extends LitElement {
   
   @property({ type: String, reflect: true })
-  type: 'center-aligned' | 'small' | 'medium' | 'large' = 'center-aligned'
+  type: AppBarTypes = 'center-aligned'
 
   @property({ type: Boolean, reflect: true })
   scrolling: boolean
@@ -93,7 +95,7 @@ export class CustomTopAppBar extends LitElement {
           </custom-typography>
           ` : nothing
         }
-        <flex-one></flex-one>
+        <flex-it></flex-it>
         <slot name="end"></slot>
       </flex-row>
       ${this.type === 'medium' || this.type === 'large' ? html`

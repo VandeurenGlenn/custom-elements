@@ -88,10 +88,6 @@
 			"import": "./exports/drawer-item.js",
 			"types": "./exports/drawer/drawer-item.d.ts"
 		},
-		"./drawer-layout.js": {
-			"import": "./exports/drawer-layout.js",
-			"types": "./exports/drawer/drawer-layout.d.ts"
-		},
 		"./drawer.js": {
 			"import": "./exports/drawer.js",
 			"types": "./exports/drawer/drawer.d.ts"
@@ -239,6 +235,10 @@
 		"./typography.js": {
 			"import": "./exports/typography.js",
 			"types": "./exports/typography/typography.d.ts"
+		},
+		"./drawer-layout.js": {
+			"import": "./exports/drawer-layout.js",
+			"types": "./exports/drawer/drawer-layout.d.ts"
 		}
 	}
 }

@@ -40,7 +40,7 @@
       margin-top: 16px;
     }
 
-    flex-row {
+    flex-row:not([slot="top-app-bar-end"]) {
       width: 100%;
     }
   </style>
@@ -82,6 +82,7 @@
         
         
       <span slot="top-app-bar-title">custom-elements</span>
+
       <flex-row slot="top-app-bar-end">
         <custom-theme-mode></custom-theme-mode>
         <custom-button>

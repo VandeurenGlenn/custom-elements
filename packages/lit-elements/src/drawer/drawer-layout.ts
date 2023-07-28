@@ -4,6 +4,7 @@ import './drawer.js'
 import './drawer-button.js'
 import './drawer-item.js'
 import '../bar/top-app-bar.js'
+import { AppBarTypes } from "../bar/top-app-bar.js";
 // import { publish, subscribe } from "../decorators/pubsub.js";
 
 @customElement('custom-drawer-layout')
@@ -21,6 +22,9 @@ export class CustomDrawerLayout extends LitElement {
 
   @property({ type: String })
   drawerType: 'modal' | undefined = 'modal'
+
+  @property({ type: String })
+  appBarType: AppBarTypes = 'center-aligned'
 
   @property({ type: String })
   mainDrawerId: string = crypto.randomUUID()
@@ -121,7 +125,7 @@ export class CustomDrawerLayout extends LitElement {
       <slot name="header"></slot>
 
       <slot name="top-app-bar">
-        <custom-top-app-bar>
+        <custom-top-app-bar .type=${this.appBarType}>
           <slot name="top-app-bar-start" slot="start">
             <slot name="drawer-menu-button">
               <custom-drawer-button  .mobile=${this.narrow} ?drawer-open=${this.drawerOpen} .id=${this.mainDrawerId}>
