@@ -14,13 +14,15 @@ const input = await globby(['src/**/*.ts'])
 
 const cleanBuild = () => ({
   name: 'clean',
-  buildStart: async () => {
+  buildStart: async (dir) => {
     rimraf('./exports/**/*.js', {glob: true})
     rimraf('./exports/**/*.d.ts', {glob: true})
   }
 })
 
 await cp('src/theme/themes/default', 'exports/themes/default', {recursive: true})
+
+await cp('src/theme/themes/default', 'exports/bundle/themes/default', {recursive: true})
 
 export default [{
   input,
@@ -31,12 +33,6 @@ export default [{
   plugins: [
     cleanBuild(),
     typescript(),
-    materialSymbols({
-      includeHTML: true,
-      copyHTML: true
-    }),
-    nodeResolve(),
-    commonJs(),
     autoExports({
       defaultExports: {
         '.': {
@@ -45,6 +41,21 @@ export default [{
         }
       }
     })
+  ]
+}, {
+  input,
+  output:  {
+    dir: 'exports/bundle',
+    format: 'es'
+  },
+  plugins: [
+    typescript({ compilerOptions: {declaration: false, outDir: 'exports/bundle' }}),
+    materialSymbols({
+      includeHTML: true,
+      copyHTML: true
+    }),
+    nodeResolve(),
+    commonJs(),
   ]
 }]
 // , {

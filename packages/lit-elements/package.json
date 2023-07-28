@@ -6,7 +6,7 @@
 	"scripts": {
 		"watch": "rollup -c -w",
 		"build": "rollup -c",
-		"serve": "jsproject --serve ./exports --port 8888",
+		"serve": "jsproject --serve ./exports/bundle --port 8888",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"files": [
@@ -87,6 +87,10 @@
 		"./drawer-item.js": {
 			"import": "./exports/drawer-item.js",
 			"types": "./exports/drawer/drawer-item.d.ts"
+		},
+		"./drawer-layout.js": {
+			"import": "./exports/drawer-layout.js",
+			"types": "./exports/drawer/drawer-layout.d.ts"
 		},
 		"./drawer.js": {
 			"import": "./exports/drawer.js",
@@ -235,10 +239,6 @@
 		"./typography.js": {
 			"import": "./exports/typography.js",
 			"types": "./exports/typography/typography.d.ts"
-		},
-		"./drawer-layout.js": {
-			"import": "./exports/drawer-layout.js",
-			"types": "./exports/drawer/drawer-layout.d.ts"
 		}
 	}
 }
