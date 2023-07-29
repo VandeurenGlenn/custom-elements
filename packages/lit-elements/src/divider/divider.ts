@@ -1,8 +1,8 @@
-import { customElement } from 'custom-element-decorator'
+import { customElement } from 'lit/decorators.js'
 import '../button/button.js'
 import { LitElement, html } from 'lit'
 
-@customElement()
+@customElement('custom-divider')
 export class CustomDivider extends LitElement {
 
   static properties = {

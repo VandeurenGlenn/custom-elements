@@ -3,7 +3,7 @@ import { LitElement, html } from "lit";
 import { property, query } from "lit/decorators.js";
 import'../elevation/elevation.js'
 import '../button/button.js'
-import '../icon/icon-font.js'
+import '../icon/icon.js'
 
 @customElement()
 export class CustomPane extends LitElement {
@@ -115,7 +115,7 @@ export class CustomPane extends LitElement {
           <slot name="headline"></slot>
           <flex-it></flex-it>
           <custom-button @click=${this.#closePane}>
-            <custom-icon-font slot="icon">menu_open</custom-icon-font>
+            <custom-icon slot="icon">menu_open</custom-icon>
           </custom-button>
         </flex-row>
       </slot>

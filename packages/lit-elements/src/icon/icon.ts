@@ -5,57 +5,69 @@ class Icon extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, value) {
     if (oldValue !== value) this[name] = value
+    if (name === 'icon') this.shadowRoot.innerHTML = this.render()
   }
   get getIconTemplate() {
     return document.querySelector(`template[id="${this.icon}"]`) as HTMLTemplateElement
   }
 
   get iconTemplateContent() {
-    return this.getIconTemplate.content
+    return this.getIconTemplate.content.cloneNode(true)
   }
 
   get iconTemplateTextContent() {
-    return this.iconTemplateContent.cloneNode(true).textContent
+    return this.iconTemplateContent.children[0].outerHTML
   }
 
   constructor() {
     super()
     this.attachShadow({mode: 'open'})
     
+  }
+  connectedCallback() {
     this.icon = this.getAttribute('icon') || this.innerHTML
   }
 
   set icon(value) {
-    if (this.icon !== value) {
-      this.setAttribute('icon', value)
-      this.render()
-    }
+    this.icon !== value && this.setAttribute('icon', value)
   }
 
   get icon() {
     return this.getAttribute('icon')
   }
 
+  #renderIcon = () => {
+    if (this.getIconTemplate) return this.icon ? html`
+      <span class="icon">${this.iconTemplateTextContent}</span>
+    ` : ''
+
+    console.warn(`icon not included: ${this.icon}
+      be sure to add the tag to your index.html @symbol-${this.icon}`)
+    
+    return ''
+  }
+
   render() {
     return html`
       <style>
-        .icon {
-          --custom-icon-size: 24px;
+        :host {
+          --__custom-icon-size: var(--custom-icon-size, 24px);
+          --__custom-icon-color: var(--md-sys-color-on-surface);
           display: flex;
-          font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 48;
-          font-family: 'Material Symbols Outlined';
-          font-size: var(--custom-icon-size);
-          line-height: var(--custom-icon-size);
-          height: var(--custom-icon-size);
-          width: var(--custom-icon-size);
+          fill: var(--__custom-icon-color, --md-sys-color-on-surface);
+          color: var(--__custom-icon-color, --md-sys-color-on-surface);
+          height: var(--__custom-icon-size);
+          width: var(--__custom-icon-size);
+        }
+
+        svg {
+          fill: var(--__custom-icon-color, --md-sys-color-on-surface);
+          height: var(--__custom-icon-size);
+          width: var(--__custom-icon-size);
         }
       </style>
 
-      <span class="icon">${this.iconTemplateTextContent}</span>
+      ${this.#renderIcon()}
     `
   }
 }

@@ -1,11 +1,11 @@
-import { customElement } from 'custom-element-decorator';
+import { customElement } from 'lit/decorators.js'
 import { LitElement, html, css } from 'lit';
 import '../section/section.js'
 import './code.js'
 
 const replaceHtmlEntities = str => str
   .replace(/(\  <\/(?=[^<\/]*$))/g, '<')
-@customElement()
+@customElement('demo-section')
 export class DemoSection extends LitElement {
   async connectedCallback(): Promise<void> {
     super.connectedCallback()

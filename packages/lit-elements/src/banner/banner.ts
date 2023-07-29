@@ -1,9 +1,9 @@
-import { customElement } from 'custom-element-decorator'
+import { customElement } from 'lit/decorators.js'
 import '../button/button.js'
 import { LitElement, html } from 'lit'
 import '@vandeurenglenn/flex-elements'
 
-@customElement()
+@customElement('custom-banner')
 export class CustomBanner extends LitElement {
 
   constructor() {
@@ -47,7 +47,7 @@ export class CustomBanner extends LitElement {
       <slot></slot>
       <flex-it flex="1"></flex-it>
       <custom-button type="tertiary">
-        <custom-icon-font slot="icon">close</custom-icon-font>
+        <custom-icon slot="icon">close</custom-icon>
       </custom-button>
     `
   }

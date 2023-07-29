@@ -1,8 +1,8 @@
-import { customElement } from 'custom-element-decorator'
+import { customElement } from 'lit/decorators.js'
 import '../elevation/elevation.js'
 import { CSSResultGroup, LitElement, PropertyValueMap, css, html } from 'lit'
 
-@customElement()
+@customElement('custom-button')
 export class CustomButton extends LitElement {
   label: string
   hasIcon: boolean

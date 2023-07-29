@@ -1,7 +1,7 @@
 import { LitElement, html, css, PropertyValueMap, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
 import '../elevation/elevation.js'
-import '../icon/icon-font.js'
+import '../icon/icon.js'
 
 @customElement('custom-dialog')
 export class CustomDialog extends LitElement {
@@ -39,8 +39,6 @@ export class CustomDialog extends LitElement {
     
     // @ts-ignore
     this.hasHeader = headerSlot.assignedElements().length !== 0
-    console.log(this.hasHeader);
-    
 
     const heroSlot = this.shadowRoot.querySelector('slot[name="hero-icon"]')
     // @ts-ignore
@@ -188,13 +186,13 @@ export class CustomDialog extends LitElement {
         <slot name="header">
           <flex-row center style="width: 100%">
             <slot name="header-start">
-              ${this.fullscreen ? html`<custom-button @click=${this.#close}><custom-icon-font slot="icon">close</custom-icon-font></custom-button>` : nothing}
+              ${this.fullscreen ? html`<custom-button @click=${this.#close}><custom-icon slot="icon">close</custom-icon></custom-button>` : nothing}
             </slot>
             <slot name="title"></slot>
             <flex-it></flex-it>
             <slot name="header-end">
               ${this.fullscreen ? html`<slot name="actions"></slot>`: nothing}
-              ${this.fullscreen ? nothing : html`<custom-button @click=${this.#close}><custom-icon-font slot="icon">close</custom-icon-font></custom-button>`}
+              ${this.fullscreen ? nothing : html`<custom-button @click=${this.#close}><custom-icon slot="icon">close</custom-icon></custom-button>`}
             </slot>
           </flex-row>
         </slot>

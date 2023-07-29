@@ -1,11 +1,11 @@
-import { customElement } from 'custom-element-decorator'
+import { customElement } from 'lit/decorators.js'
 import { propertiesConfig } from '../types.js'
 import '../button/button.js'
 import '../divider/divider.js'
 import '../elevation/elevation.js'
 import { LitElement, html, nothing } from 'lit'
 
-@customElement()
+@customElement('custom-card')
 /**
  * m3 ish card implementation
  * 

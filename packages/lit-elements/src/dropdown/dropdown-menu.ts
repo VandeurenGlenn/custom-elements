@@ -2,6 +2,7 @@ import { LitElement, html, css, PropertyValueMap } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
 import './dropdown.js'
 import './../menu/menu.js'
+import './../icon/icon.js'
 
 @customElement('custom-dropdown-menu')
 export class CustomDropdownMenu extends LitElement {
@@ -39,7 +40,7 @@ export class CustomDropdownMenu extends LitElement {
   #renderButton = () => {
     return html`
     <custom-button @click=${() => this.open = !this.open}>
-      <custom-icon-font slot="icon" icon=${this.icon}>more_vert</custom-icon-font>
+      <custom-icon slot="icon" icon=${this.icon}>more_vert</custom-icon>
     </custom-button>
     `
   }

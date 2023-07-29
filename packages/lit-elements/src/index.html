@@ -50,7 +50,6 @@
   <template id="more_vert">@symbol-more_vert</template>
   <template id="menu">@symbol-menu</template>
   <template id="close">@symbol-close</template>
-  <template id="avatar">@symbol-avatar</template>
   <template id="info">@symbol-info</template>
   <template id="check_box">@symbol-check_box</template>
   <template id="check_box_outline_blank">@symbol-check_box_outline_blank</template>
@@ -86,7 +85,7 @@
       <flex-row slot="top-app-bar-end">
         <custom-theme-mode></custom-theme-mode>
         <custom-button>
-          <custom-icon-font slot="icon">more_vert</custom-icon-font>
+          <custom-icon slot="icon">more_vert</custom-icon>
         </custom-button>
       </flex-row>
       
@@ -311,7 +310,7 @@
 
           <demo-section route="dialog">
             <flex-container>
-              <custom-button class="fullscreen-dialog"><custom-icon-font slot="icon">menu</custom-icon-font></custom-button>
+              <custom-button class="fullscreen-dialog"><custom-icon slot="icon">menu</custom-icon></custom-button>
               <custom-dialog fullscreen>
                 <span slot="title">title</span>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quae ipsum autem, recusandae impedit minus cumque odit vel incidunt, exercitationem sint tempore sit ea ratione accusamus nemo magni dolorem corporis.</p>
@@ -335,7 +334,7 @@
             </flex-container>
 
             <flex-container>
-              <custom-button class="dialog"><custom-icon-font slot="icon">menu</custom-icon-font></custom-button>
+              <custom-button class="dialog"><custom-icon slot="icon">menu</custom-icon></custom-button>
               <custom-dialog class="dialog">
                 <span slot="title">title</span>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quae ipsum autem, recusandae impedit minus cumque odit vel incidunt, exercitationem sint tempore sit ea ratione accusamus nemo magni dolorem corporis.</p>
@@ -359,17 +358,17 @@
 
             <custom-menu>
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 1
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 2
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 3
               </custom-list-item>
 
@@ -380,17 +379,17 @@
 
             <custom-dropdown-menu>
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 1
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 2
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 3
               </custom-list-item>
 
@@ -400,17 +399,17 @@
               <flex-it></flex-it>
               <custom-dropdown-menu right>
                 <custom-list-item type="menu">
-                  <custom-icon-font slot="start">info</custom-icon-font>
+                  <custom-icon slot="start">info</custom-icon>
                   item 1
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon-font slot="start">info</custom-icon-font>
+                  <custom-icon slot="start">info</custom-icon>
                   item 2
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon-font slot="start">info</custom-icon-font>
+                  <custom-icon slot="start">info</custom-icon>
                   item 3
                 </custom-list-item>
   
@@ -419,17 +418,17 @@
 
             <custom-dropdown-menu bottom>
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 1
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 2
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon-font slot="start">info</custom-icon-font>
+                <custom-icon slot="start">info</custom-icon>
                 item 3
               </custom-list-item>
 
@@ -439,17 +438,17 @@
               <flex-it></flex-it>
               <custom-dropdown-menu bottom right>
                 <custom-list-item type="menu">
-                  <custom-icon-font slot="start">info</custom-icon-font>
+                  <custom-icon slot="start">info</custom-icon>
                   item 1
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon-font slot="start">info</custom-icon-font>
+                  <custom-icon slot="start">info</custom-icon>
                   item 2
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon-font slot="start">info</custom-icon-font>
+                  <custom-icon slot="start">info</custom-icon>
                   item 3
                 </custom-list-item>
   
@@ -461,24 +460,24 @@
           <demo-section route="list-item">
             <custom-list-item>
 
-              <custom-icon-font slot="start">info</custom-icon-font>
+              <custom-icon slot="start">info</custom-icon>
             </custom-list-item>
             
           </demo-section>
           <demo-section route="toggle">
             <custom-toggle>
 
-              <custom-icon-font>check_box</custom-icon-font>
-              <custom-icon-font>check_box_outline_blank</custom-icon-font>
-              <custom-icon-font>info</custom-icon-font>
+              <custom-icon>check_box</custom-icon>
+              <custom-icon>check_box_outline_blank</custom-icon>
+              <custom-icon>info</custom-icon>
             </custom-toggle>
             
           </demo-section>
 
           <demo-section route="toggle-button">
             <custom-toggle-button>
-              <custom-icon-font>check_box</custom-icon-font>
-              <custom-icon-font>check_box_outline_blank</custom-icon-font>
+              <custom-icon>check_box</custom-icon>
+              <custom-icon>check_box_outline_blank</custom-icon>
             </custom-toggle-button>
             
           </demo-section>

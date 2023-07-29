@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
-import '../icon/icon-font.js'
+import '../icon/icon.js'
 import '../button/button.js'
 // import { publish } from '../decorators/pubsub.js';
 
@@ -36,7 +36,7 @@ export class CustomDrawerButton extends LitElement {
   render() {
     return html`
     <custom-button @click=${this.#openPane}>
-      <custom-icon-font slot="icon">menu</custom-icon-font>
+      <custom-icon slot="icon">menu</custom-icon>
     </custom-button>
     `;
   }

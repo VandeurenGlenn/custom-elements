@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js'
 import '@vandeurenglenn/flex-elements/it.js'
 
 export declare type AppBarTypes = 'center-aligned' | 'small' | 'medium' | 'large'
+
 @customElement('custom-top-app-bar')
 export class CustomTopAppBar extends LitElement {
   
