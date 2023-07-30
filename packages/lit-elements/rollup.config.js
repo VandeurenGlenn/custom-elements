@@ -24,6 +24,7 @@ const cleanBuild = () => ({
 })
 
 await cp('src/theme/themes/default', 'exports/themes/default', {recursive: true})
+await cp('src/index.html', 'exports/bundle/index.html')
 
 await cp('src/theme/themes/default', 'exports/bundle/themes/default', {recursive: true})
 
@@ -52,7 +53,6 @@ export default [{
     format: 'es'
   },
   plugins: [
-    html({ input: 'src/index.html' }),
     materialSymbols({
       placeholderPrefix: 'symbol',
     }),
