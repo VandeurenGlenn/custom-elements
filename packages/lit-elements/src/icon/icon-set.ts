@@ -17,22 +17,26 @@ export class CustomIconSet extends HTMLElement {
     super()
   }
 
-  #getIconTemplate(name) {
-    
-    
-    return this.querySelector(`template[name="${name}"]`) as HTMLTemplateElement
+  #getIcon(name) {
+    return this.querySelector('template').content.querySelector(`span[name="${name}"]`) as HTMLTemplateElement
   }
 
   getIcon(name: string) {
-    console.log({name});
-    
-    return this.#getIconTemplate(name).content.cloneNode(true).textContent
+    const node = this.#getIcon(name)
+    if (!node) {
+      console.warn(`missing icon ${name}`);
+      return name
+    }
+    return node.innerHTML
+  }
+
+  get setName() {
+    return this.getAttribute('set-name') || 'icons'
   }
 
   connectedCallback() {
-    console.log('con');
-    globalThis.pubsub.subscribe('custom-icon-set-connected', () => {})
-    globalThis.pubsub.publish('custom-icon-set-connected', this)
+    globalThis.pubsub.subscribe(`custom-icon-set-${this.setName}-connected`, () => {})
+    globalThis.pubsub.publish(`custom-icon-set-${this.setName}-connected`, this)
     
   }
 }

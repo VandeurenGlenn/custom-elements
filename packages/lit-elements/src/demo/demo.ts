@@ -1,66 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title><style>
-    html, body {
-    inset: 0;
-    position: absolute;
-    margin: 0;
-    width: 100%;
-    color: var(--md-sys-color-on-background);
-    overflow: hidden;
+import { html, css } from './../helpers.js';
+import { customElement, property } from 'lit/decorators.js'
+console.log('w');
+
+@customElement('demo-shell')
+export class DemoShell extends HTMLElement {
+  constructor() {
+    super()
+    this.attachShadow({mode: 'open'})
+    this.shadowRoot.innerHTML = this.render()
   }
-  custom-drawer-layout {
-    height: 100%;
-    width: 100%;
-    inset: 0;
-    
-    background: var(--md-sys-color-background, #fff);
-    position: absolute;
-    display: flex;
-  }
-  .demo-container {
-    height: 100%;
-    width: 100%;
+  static styles = [
+    css`
+      :host {
+        display: block;
+      }
+    `
+  ];
+
+  async connectedCallback() {
+    const selector = this.shadowRoot.querySelector('custom-selector')
+    const pages = this.shadowRoot.querySelector('custom-pages')
+
+    const onSelected = async ({detail}) => {
+      document.dispatchEvent(new CustomEvent('custom-scroll', { detail: {scrolling: false}}))
+      pages.select(detail)
+      localStorage.setItem('last-selected', detail)
+    }
+
+    selector.addEventListener('selected', onSelected)
+
+    const lastSelected = localStorage.getItem('last-selected')
+    if (lastSelected) 
+      if (customElements.get('custom-selector')) selector.select(lastSelected) 
+      else {
+        await customElements.whenDefined('custom-selector')
+        selector.select(lastSelected)
+        
+        pages.select(lastSelected)
+      }
   }
 
-  flex-column {
-    width: 100%;
-    height: 100%;
-  }
-
-  .demo-container section {
-    align-items: center;
-    justify-content: center;
-  }
-
-  [non-interactive] {
-    pointer-events: none;
-  }
-
-  h4 {
-    margin: 0;
-    padding-top: 16px;
-    padding-bottom: 12px;
-  }
-
-  custom-drawer custom-divider {
-    margin-top: 16px;
-  }
-
-  flex-row:not([slot="top-app-bar-end"]) {
-    width: 100%;
-  }
-</style>
-</head>
-<body>
-  <custom-theme></custom-theme>
-  <demo-icons></demo-icons>
-
-  <!-- <custom-root> -->
+  render() {
+    return html`
     <custom-drawer-layout class="demo-container">
       <span slot="drawer-headline">
         menu
@@ -492,34 +473,6 @@
       </flex-column>
 
     </custom-drawer-layout>
-  <!-- </custom-root> -->
-  <!-- </flex-row> -->
-
-  <script type="module">
-    import './demo-elements.js'
-    import './elements.js'
-
-    const selector = document.querySelector('custom-selector')
-    const pages = document.querySelector('custom-pages')
-
-    const onSelected = async ({detail}) => {
-      document.dispatchEvent(new CustomEvent('custom-scroll', { detail: {scrolling: false}}))
-      pages.select(detail)
-      localStorage.setItem('last-selected', detail)
-    }
-
-    selector.addEventListener('selected', onSelected)
-
-    const lastSelected = localStorage.getItem('last-selected')
-    if (lastSelected) 
-      if (customElements.get('custom-serlector')) selector.select(lastSelected) 
-      else {
-        await customElements.whenDefined('custom-selector')
-        selector.select(lastSelected)
-        
-        pages.select(lastSelected)
-      }
-  </script>
-  
-</body>
-</html>
+    `;
+  }
+}

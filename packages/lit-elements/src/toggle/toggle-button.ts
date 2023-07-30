@@ -17,8 +17,6 @@ export class CustomToggleButton extends HTMLElement {
   }
 
   #click = () => {
-    console.log('cl');
-    
     this.#toggle.next()
   }
 

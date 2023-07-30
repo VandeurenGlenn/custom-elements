@@ -8,9 +8,10 @@ import commonJs from '@rollup/plugin-commonjs'
 import json from "@rollup/plugin-json";
 import { cpSync } from "fs";
 import autoExports from 'rollup-plugin-auto-exports'
-import {materialSymbolsSvg} from "rollup-plugin-material-symbols";
+import materialSymbols from "rollup-plugin-material-symbols";
 import terser from '@rollup/plugin-terser'
 import { env } from "process";
+import {rollupPluginHTML as html} from '@web/rollup-plugin-html'
 
 const input = await globby(['src/**/*.ts'])
 
@@ -21,7 +22,6 @@ const cleanBuild = () => ({
     rimraf('./exports/**/*.d.ts', {glob: true})
   }
 })
-console.log(env);
 
 await cp('src/theme/themes/default', 'exports/themes/default', {recursive: true})
 
@@ -52,13 +52,13 @@ export default [{
     format: 'es'
   },
   plugins: [
-    typescript({ compilerOptions: {declaration: false, outDir: 'exports/bundle' }}),
-    materialSymbolsSvg({
-      includeHTML: true,
-      copyHTML: true
+    html({ input: 'src/index.html' }),
+    materialSymbols({
+      placeholderPrefix: 'symbol',
     }),
     nodeResolve(),
     commonJs(),
+    typescript({ compilerOptions: {declaration: false, outDir: 'exports/bundle' }}),
     terser({
       keep_classnames: true
     })
