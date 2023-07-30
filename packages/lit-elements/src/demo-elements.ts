@@ -4,7 +4,7 @@ import { DemoSection } from './demo/section.js'
 
 export {
   DemoSection,
-  DemoShell,
+  // DemoShell,
   DemoIcons
 }
 
@@ -12,6 +12,6 @@ declare global {
   interface HTMLElementTagNameMap {
     'demo-icons': DemoIcons
     'demo-section': DemoSection
-    'demo-shell': DemoShell
+    // 'demo-shell': DemoShell
   }
 }
