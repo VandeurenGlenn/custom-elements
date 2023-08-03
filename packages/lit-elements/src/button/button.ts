@@ -59,31 +59,36 @@ export class CustomButton extends LitElement {
       text-decoration: var(--md-sys-typescale-label-large-text-decoration);
     }
 
-    :host([type="filled"]) {
+    :host([type="filled"]), :host([type="filled"]) ::slotted(*) {
       color: var(--md-sys-color-on-primary);
+      fill: var(--md-sys-color-on-primary);
       background: var(--md-sys-color-primary);
     }
 
-    :host([type="outlined"]) {
+    :host([type="outlined"]), :host([type="outlined"]) ::slotted(*) {
       color: var(--md-sys-color-on-surface);
+      fill: var(--md-sys-color-on-surface);
       background: var(--md-sys-color-surface);
       border: solid 1px;
       border-color: var(--md-sys-color-outline);
     }
 
-    :host([type="elevated"]) {
+    :host([type="elevated"]), :host([type="elevated"]) ::slotted(*) {
       color: var(--md-sys-color-primary);
+      fill: var(--md-sys-color-primary);
       background: var(--md-sys-color-surface-container-low);
     }
 
     :host([type="tertiary"]), :host([type="tertiary"]) ::slotted(*) {
       background: var(--md-sys-color-tertiary);
       color: var(--md-sys-color-on-tertiary);
+      fill: var(--md-sys-color-on-tertiary);
     }
 
     :host([type="tonal"]), :host([type="tonal"]) ::slotted(*) {
       background: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-seconday-container);
+      fill: var(--md-sys-color-on-seconday-container);
     }
 
     custom-elevation {

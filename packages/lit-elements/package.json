@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.1.12",
+	"version": "0.2.0",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -218,6 +218,10 @@
 		"./tabs.js": {
 			"import": "./exports/tabs.js",
 			"types": "./exports/tabs/tabs.d.ts"
+		},
+		"./text-field.js": {
+			"import": "./exports/text-field.js",
+			"types": "./exports/text-field/text-field.d.ts"
 		},
 		"./theme.js": {
 			"import": "./exports/theme.js",
