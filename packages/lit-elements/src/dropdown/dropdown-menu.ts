@@ -43,9 +43,7 @@ export class CustomDropdownMenu extends LitElement {
       custom-dropdown {
         display: flex;
         flex-direction: column;
-        width: 100%;
-        min-width: 120px;
-        max-width: 280px;
+        width: fit-content;
         top: var(--custom-dropdown-top);
         padding: 8px 0;
         border-radius: var(--md-sys-shape-corner-extra-small);
