@@ -25,18 +25,7 @@ export class CustomDropdownMenu extends LitElement {
 
   @query('custom-dropdown')
   _dropdown: CustomDropdown
-
-  protected willUpdate(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    if (this.hasUpdated && this.bottom) {
-      this._dropdown.style.transition = 'none'
-      this._dropdown.style.opacity = '0'
-      this._dropdown.style.transform = 'scale(1, 1)'
-      const {height} = this._dropdown.getBoundingClientRect()
-      this.style.setProperty('--custom-dropdown-top', `-${height + 8}px`)
-      // this._dropdown.style = null
-    } else this.style.setProperty('--custom-dropdown-top', `48px`)
-  }
-
+  
   #onselected = ({detail}) => {
     this.dispatchEvent(new CustomEvent('selected', {detail}))
     this.open = false
@@ -48,6 +37,7 @@ export class CustomDropdownMenu extends LitElement {
       :host {
         position: relative;
         display: block;
+        --custom-dropdown-top: 48px;
       }
 
       custom-dropdown {
@@ -68,7 +58,8 @@ export class CustomDropdownMenu extends LitElement {
 
       :host([bottom]) custom-dropdown {
         transform-origin: bottom left;
-        top: var(--custom-dropdown-top);
+        top: auto;
+        bottom: var(--custom-dropdown-top);
       }
 
       :host([right]) custom-dropdown {
