@@ -1,29 +1,16 @@
 import { LitElement, html, css, PropertyValueMap } from 'lit';
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, query } from 'lit/decorators.js'
 import './dropdown.js'
 import './../menu/menu.js'
 import './../icon/icon.js'
+import { CustomMenu } from './../menu/menu.js';
+import { CustomDropdown } from './dropdown.js';
 
 @customElement('custom-dropdown-menu')
 export class CustomDropdownMenu extends LitElement {
   @property({ type: Boolean, reflect: true })
-  right
+  right: boolean
 
-  protected willUpdate(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    if (this.hasUpdated && this.bottom) {
-      this.shadowRoot.querySelector('custom-dropdown').style.transition = 'none'
-      this.shadowRoot.querySelector('custom-dropdown').style.opacity = '0'
-      this.shadowRoot.querySelector('custom-dropdown').style.transform = 'scale(1, 1)'
-      const {height} = this.shadowRoot.querySelector('custom-dropdown').getBoundingClientRect()
-      this.style.setProperty('--custom-dropdown-top', `-${height + 8}px`)
-      this.shadowRoot.querySelector('custom-dropdown').style = null
-    } else this.style.setProperty('--custom-dropdown-top', `48px`)
-  }
-
-  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    
-   
-  }
   @property({ type: Boolean, reflect: true })
   bottom: boolean
 
@@ -33,18 +20,29 @@ export class CustomDropdownMenu extends LitElement {
   @property({ type: String })
   icon: string = 'more_vert'
 
-  #onselected = ({detail}) => {
-    this.dispatchEvent(new CustomEvent('selected', {detail}))
+  @query('custom-menu')
+  _menu: CustomMenu
+
+  @query('custom-dropdown')
+  _dropdown: CustomDropdown
+
+  protected willUpdate(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (this.hasUpdated && this.bottom) {
+      this._dropdown.style.transition = 'none'
+      this._dropdown.style.opacity = '0'
+      this._dropdown.style.transform = 'scale(1, 1)'
+      const {height} = this._dropdown.getBoundingClientRect()
+      this.style.setProperty('--custom-dropdown-top', `-${height + 8}px`)
+      // this._dropdown.style = null
+    } else this.style.setProperty('--custom-dropdown-top', `48px`)
   }
 
-  #renderButton = () => {
-    return html`
-    <custom-button @click=${() => this.open = !this.open}>
-      <custom-icon slot="icon" icon=${this.icon}>more_vert</custom-icon>
-    </custom-button>
-    `
+  #onselected = ({detail}) => {
+    this.dispatchEvent(new CustomEvent('selected', {detail}))
+    this.open = false
+    this._menu.selected = undefined
   }
-  
+
   static styles = [
     css`
       :host {
@@ -86,7 +84,9 @@ export class CustomDropdownMenu extends LitElement {
 
   render() {
     return html`
-    ${this.#renderButton()}
+    <custom-button @click=${() => this.open = !this.open}>
+      <custom-icon slot="icon" icon=${this.icon}>more_vert</custom-icon>
+    </custom-button>
     
     <custom-dropdown .shown=${this.open} ?right=${this.right} ?bottom=${this.bottom}>
       <custom-elevation></custom-elevation>
