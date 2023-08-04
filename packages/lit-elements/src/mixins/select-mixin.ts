@@ -3,7 +3,7 @@ import { property } from "lit/decorators.js";
 
 export class SelectBase extends LitElement {
   #selected: string | number | HTMLElement | string[] | HTMLElement[]
-  currentSelected: string | number | HTMLElement
+  currentSelected: HTMLElement
 
   constructor() {
     super();
@@ -126,6 +126,11 @@ export class SelectBase extends LitElement {
   }
 
   #requestSelectedUpdate() {
+    if (!this.selected) {
+      this.currentSelected && this.currentSelected.classList.remove('custom-selected');
+      return 
+    }
+
     const type = typeof this.selected;
     if (Array.isArray(this.selected)) return this.#updateMultiSelected(this.selected as string[])
     if (type === 'object') return this.#updateSelected(this.selected as HTMLElement, this.currentSelected as HTMLElement);
