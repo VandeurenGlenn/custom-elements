@@ -19,7 +19,8 @@ export class CustomDropdown extends LitElement {
         position: absolute;
         pointer-events: none;
         opacity: 0;
-        width: inherit;
+        flex: 1;
+        width: fit-content;
         display: flex;
         flex-direction: column;
         border: 1px;
