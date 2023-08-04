@@ -7,10 +7,13 @@ export class CustomListItem extends LitElement {
   type: 'menu' | 'one-line' = 'one-line'
 
   @property({ type: Boolean, reflect: true })
-  open: Boolean
+  open: boolean
 
-  @property({ type: Boolean, reflect: true, attribute: 'has-Start' })
-  hasStart: Boolean
+  @property({ type: Boolean, reflect: true, attribute: 'has-start' })
+  hasStart: boolean
+
+  @property({ type: Boolean, reflect: true, attribute: 'non-interactive' })
+  nonInteractive: boolean
 
   @queryAssignedElements({slot: 'start'})
   assignedStartElements
@@ -20,11 +23,6 @@ export class CustomListItem extends LitElement {
 
   #startSlotChange = async () => {
     await this.assignedStartElements[0].updateComplete
-
-    // console.log(this.assignedStartElements);
-    
-    
-    // console.log(this.startSlot.assignedElements()[0].getBoundingClientRect());
     this.hasStart = true
   }
 
@@ -63,8 +61,13 @@ export class CustomListItem extends LitElement {
         align-items: center;
       }
 
-      :host([has-Start]) .body {
+      :host([has-start]) .body {
         padding-left: 12px;
+      }
+
+      :host([non-interactive]) {
+        pointer-events: none;
+        cursor: default;
       }
     `
   ];
