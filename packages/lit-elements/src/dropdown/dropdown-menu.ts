@@ -73,11 +73,11 @@ export class CustomDropdownMenu extends LitElement {
 
   render() {
     return html`
-    <custom-button @click=${() => this.open = !this.open}>
+    <custom-button part="button" @click=${() => this.open = !this.open}>
       <custom-icon slot="icon" icon=${this.icon}>more_vert</custom-icon>
     </custom-button>
     
-    <custom-dropdown .shown=${this.open} ?right=${this.right} ?bottom=${this.bottom}>
+    <custom-dropdown part="dropdown" .shown=${this.open} ?right=${this.right} ?bottom=${this.bottom}>
       <custom-elevation></custom-elevation>
       <custom-menu @selected=${this.#onselected}>
         <slot></slot>
