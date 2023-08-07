@@ -126,7 +126,7 @@ export class SelectBase extends LitElement {
   }
 
   #requestSelectedUpdate() {
-    if (!this.selected) {
+    if (this.selected === undefined) {
       this.currentSelected && this.currentSelected.classList.remove('custom-selected');
       return 
     }
