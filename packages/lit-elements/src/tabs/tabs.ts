@@ -19,7 +19,7 @@ export class CustomTabs extends SelectorBase {
           --inactive-color: var(--md-sys-color-on-surface-variant);
           display: flex;
           flex-direction: row;
-          height: var(--custom-tabs-height, 40px);
+          height: var(--custom-tabs-height, 48px);
           background: var(--custom-tabs-background);
           border-radius: var(--custom-tabs-shape);
         }

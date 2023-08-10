@@ -17,6 +17,7 @@ export class CustomTab extends LitElement {
         box-sizing: border-box;
         width: auto;
         font: var(--_supporting-text-type);
+        cursor: pointer;
       }
       
       slot {
