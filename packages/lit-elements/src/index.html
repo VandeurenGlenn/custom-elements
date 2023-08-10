@@ -30,6 +30,7 @@
   flex-column {
     width: 100%;
     height: 100%;
+    overflow-y: auto;
   }
 
   .demo-container section {
@@ -66,7 +67,7 @@
         menu
       </span>
 
-      <flex-column  slot="drawer-content">
+      <flex-column slot="drawer-content">
         <custom-selector attr-for-selected="route" default-selected="banner">
           <custom-drawer-item route="banner">banner</custom-drawer-item>
           <custom-drawer-item route="dialog">dialog</custom-drawer-item>
