@@ -13,6 +13,10 @@ export class CustomIconButton extends LitElement {
       :host {
         display: block;
       }
+
+      custom-icon {
+        --custom-icon-color: var(--md-sys-color-on-surface);
+      }
     `
   ];
 

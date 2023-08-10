@@ -1,29 +1,25 @@
+import { customElement } from "custom-element-decorator";
 import { LitElement, html } from "lit";
 
+@customElement()
 export class CustomTab extends LitElement {
 
   render() {
     return html`
     <style>
       :host {
-        position: relative;
-        display: inline-flex;
-        width: 148px;
-        height: 48px;
+        display: flex;
         align-items: center;
         justify-content: center;
-        padding: 8px 12px;
+        gap: 8px;
+        height: 40px;
+        padding: 0 12px;
         box-sizing: border-box;
-        cursor: pointer;
-        
-        --tab-underline-color:  #00B8D4;
-      }
-
-      :host(.custom-selected) {
-        border-bottom: 2px solid var(--tab-underline-color);
+        width: auto;
+        font: var(--_supporting-text-type);
       }
       
-      ::slotted(*) {
+      slot {
         pointer-events: none;
       }
     </style>
