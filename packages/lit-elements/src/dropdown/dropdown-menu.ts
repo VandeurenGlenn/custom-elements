@@ -14,7 +14,13 @@ export class CustomDropdownMenu extends LitElement {
   @property({ type: Boolean, reflect: true })
   bottom: boolean
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'close-on-select'})
+  closeOnSelect: boolean = true
+
+  @property({ type: Boolean, attribute: 'close-on-click' })
+  closeOnClick: boolean = true
+
+  @property({ type: Boolean, reflect: true })
   open: boolean
 
   @property({ type: String })
@@ -28,10 +34,16 @@ export class CustomDropdownMenu extends LitElement {
   
   #onselected = ({detail}) => {
     this.dispatchEvent(new CustomEvent('selected', {detail}))
-    this.open = false
-    this._menu.selected = undefined
+    if (this.closeOnSelect) {
+      this.open = false
+      this._menu.selected = undefined
+    }
   }
 
+  #scrimClick = () => {
+    if (this.closeOnClick) { this.open = false }
+  }
+  
   static styles = [
     css`
       :host {
@@ -68,11 +80,23 @@ export class CustomDropdownMenu extends LitElement {
       :host([bottom][right]) custom-dropdown {
         transform-origin: bottom right;
       }
+
+      .scrim {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      :host([open]) .scrim {
+        pointer-events: auto;
+      }
     `
   ];
 
   render() {
     return html`
+    <span class="scrim" @click=${this.#scrimClick}></span>
+
     <custom-button part="button" @click=${() => this.open = !this.open}>
       <custom-icon slot="icon" icon=${this.icon}>more_vert</custom-icon>
     </custom-button>
