@@ -1,6 +1,5 @@
 import { customElement } from 'lit/decorators.js'
 import { LitElement, html, css } from 'lit';
-import { property } from 'lit/decorators.js'
 
 @customElement('custom-drawer-item')
 export class CustomDrawerItem extends LitElement {

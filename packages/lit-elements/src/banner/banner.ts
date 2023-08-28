@@ -1,7 +1,7 @@
 import { customElement } from 'lit/decorators.js'
 import '../button/button.js'
 import { LitElement, html } from 'lit'
-import '@vandeurenglenn/flex-elements'
+import '@vandeurenglenn/flex-elements/it.js'
 
 @customElement('custom-banner')
 export class CustomBanner extends LitElement {
