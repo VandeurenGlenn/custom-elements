@@ -5,6 +5,7 @@ import './drawer-button.js'
 import './drawer-item.js'
 import '../bar/top-app-bar.js'
 import { AppBarTypes } from "../bar/top-app-bar.js";
+import '@vandeurenglenn/flex-elements/column.js'
 // import { publish, subscribe } from "../decorators/pubsub.js";
 
 @customElement('custom-drawer-layout')

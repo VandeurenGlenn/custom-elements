@@ -34,6 +34,12 @@ export default [{
     dir: 'exports',
     format: 'es'
   }],
+  external: [
+    '@vandeurenglenn/little-pubsub',
+    '@vandeurenglenn/flex-elements',
+    'lit',
+
+  ],
   plugins: [
     cleanBuild(),
     typescript(),

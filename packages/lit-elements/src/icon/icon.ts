@@ -1,14 +1,31 @@
 import PubSub from '@vandeurenglenn/little-pubsub';
-import { css, html } from '../helpers.js'
+import { LitElement, html, css, PropertyValueMap, nothing, svg } from 'lit';
+import { property, state } from 'lit/decorators.js';
 
 globalThis.pubsub = globalThis.pubsub || new PubSub(true)
-class Icon extends HTMLElement {
-  static get observedAttributes() { return ['icon', 'set-name']; }
+class Icon extends LitElement {
+  @property({ attribute: false })
   host
 
-  attributeChangedCallback(name, oldValue, value) {
-    if (oldValue !== value) this[name === 'set-name' ? 'setName' : name] = value
-  }
+  @property({ type: String })
+  icon = this.innerHTML
+
+  
+
+  @property()
+  set setName(value) {
+    this.host = globalThis.pubsub.subscribers[`custom-icon-set-${value}-connected`]?.value
+    if (!this.host) {
+      globalThis.pubsub.subscribe(`custom-icon-set-${value}-connected`, host => {
+        if (host) {
+          this.host = host
+        }
+      })
+    }
+}
+
+  @state()
+  _icon
 
   static styles = [
     css`
@@ -28,58 +45,21 @@ class Icon extends HTMLElement {
     `
   ]
 
-  get setName() {
-    return this.getAttribute('set-name') || 'icons'
-  }
-
-  set setName(value) {
-      this.setAttribute('set-name', value)
-      this.host = globalThis.pubsub.subscribers[`custom-icon-set-${value}-connected`]?.value
-      if (this.host) this.observer()
-      else {
-        globalThis.pubsub.subscribe(`custom-icon-set-${value}-connected`, host => {
-          if (host) {
-            this.host = host
-            this.observer()
-          }
-        })
-      }
-  }
-
-  get icon() {
-    return this.getAttribute('icon') || this.innerHTML
-  }
-
-  set icon(value) {
-    this.setAttribute('icon', value)
-    this.observer()
-  }
-
-  observer() {
-    if (this.icon && this.setName && this.host) {
-      this.renderIcon()
-    }
-  }
-
   constructor() {
     super()
-    this.attachShadow({mode: 'open'})
-    const sheets = []
-    for (const style of Icon.styles) {
-      const sheet = new CSSStyleSheet()
-      sheet.replaceSync(style)
-      sheets.push(sheet)
-    }
-    
-    this.shadowRoot.adoptedStyleSheets = sheets
-    this.icon = this.icon
-    this.setName = this.setName
-    this.observer()
+    this.setName = this.getAttribute('set-name')  || 'icons'
   }
 
-  renderIcon() {
-    if (!this.icon || !this.host) return
-    this.shadowRoot.innerHTML = this.host.getIcon(this.icon)
+  protected willUpdate(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (_changedProperties.has('icon') || _changedProperties.has('host')) {
+      if (this.host && this.icon) this._icon = this.host.getIcon(this.icon)
+    }
+  }
+
+  render() {
+    return html`
+    ${this._icon}
+    `
   }
 }
 

@@ -1,6 +1,7 @@
 import { LitElement, html, css, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
 import '@vandeurenglenn/flex-elements/it.js'
+import '@vandeurenglenn/flex-elements/row.js'
 
 export declare type AppBarTypes = 'center-aligned' | 'small' | 'medium' | 'large'
 
@@ -79,7 +80,7 @@ export class CustomTopAppBar extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback()
-    document.addEventListener('custom-scroll', ({detail}) => {
+    document.addEventListener('custom-scroll', ({detail}: CustomEvent) => {
       this.scrolling = detail.scrolling
     })
   }

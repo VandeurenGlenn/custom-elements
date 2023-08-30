@@ -13,12 +13,8 @@ export class CustomIconSet extends HTMLElement {
     `
   ];
 
-  constructor() {
-    super()
-  }
-
   #getIcon(name) {
-    return this.querySelector('template').content.querySelector(`span[name="${name}"]`) as HTMLTemplateElement
+    return this.querySelector('template').content.querySelector(`span[name="${name}"]`).children[0]
   }
 
   getIcon(name: string) {
@@ -27,7 +23,7 @@ export class CustomIconSet extends HTMLElement {
       console.warn(`missing icon ${name}`);
       return name
     }
-    return node.innerHTML
+    return node.cloneNode(true)
   }
 
   get setName() {
@@ -37,6 +33,5 @@ export class CustomIconSet extends HTMLElement {
   connectedCallback() {
     globalThis.pubsub.subscribe(`custom-icon-set-${this.setName}-connected`, () => {})
     globalThis.pubsub.publish(`custom-icon-set-${this.setName}-connected`, this)
-    
   }
 }

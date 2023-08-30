@@ -487,6 +487,15 @@
               <custom-icon>info</custom-icon>
             </custom-toggle>
             
+            <custom-button label="next"></custom-button>
+
+            <script>
+                
+              const toggleDemo = document.querySelector('demo-section[route="toggle"]')
+              toggleDemo.querySelector('custom-button').addEventListener('click', () => {
+                toggleDemo.querySelector('custom-toggle').next()
+              })
+            </script>
           </demo-section>
 
           <demo-section route="toggle-button">
