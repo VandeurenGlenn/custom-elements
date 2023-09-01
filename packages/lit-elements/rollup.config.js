@@ -10,8 +10,6 @@ import { cpSync } from "fs";
 import autoExports from 'rollup-plugin-auto-exports'
 import materialSymbols from "rollup-plugin-material-symbols";
 import terser from '@rollup/plugin-terser'
-import { env } from "process";
-import {rollupPluginHTML as html} from '@web/rollup-plugin-html'
 
 const input = await globby(['src/**/*.ts'])
 
