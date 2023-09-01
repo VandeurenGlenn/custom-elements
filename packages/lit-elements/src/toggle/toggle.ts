@@ -29,6 +29,7 @@ export class CustomToggle extends HTMLElement {
   }
   
   set active(value: number) {
+    this.dispatchEvent(new CustomEvent('active', { detail: value }))
     if (this.getAttribute('active') !== String(value)) this.setAttribute('active', String(value))
   }
 
