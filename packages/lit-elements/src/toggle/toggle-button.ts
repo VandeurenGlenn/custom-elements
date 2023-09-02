@@ -8,6 +8,9 @@ export class CustomToggleButton extends LitElement {
   @property({ type: Number })
   active: number = 0
 
+  @property({ type: Array })
+  togglers: string[]
+
   get #toggle() {
     return this.shadowRoot.querySelector('custom-toggle')
   }
@@ -17,10 +20,12 @@ export class CustomToggleButton extends LitElement {
   }
 
   connectedCallback() {
+    super.connectedCallback()
     this.addEventListener('click', this.#click)
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback()
     this.removeEventListener('click', this.#click)
   }
 
@@ -31,8 +36,7 @@ export class CustomToggleButton extends LitElement {
   render() {
     return html`
     <custom-button>
-      <custom-toggle slot="icon" .active=${this.active} @active=${this.#onactive}>
-        <slot></slot>
+      <custom-toggle slot="icon" .active=${this.active} @active=${this.#onactive} .togglers=${this.togglers}>
       </custom-toggle>
     </custom-button>`;
   }

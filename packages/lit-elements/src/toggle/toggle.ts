@@ -1,44 +1,27 @@
-import { css } from './../helpers.js';
-import { customElement } from 'lit/decorators.js'
+import { LitElement, PropertyValueMap, css, html } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js'
 
 @customElement('custom-toggle')
-export class CustomToggle extends HTMLElement {
-  #child: Element
+export class CustomToggle extends LitElement {
   restartOnEnd: boolean = true
 
-  static get observedAttributes() { return ['active', 'restart-on-end']; }
+  @property({ type: Number })
+  active: number = 0
 
-  async attributeChangedCallback(name, oldValue, value) {
-    const _name = name.replaceAll(/(?:\-)([aA-zZ])/g, (_, $1) => {
-      return $1.toUpperCase()
-    })
-    
-    if (oldValue !== value) {
-      if (_name === 'restartOnEnd') {
-        if (this.getAttribute('restart-on-end') === 'false') this[_name] = false
-        else this[_name] = true
-      } else this[_name] = value
-      
-    }
-    if (name === 'active') {
-      const child = Array.from(await this.#children)[value]
-      if (this.#child) this.shadowRoot.replaceChild(child.cloneNode(true), this.#child)
-      else this.shadowRoot.appendChild(child.cloneNode(true))
-      this.#child = this.shadowRoot.querySelector(child.localName)
-    }
-  }
-  
-  set active(value: number) {
-    this.dispatchEvent(new CustomEvent('active', { detail: value }))
-    if (this.getAttribute('active') !== String(value)) this.setAttribute('active', String(value))
-  }
+  @property({ type: Array })
+  togglers: string[]
 
-  get active() {
-    return Number(this.getAttribute('active'))
+  @state()
+  icon: string
+
+  protected willUpdate(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (_changedProperties.has('active') && this.togglers !== undefined || _changedProperties.has('togglers') && this.active !== undefined) {
+      this.icon = this.togglers[this.active]
+    }
   }
 
   async next() {
-    if (this.active < (await this.#children).length - 1) this.active += 1
+    if (this.active < this.togglers.length - 1) this.active += 1
     else if (this.restartOnEnd) this.active = 0
   }
 
@@ -53,38 +36,8 @@ export class CustomToggle extends HTMLElement {
       }
     `
   ];
-
-  get #children() {
-    return new Promise((resolve) => {
-      if (this.children[0].localName === 'slot') {
-        if (Array.from(this.children[0].assignedElements()).length === 0) {
-          const slotchange = () => {
-            resolve(this.children[0].assignedElements())
-            this.children[0].removeEventListener('slotchange', slotchange)
-          }
-          this.children[0].addEventListener('slotchange', slotchange)
-
-        } else return resolve(this.children[0].assignedElements())
-      }
-      return resolve(this.children)
-    })
-    
-  }
-
-  constructor() {
-    super()
-    this.attachShadow({mode: 'open'})
-    const sheets = []
-
-    for (const style of CustomToggle.styles) {
-      const sheet = new CSSStyleSheet()
-      sheet.replaceSync(style)
-    }
-
-    this.shadowRoot.adoptedStyleSheets = sheets
-  }
-
-  connectedCallback(): void {
-    if (!this.active) this.active = Number(this.getAttribute('active')) || 0
+  
+  render() {
+    return html`<custom-icon .icon=${this.icon}></custom-icon>`
   }
 }
