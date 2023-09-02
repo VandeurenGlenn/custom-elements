@@ -29,7 +29,7 @@ export class CustomToggleButton extends LitElement {
     this.removeEventListener('click', this.#click)
   }
 
-  #onactive(event: CustomEvent) {
+  #onactive = (event: CustomEvent) => {
     this.dispatchEvent(new CustomEvent('active', {detail: event.detail}))
   }
 

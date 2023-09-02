@@ -20,6 +20,11 @@ export class CustomToggle extends LitElement {
     }
   }
 
+  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (_changedProperties.has('active')) {
+      this.dispatchEvent(new CustomEvent('active', { detail: this.active }))
+    }
+  }
   async next() {
     if (this.active < this.togglers.length - 1) this.active += 1
     else if (this.restartOnEnd) this.active = 0
