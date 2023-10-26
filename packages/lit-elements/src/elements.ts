@@ -26,6 +26,7 @@ import { CustomDropdownMenu } from './dropdown/dropdown-menu.js'
 import { CustomDropdown } from './dropdown/dropdown.js'
 import { CustomToggle } from './toggle/toggle.js'
 import { CustomToggleButton } from './toggle/toggle-button.js'
+import { CustomTimePicker } from './time-picker/time-picker.js'
 
 export {
   CustomTheme,
@@ -55,7 +56,8 @@ export {
   CustomDropdownMenu,
   CustomDropdown,
   CustomToggle,
-  CustomToggleButton
+  CustomToggleButton,
+  CustomTimePicker
 }
 
 declare global {
@@ -87,6 +89,7 @@ declare global {
     'custom-dropdown': CustomDropdown
     'custom-dropdown-menu': CustomDropdownMenu,
     'custom-toggle': CustomToggle
+    'custom-time-picker': CustomTimePicker
     'custom-toggle-button': CustomToggleButton
   }
 }

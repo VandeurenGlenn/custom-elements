@@ -4,70 +4,63 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title><style>
-    html, body {
-    inset: 0;
-    position: absolute;
-    margin: 0;
-    width: 100%;
-    color: var(--md-sys-color-on-background);
-    overflow: hidden;
-  }
-  custom-drawer-layout {
-    height: 100%;
-    width: 100%;
-    inset: 0;
-    
-    background: var(--md-sys-color-background, #fff);
-    position: absolute;
-    display: flex;
-  }
-  .demo-container {
-    height: 100%;
-    width: 100%;
-  }
+  <title>Document</title>
 
-  flex-column {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  .demo-container section {
-    align-items: center;
-    justify-content: center;
-  }
-
-  [non-interactive] {
-    pointer-events: none;
-  }
-
-  h4 {
-    margin: 0;
-    padding-top: 16px;
-    padding-bottom: 12px;
-  }
-
-  custom-drawer custom-divider {
-    margin-top: 16px;
-  }
-
-  flex-row:not([slot="top-app-bar-end"]) {
-    width: 100%;
-  }
-</style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap&text=%EE%94%9C,%EE%A6%BD,%EE%97%94,%EE%97%92,%EE%97%8D,%00,%EE%A2%8E,%EE%A0%B4,%EE%A0%B5">
 </head>
 <body>
-  <custom-theme></custom-theme>
-  <demo-icons></demo-icons>
+  <style>
 
+    .demo-container {
+      height: 100%;
+      width: 100%;
+    }
+
+    flex-column {
+      width: 100%;
+      height: 100%;
+    }
+
+    .demo-container section {
+      align-items: center;
+      justify-content: center;
+    }
+
+    [non-interactive] {
+      pointer-events: none;
+    }
+
+    h4 {
+      margin: 0;
+      padding-top: 16px;
+      padding-bottom: 12px;
+    }
+
+    custom-drawer custom-divider {
+      margin-top: 16px;
+    }
+
+    flex-row:not([slot="top-app-bar-end"]) {
+      width: 100%;
+    }
+  </style>
+
+  <template id="dark_mode">&#xe51c</template>
+  <template id="menu_open">&#xe9bd</template>
+  <template id="more_vert">&#xe5d4</template>
+  <template id="menu">&#xe5d2</template>
+  <template id="close">&#xe5cd</template>
+  <template id="avatar">&#xundefined</template>
+  <template id="info">&#xe88e</template>
+  <template id="check_box">&#xe834</template>
+  <template id="check_box_outline_blank">&#xe835</template>
   <!-- <custom-root> -->
     <custom-drawer-layout class="demo-container">
       <span slot="drawer-headline">
         menu
       </span>
 
-      <flex-column slot="drawer-content">
+      <flex-column  slot="drawer-content">
         <custom-selector attr-for-selected="route" default-selected="banner">
           <custom-drawer-item route="banner">banner</custom-drawer-item>
           <custom-drawer-item route="dialog">dialog</custom-drawer-item>
@@ -84,7 +77,6 @@
           <custom-drawer-item route="list-item">list-item</custom-drawer-item>
           <custom-drawer-item route="toggle">toggle</custom-drawer-item>
           <custom-drawer-item route="toggle-button">toggle-button</custom-drawer-item>
-          <custom-drawer-item route="time-picker">time-picker</custom-drawer-item>
         </custom-selector>
       </flex-column>
         
@@ -94,7 +86,7 @@
       <flex-row slot="top-app-bar-end">
         <custom-theme-mode></custom-theme-mode>
         <custom-button>
-          <custom-icon slot="icon">more_vert</custom-icon>
+          <custom-icon-font slot="icon">more_vert</custom-icon-font>
         </custom-button>
       </flex-row>
       
@@ -315,18 +307,11 @@
               <custom-tab>about</custom-tab>
             </custom-tabs>
 
-            <custom-tabs round>
-              <custom-tab>
-                <custom-icon>home</custom-icon>
-                home
-              </custom-tab>
-              <custom-tab>about</custom-tab>
-            </custom-tabs>
           </demo-section>
 
           <demo-section route="dialog">
             <flex-container>
-              <custom-button class="fullscreen-dialog"><custom-icon slot="icon">menu</custom-icon></custom-button>
+              <custom-button class="fullscreen-dialog"><custom-icon-font slot="icon">menu</custom-icon-font></custom-button>
               <custom-dialog fullscreen>
                 <span slot="title">title</span>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quae ipsum autem, recusandae impedit minus cumque odit vel incidunt, exercitationem sint tempore sit ea ratione accusamus nemo magni dolorem corporis.</p>
@@ -350,7 +335,7 @@
             </flex-container>
 
             <flex-container>
-              <custom-button class="dialog"><custom-icon slot="icon">menu</custom-icon></custom-button>
+              <custom-button class="dialog"><custom-icon-font slot="icon">menu</custom-icon-font></custom-button>
               <custom-dialog class="dialog">
                 <span slot="title">title</span>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quae ipsum autem, recusandae impedit minus cumque odit vel incidunt, exercitationem sint tempore sit ea ratione accusamus nemo magni dolorem corporis.</p>
@@ -370,26 +355,21 @@
             </flex-container>
           </demo-section>
 
-          <demo-section route="time-picker">
-
-            <custom-time-picker></custom-time-picker>
-          </demo-section>
-
           <demo-section route="menu">
 
             <custom-menu>
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 1
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 2
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 3
               </custom-list-item>
 
@@ -400,17 +380,17 @@
 
             <custom-dropdown-menu>
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 1
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 2
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 3
               </custom-list-item>
 
@@ -420,17 +400,17 @@
               <flex-it></flex-it>
               <custom-dropdown-menu right>
                 <custom-list-item type="menu">
-                  <custom-icon slot="start">info</custom-icon>
+                  <custom-icon-font slot="start">info</custom-icon-font>
                   item 1
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon slot="start">info</custom-icon>
+                  <custom-icon-font slot="start">info</custom-icon-font>
                   item 2
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon slot="start">info</custom-icon>
+                  <custom-icon-font slot="start">info</custom-icon-font>
                   item 3
                 </custom-list-item>
   
@@ -439,17 +419,17 @@
 
             <custom-dropdown-menu bottom>
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 1
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 2
               </custom-list-item>
 
               <custom-list-item type="menu">
-                <custom-icon slot="start">info</custom-icon>
+                <custom-icon-font slot="start">info</custom-icon-font>
                 item 3
               </custom-list-item>
 
@@ -459,17 +439,17 @@
               <flex-it></flex-it>
               <custom-dropdown-menu bottom right>
                 <custom-list-item type="menu">
-                  <custom-icon slot="start">info</custom-icon>
+                  <custom-icon-font slot="start">info</custom-icon-font>
                   item 1
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon slot="start">info</custom-icon>
+                  <custom-icon-font slot="start">info</custom-icon-font>
                   item 2
                 </custom-list-item>
   
                 <custom-list-item type="menu">
-                  <custom-icon slot="start">info</custom-icon>
+                  <custom-icon-font slot="start">info</custom-icon-font>
                   item 3
                 </custom-list-item>
   
@@ -481,26 +461,34 @@
           <demo-section route="list-item">
             <custom-list-item>
 
-              <custom-icon slot="start">info</custom-icon>
+              <custom-icon-font slot="start">info</custom-icon-font>
             </custom-list-item>
             
           </demo-section>
           <demo-section route="toggle">
-            <custom-toggle togglers='["check_box","check_box_outline_blank", "info"]'></custom-toggle>
-            
-            <custom-button label="next"></custom-button>
+            <custom-toggle>
+
+              <custom-icon-font>check_box</custom-icon-font>
+              <custom-icon-font>check_box_outline_blank</custom-icon-font>
+              <custom-icon-font>info</custom-icon-font>
+            </custom-toggle>
+
+            <custom-button>n</custom-button>
 
             <script>
                 
-              const toggleDemo = document.querySelector('demo-section[route="toggle"]')
+              const toggleDemo = document.querySelector('[route="toggle"]')
               toggleDemo.querySelector('custom-button').addEventListener('click', () => {
                 toggleDemo.querySelector('custom-toggle').next()
               })
             </script>
+            
           </demo-section>
 
           <demo-section route="toggle-button">
-            <custom-toggle-button togglers='["check_box","check_box_outline_blank"]'>
+            <custom-toggle-button>
+              <custom-icon-font>check_box</custom-icon-font>
+              <custom-icon-font>check_box_outline_blank</custom-icon-font>
             </custom-toggle-button>
             
           </demo-section>
@@ -512,8 +500,8 @@
   <!-- </flex-row> -->
 
   <script type="module">
-    import './demo-elements.js'
     import './elements.js'
+    import './demo-elements.js'
 
     const selector = document.querySelector('custom-selector')
     const pages = document.querySelector('custom-pages')

@@ -43,7 +43,6 @@ export default [{
       includeHTML: true,
       copyHTML: true
     }),
-    nodeResolve(),
     commonJs(),
     autoExports({
       defaultExports: {

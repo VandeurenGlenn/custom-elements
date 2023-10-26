@@ -16,6 +16,8 @@ export class TimePickerInput extends LitElement {
   ];
 
   render() {
-    return html``;
+    return html`
+    <input type="time">
+    `;
   }
 }

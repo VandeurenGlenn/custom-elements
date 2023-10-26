@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js'
-
-@customElement('time-picker')
-export class TimePicker extends LitElement {
+import './input.js'
+@customElement('custom-time-picker')
+export class CustomTimePicker extends LitElement {
   static styles = [
     css`
       :host {
@@ -13,7 +13,7 @@ export class TimePicker extends LitElement {
 
   render() {
     return html`
-         <web-clock-lite style="cursor: pointer;"></web-clock-lite>
+      <time-picker-input></time-picker-input>
 			 <div class="am-pm">
 			 	 <span class="flex"></span>
 			 	 <div class="am">am</div>
