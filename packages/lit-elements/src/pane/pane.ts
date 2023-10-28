@@ -92,7 +92,6 @@ export class CustomPane extends LitElement {
       aside {
         width: 100%;
         height: 100%;
-        display: flex;
       }
 
       .content {
