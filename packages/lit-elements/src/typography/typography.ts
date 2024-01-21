@@ -1,21 +1,21 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('custom-typography')
 export class CustomTypography extends LitElement {
   @property({ type: String, reflect: true })
-  type: 'label' | 'title' | 'headline' | 'display' | 'body' = 'title'
+  type: 'label' | 'title' | 'headline' | 'display' | 'body' = 'title';
 
   @property({ type: String, reflect: true })
-  size: 'small' | 'medium' | 'large' = 'large'
+  size: 'small' | 'medium' | 'large' = 'large';
 
   static styles = [
     css`
       :host {
-        display: contents
+        display: contents;
       }
-      
-      :host([type="display"][size="large"]) ::slotted(*) {
+
+      :host([type='display'][size='large']) slot {
         font-family: var(--md-sys-typescale-display-large-font-family-name);
         font-style: var(--md-sys-typescale-display-large-font-family-style);
         font-weight: var(--md-sys-typescale-display-large-font-weight);
@@ -25,7 +25,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-display-large-text-transform);
         text-decoration: var(--md-sys-typescale-display-large-text-decoration);
       }
-      :host([type="display"][size="medium"]) ::slotted(*) {
+      :host([type='display'][size='medium']) slot {
         font-family: var(--md-sys-typescale-display-medium-font-family-name);
         font-style: var(--md-sys-typescale-display-medium-font-family-style);
         font-weight: var(--md-sys-typescale-display-medium-font-weight);
@@ -35,7 +35,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-display-medium-text-transform);
         text-decoration: var(--md-sys-typescale-display-medium-text-decoration);
       }
-      :host([type="display"][size="small"]) ::slotted(*) {
+      :host([type='display'][size='small']) slot {
         font-family: var(--md-sys-typescale-display-small-font-family-name);
         font-style: var(--md-sys-typescale-display-small-font-family-style);
         font-weight: var(--md-sys-typescale-display-small-font-weight);
@@ -45,7 +45,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-display-small-text-transform);
         text-decoration: var(--md-sys-typescale-display-small-text-decoration);
       }
-      :host([type="headline"][size="large"]) ::slotted(*) {
+      :host([type='headline'][size='large']) slot {
         font-family: var(--md-sys-typescale-headline-large-font-family-name);
         font-style: var(--md-sys-typescale-headline-large-font-family-style);
         font-weight: var(--md-sys-typescale-headline-large-font-weight);
@@ -55,7 +55,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-headline-large-text-transform);
         text-decoration: var(--md-sys-typescale-headline-large-text-decoration);
       }
-      :host([type="headline"][size="medium"]) ::slotted(*) {
+      :host([type='headline'][size='medium']) slot {
         font-family: var(--md-sys-typescale-headline-medium-font-family-name);
         font-style: var(--md-sys-typescale-headline-medium-font-family-style);
         font-weight: var(--md-sys-typescale-headline-medium-font-weight);
@@ -63,9 +63,11 @@ export class CustomTypography extends LitElement {
         letter-spacing: var(--md-sys-typescale-headline-medium-tracking);
         line-height: var(--md-sys-typescale-headline-medium-height);
         text-transform: var(--md-sys-typescale-headline-medium-text-transform);
-        text-decoration: var(--md-sys-typescale-headline-medium-text-decoration);
+        text-decoration: var(
+          --md-sys-typescale-headline-medium-text-decoration
+        );
       }
-      :host([type="headline"][size="small"]) ::slotted(*) {
+      :host([type='headline'][size='small']) slot {
         font-family: var(--md-sys-typescale-headline-small-font-family-name);
         font-style: var(--md-sys-typescale-headline-small-font-family-style);
         font-weight: var(--md-sys-typescale-headline-small-font-weight);
@@ -75,7 +77,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-headline-small-text-transform);
         text-decoration: var(--md-sys-typescale-headline-small-text-decoration);
       }
-      :host([type="body"][size="large"]) ::slotted(*) {
+      :host([type='body'][size='large']) slot {
         font-family: var(--md-sys-typescale-body-large-font-family-name);
         font-style: var(--md-sys-typescale-body-large-font-family-style);
         font-weight: var(--md-sys-typescale-body-large-font-weight);
@@ -85,7 +87,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-body-large-text-transform);
         text-decoration: var(--md-sys-typescale-body-large-text-decoration);
       }
-      :host([type="body"][size="medium"]) ::slotted(*) {
+      :host([type='body'][size='medium']) slot {
         font-family: var(--md-sys-typescale-body-medium-font-family-name);
         font-style: var(--md-sys-typescale-body-medium-font-family-style);
         font-weight: var(--md-sys-typescale-body-medium-font-weight);
@@ -95,7 +97,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-body-medium-text-transform);
         text-decoration: var(--md-sys-typescale-body-medium-text-decoration);
       }
-      :host([type="body"][size="small"]) ::slotted(*) {
+      :host([type='body'][size='small']) slot {
         font-family: var(--md-sys-typescale-body-small-font-family-name);
         font-style: var(--md-sys-typescale-body-small-font-family-style);
         font-weight: var(--md-sys-typescale-body-small-font-weight);
@@ -105,7 +107,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-body-small-text-transform);
         text-decoration: var(--md-sys-typescale-body-small-text-decoration);
       }
-      :host([type="label"][size="large"]) ::slotted(*) {
+      :host([type='label'][size='large']) slot {
         font-family: var(--md-sys-typescale-label-large-font-family-name);
         font-style: var(--md-sys-typescale-label-large-font-family-style);
         font-weight: var(--md-sys-typescale-label-large-font-weight);
@@ -115,7 +117,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-label-large-text-transform);
         text-decoration: var(--md-sys-typescale-label-large-text-decoration);
       }
-      :host([type="label"][size="medium"]) ::slotted(*) {
+      :host([type='label'][size='medium']) slot {
         font-family: var(--md-sys-typescale-label-medium-font-family-name);
         font-style: var(--md-sys-typescale-label-medium-font-family-style);
         font-weight: var(--md-sys-typescale-label-medium-font-weight);
@@ -125,7 +127,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-label-medium-text-transform);
         text-decoration: var(--md-sys-typescale-label-medium-text-decoration);
       }
-      :host([type="label"][size="small"]) ::slotted(*) {
+      :host([type='label'][size='small']) slot {
         font-family: var(--md-sys-typescale-label-small-font-family-name);
         font-style: var(--md-sys-typescale-label-small-font-family-style);
         font-weight: var(--md-sys-typescale-label-small-font-weight);
@@ -135,7 +137,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-label-small-text-transform);
         text-decoration: var(--md-sys-typescale-label-small-text-decoration);
       }
-      :host([type="title"][size="large"]) ::slotted(*) {
+      :host([type='title'][size='large']) slot {
         font-family: var(--md-sys-typescale-title-large-font-family-name);
         font-style: var(--md-sys-typescale-title-large-font-family-style);
         font-weight: var(--md-sys-typescale-title-large-font-weight);
@@ -145,7 +147,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-title-large-text-transform);
         text-decoration: var(--md-sys-typescale-title-large-text-decoration);
       }
-      :host([type="title"][size="medium"]) ::slotted(*) {
+      :host([type='title'][size='medium']) slot {
         font-family: var(--md-sys-typescale-title-medium-font-family-name);
         font-style: var(--md-sys-typescale-title-medium-font-family-style);
         font-weight: var(--md-sys-typescale-title-medium-font-weight);
@@ -155,7 +157,7 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-title-medium-text-transform);
         text-decoration: var(--md-sys-typescale-title-medium-text-decoration);
       }
-      :host([type="title"][size="small"]) ::slotted(*) {
+      :host([type='title'][size='small']) slot {
         font-family: var(--md-sys-typescale-title-small-font-family-name);
         font-style: var(--md-sys-typescale-title-small-font-family-style);
         font-weight: var(--md-sys-typescale-title-small-font-weight);
@@ -165,13 +167,10 @@ export class CustomTypography extends LitElement {
         text-transform: var(--md-sys-typescale-title-small-text-transform);
         text-decoration: var(--md-sys-typescale-title-small-text-decoration);
       }
-      
-    `
+    `,
   ];
 
   render() {
-    return html`
-    <slot></slot>
-    `;
+    return html` <slot></slot> `;
   }
 }
