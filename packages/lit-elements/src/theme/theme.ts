@@ -9,7 +9,6 @@ declare type RelType = 'stylesheet' | 'preconnect'
 
 @customElement()
 export class CustomTheme extends LitElement {
-
   @property({ type: Boolean })
   loadFont: boolean = true
 
@@ -33,7 +32,8 @@ export class CustomTheme extends LitElement {
   }
 
   #generateSymbolsLink() {
-    let link = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap'
+    let link =
+      'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap'
     if (globalThis.symbols) {
       link += `&text=${globalThis.symbols}`
     }
@@ -43,13 +43,12 @@ export class CustomTheme extends LitElement {
   constructor() {
     super()
     const media = matchMedia('(max-width: 860px)')
-   
 
     media.onchange = this.#mediaQueryChange
     this.#mediaQueryChange({ matches: media.matches })
 
     // this.load('./themes/default/tokens.js')
-    this.load('./themes/default/theme.css')
+    this.load(this.hasAttribute('theme-link') ? this.getAttribute('theme-link') : './themes/default/theme.css')
     const style = document.createElement('style')
     style.innerHTML = `
     html, body {
@@ -62,29 +61,23 @@ export class CustomTheme extends LitElement {
     }`
     document.head.appendChild(style)
     const loadSymbols = this.hasAttribute('load-symbols') ? this.getAttribute('load-symbols') !== 'false' : true
-    
-    if (this.loadFont || loadSymbols) 
-      this.#loadLink('https://fonts.googleapis.com', 'preconnect')
-      this.#loadLink('https://fonts.gstatic.com', 'preconnect', ['crossorigin'])
-    
-    if (this.loadFont)
-      this.#loadLink('https://fonts.googleapis.com/css2?family=Roboto&display=swap', 'stylesheet')
 
-    
-    if (loadSymbols)
-      this.#loadLink(this.#generateSymbolsLink(), 'stylesheet')
+    if (this.loadFont || loadSymbols) this.#loadLink('https://fonts.googleapis.com', 'preconnect')
+    this.#loadLink('https://fonts.gstatic.com', 'preconnect', ['crossorigin'])
+
+    if (this.loadFont) this.#loadLink('https://fonts.googleapis.com/css2?family=Roboto&display=swap', 'stylesheet')
+
+    if (loadSymbols) this.#loadLink(this.#generateSymbolsLink(), 'stylesheet')
   }
 
-  #mediaQueryChange = ({matches}) => {
-    
+  #mediaQueryChange = ({ matches }) => {
     this.narrow = matches
-    
+
     document.dispatchEvent(new CustomEvent('custom-theme-narrow', { detail: this.narrow }))
   }
 
-
   set language(value) {
-    this.setAttribute('language',value)
+    this.setAttribute('language', value)
   }
 
   // todo: support css & json
@@ -93,7 +86,7 @@ export class CustomTheme extends LitElement {
   }
   /**
    * loads given path and converst (when needed) to css variables
-   * @param {string} path 
+   * @param {string} path
    */
   async load(path: string) {
     if (this.language === 'js') {
