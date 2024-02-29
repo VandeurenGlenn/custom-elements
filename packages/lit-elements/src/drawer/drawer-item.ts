@@ -1,4 +1,4 @@
-import { customElement } from 'lit/decorators.js'
+import { customElement } from 'lit/decorators.js';
 import { LitElement, html, css } from 'lit';
 
 @customElement('custom-drawer-item')
@@ -24,13 +24,13 @@ export class CustomDrawerItem extends LitElement {
         pointer-events: none;
       }
 
-      slot[name="icon"]::slotted(*) {
-        margin-right : 12px;
+      slot[name='icon']::slotted(*) {
+        margin-right: 12px;
         height: 24px;
         width: 24px;
       }
 
-      slot[name="end"]::slotted(*) {
+      slot[name='end']::slotted(*) {
         margin-left: 12px;
         box-sizing: border-box;
       }
@@ -38,14 +38,14 @@ export class CustomDrawerItem extends LitElement {
       :host([non-interactive]) {
         pointer-events: none;
       }
-    `
+    `,
   ];
 
   render() {
     return html`
-    <slot name="icon"></slot>
-    <slot></slot>
-    <slot name="end"></slot>
+      <slot name="icon"></slot>
+      <slot></slot>
+      <slot name="end"></slot>
     `;
   }
 }
