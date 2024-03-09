@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "ES2022",
+    "moduleResolution": "NodeNext",
+    "moduleDetection": "auto",
+    "esModuleInterop": true,
+    "outDir": "exports",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "types": ["html", "rollup-plugin-material-symbols"]
+  },
+  "include": ["./src/**/*", ".vscode/elements.ts"]
+}

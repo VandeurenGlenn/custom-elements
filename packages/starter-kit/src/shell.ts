@@ -1,7 +1,7 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js'
+import { LitElement, html, css } from "lit";
+import { customElement, property } from "lit/decorators.js";
 
-@customElement('app-shell')
+@customElement("app-shell")
 export class AppShell extends LitElement {
   static styles = [
     css`
@@ -9,14 +9,14 @@ export class AppShell extends LitElement {
         display: flex;
         flex-direction: column;
       }
-    `
+    `,
   ];
 
   render() {
     return html`
-    <custom-theme></custom-theme>
+      <custom-theme></custom-theme>
 
-    <slot></slot>
+      <slot></slot>
     `;
   }
 }

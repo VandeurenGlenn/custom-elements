@@ -14,5 +14,8 @@
 	],
 	"keywords": [],
 	"author": "",
-	"license": "MIT"
+	"license": "MIT",
+	"dependencies": {
+		"@vandeurenglenn/lite": "^0.1.1"
+	}
 }
