@@ -17,7 +17,7 @@ export class CustomToggle extends LiteElement {
     if (propertyKey === 'active') {
       this.dispatchEvent(new CustomEvent('active', { detail: this.active }))
     }
-    if ((propertyKey === 'active' && this.togglers) || (propertyKey === 'togglers' && this.active)) {
+    if ((propertyKey === 'active' && this.togglers) || (propertyKey === 'togglers' && this.active !== undefined)) {
       this.icon = this.togglers[this.active]
     }
   }

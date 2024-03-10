@@ -5,6 +5,7 @@ import '../elevation/elevation.js'
 export class CustomButton extends LiteElement {
   @property({ attribute: 'has-icon', reflect: true })
   accessor hasIcon: boolean
+
   @property({ attribute: 'has-label', reflect: true })
   accessor hasLabel: boolean
 
@@ -14,12 +15,6 @@ export class CustomButton extends LiteElement {
   @property()
   accessor label
 
-  static get observedAttributes() {
-    return ['label', 'type']
-  }
-  attributeChangedCallback(name, old, value) {
-    if (this[name] !== old) this[name] = value
-  }
   static styles = [
     css`
       :host {
@@ -162,15 +157,12 @@ export class CustomButton extends LiteElement {
   ]
 
   connectedCallback() {
-    const slots = Array.from(this.querySelectorAll('slot'))
+    const slots = Array.from(this.shadowRoot.querySelectorAll('slot'))
     for (const slot of slots) {
       slot.addEventListener('slotchange', () => this.#slotchange(slot))
     }
-    console.log(slots)
 
-    this.hasIcon = slots?.[0]?.assignedNodes.length > 0
-
-    console.log(this.hasIcon)
+    this.#slotchange(slots[0])
   }
   onChange(propertyKey, value) {
     if (propertyKey === 'label') {

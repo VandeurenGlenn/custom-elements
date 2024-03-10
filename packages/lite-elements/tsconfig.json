@@ -3,7 +3,6 @@
     "module": "NodeNext",
     "target": "ES2022",
     "moduleResolution": "NodeNext",
-    "moduleDetection": "auto",
     "esModuleInterop": true,
     "outDir": "exports",
     "declaration": true,

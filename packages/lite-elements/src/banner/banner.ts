@@ -1,11 +1,11 @@
-import '../button/button.js';
-import { customElement, LiteElement, html } from '@vandeurenglenn/lite';
-import '@vandeurenglenn/flex-elements/it.js';
+import '../button/button.js'
+import { customElement, LiteElement, html } from '@vandeurenglenn/lite'
+import '@vandeurenglenn/flex-elements/it.js'
 
 @customElement('custom-banner')
 export class CustomBanner extends LiteElement {
   constructor() {
-    super();
+    super()
   }
   render() {
     return html`
@@ -44,6 +44,6 @@ export class CustomBanner extends LiteElement {
       <custom-button type="tertiary">
         <custom-icon slot="icon">close</custom-icon>
       </custom-button>
-    `;
+    `
   }
 }

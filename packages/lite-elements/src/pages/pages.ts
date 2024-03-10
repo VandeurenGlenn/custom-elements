@@ -5,14 +5,11 @@ import { SelectBase } from '../mixins/select-mixin.js'
  * @extends HTMLElement
  */
 export class CustomPages extends SelectBase {
-  constructor() {
-    super()
-    this.slotchange = this.slotchange.bind(this)
-  }
-
   async connectedCallback() {
     super.connectedCallback && (await super.connectedCallback())
+    this.slotchange = this.slotchange.bind(this)
     this.shadowRoot.querySelector('slot').addEventListener('slotchange', this.slotchange)
+    this.slotchange()
     this.selected = this.defaultSelected
   }
 

@@ -10,7 +10,10 @@ export class CustomDrawerButton extends LiteElement {
   @property({ type: Boolean, reflect: true, attribute: 'drawer-open' })
   accessor drawerOpen: boolean
 
-  openPane = () => {
+  @property()
+  accessor id: string
+
+  openPane() {
     document.dispatchEvent(new CustomEvent('custom-pane-open', { detail: this.id }))
   }
 
@@ -33,7 +36,7 @@ export class CustomDrawerButton extends LiteElement {
 
   render() {
     return html`
-      <custom-button @click=${this.openPane}>
+      <custom-button @click=${() => this.openPane()}>
         <custom-icon slot="icon">menu</custom-icon>
       </custom-button>
     `

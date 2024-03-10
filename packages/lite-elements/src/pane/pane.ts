@@ -20,10 +20,10 @@ export class CustomPane extends LiteElement {
   @property({ type: Boolean, reflect: true })
   accessor right: boolean = false
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   accessor id: string
 
-  closePane = (event) => {
+  closePane(event) {
     event.stopPropagation()
     this.open = false
     document.dispatchEvent(
@@ -116,7 +116,7 @@ export class CustomPane extends LiteElement {
           <flex-row center>
             <slot name="headline"></slot>
             <flex-it></flex-it>
-            <custom-button @click=${this.closePane}>
+            <custom-button @click=${(e) => this.closePane(e)} .id=${this.id}>
               <custom-icon slot="icon">menu_open</custom-icon>
             </custom-button>
           </flex-row>

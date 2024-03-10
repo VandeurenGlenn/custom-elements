@@ -6,7 +6,7 @@
 	"scripts": {
 		"watch": "rollup -c -w",
 		"build": "rollup -c",
-		"serve": "jsproject --serve ./exports/bundle --port 8888",
+		"serve": "jsproject --serve ./exports/bundle --port 8887",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"files": [

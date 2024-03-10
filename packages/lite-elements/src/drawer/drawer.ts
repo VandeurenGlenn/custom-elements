@@ -6,16 +6,16 @@ import '../pane/pane.js'
 @customElement('custom-drawer')
 export class CustomDrawer extends LiteElement {
   @property({ type: Boolean, reflect: true })
-  accessor open: boolean = false
+  accessor open: boolean
 
   @property({ type: Boolean, reflect: true })
-  accessor mobile: boolean = false
+  accessor mobile: boolean
 
   @property({ type: String, reflect: true })
   accessor type: 'modal' | undefined
 
   @property({ type: Boolean })
-  accessor right: boolean = false
+  accessor right: boolean
 
   @property({ type: String })
   accessor id: string

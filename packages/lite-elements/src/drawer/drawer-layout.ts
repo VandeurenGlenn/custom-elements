@@ -29,6 +29,8 @@ export class CustomDrawerLayout extends LiteElement {
   accessor mainDrawerId: string = crypto.randomUUID()
 
   connectedCallback(): void {
+    const media = matchMedia('(max-width: 860px)')
+    this._onnarrow({ detail: media.matches })
     document.addEventListener('custom-pane-close', ({ detail }: CustomEvent) => {
       if (this.mainDrawerId === detail) this.drawerOpen = false
     })
@@ -37,12 +39,14 @@ export class CustomDrawerLayout extends LiteElement {
       if (this.mainDrawerId === detail && !this.keepClosed) this.drawerOpen = true
     })
 
-    document.addEventListener('custom-theme-narrow', ({ detail }: CustomEvent) => {
-      this.narrow = detail
-      if (this.keepClosed) return (this.drawerOpen = false)
-      if (detail) this.drawerOpen = false
-      else this.drawerOpen = true
-    })
+    document.addEventListener('custom-theme-narrow', this._onnarrow)
+  }
+
+  _onnarrow({ detail }: CustomEvent) {
+    this.narrow = detail
+    if (this.keepClosed) return (this.drawerOpen = false)
+    if (detail) this.drawerOpen = false
+    else this.drawerOpen = true
   }
 
   private _click = () => {
@@ -105,7 +109,6 @@ export class CustomDrawerLayout extends LiteElement {
           left: 0;
         }
       </style>
-      <custom-theme load-symbols="false"></custom-theme>
       <span class="scrim" @click=${this._click}></span>
 
       <slot name="drawer">

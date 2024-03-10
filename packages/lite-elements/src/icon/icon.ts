@@ -1,5 +1,6 @@
 import PubSub from '@vandeurenglenn/little-pubsub'
 import { customElement, LiteElement, css, html, property } from '@vandeurenglenn/lite'
+import { state } from '@vandeurenglenn/lite/state'
 
 globalThis.pubsub = globalThis.pubsub || new PubSub(true)
 
@@ -8,11 +9,14 @@ class Icon extends LiteElement {
   @property()
   accessor host
 
-  @property({ type: String })
+  @property({ attribute: 'icon' })
   accessor icon = this.innerHTML
 
   @property()
   accessor setName
+
+  @property()
+  accessor _icon
 
   onChange(propertyKey: any, value: any) {
     if (propertyKey === 'setName') {
@@ -30,7 +34,6 @@ class Icon extends LiteElement {
       if (this.host && this.icon) this._icon = this.host.getIcon(this.icon)
     }
   }
-  _icon
 
   static styles = [
     css`

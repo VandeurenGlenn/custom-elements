@@ -13,15 +13,13 @@ export class CustomSupportingPane extends LiteElement {
   @property({ type: Boolean, reflect: true })
   accessor left: boolean = false
 
-  @property({ type: String, reflect: true })
+  @property({ type: String })
   accessor id: string
 
   @query('.support')
   accessor supporting
 
   onPaneClose({ detail }: CustomEvent) {
-    console.log(detail, this.id)
-
     if (this.id === detail) {
       this.open = false
     }
@@ -77,7 +75,7 @@ export class CustomSupportingPane extends LiteElement {
       <main>
         <slot></slot>
       </main>
-      <custom-pane class="support" ?open=${this.open} ?right=${!this.left} id=${this.id}>
+      <custom-pane class="support" ?open=${this.open} ?right=${!this.left} .id=${this.id}>
         <slot name="supporting">
           <slot name="supporting-header" slot="header"></slot>
           <slot name="supporting-content"></slot>
