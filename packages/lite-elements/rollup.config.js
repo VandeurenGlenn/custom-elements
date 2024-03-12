@@ -35,15 +35,15 @@ export default [
         format: 'es'
       }
     ],
-    external: ['@vandeurenglenn/little-pubsub', '@vandeurenglenn/flex-elements', 'lit'],
+    external: ['@vandeurenglenn/little-pubsub', '@vandeurenglenn/flex-elements', '@vandeurenglenn/lite'],
     plugins: [
       cleanBuild(),
       typescript(),
       autoExports({
         defaultExports: {
           '.': {
-            import: './exports/lit-elements.js',
-            types: './exports/lit-elements.d.ts'
+            import: './exports/lite-elements.js',
+            types: './exports/lite-elements.d.ts'
           }
         }
       })
