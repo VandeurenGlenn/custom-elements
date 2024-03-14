@@ -6,8 +6,11 @@ declare type RelType = 'stylesheet' | 'preconnect'
 
 @customElement('custom-theme')
 export class CustomTheme extends LiteElement {
-  @property({ type: Boolean })
+  @property({ type: Boolean, attribute: 'load-font' })
   accessor loadFont: boolean = true
+
+  @property({ type: Boolean, attribute: 'load-symbols' })
+  accessor loadSymbols: boolean = true
 
   @property({ type: String, attribute: 'mobile-trigger' })
   accessor narrowTrigger: string = '(max-width: 860px)'
@@ -37,8 +40,7 @@ export class CustomTheme extends LiteElement {
     return link
   }
 
-  constructor() {
-    super()
+  connectedCallback() {
     const media = matchMedia('(max-width: 860px)')
 
     media.onchange = this.#mediaQueryChange
@@ -57,14 +59,12 @@ export class CustomTheme extends LiteElement {
       overflow: hidden;
     }`
     document.head.appendChild(style)
-    const loadSymbols = this.hasAttribute('load-symbols') ? this.getAttribute('load-symbols') !== 'false' : true
-
-    if (this.loadFont || loadSymbols) this.#loadLink('https://fonts.googleapis.com', 'preconnect')
+    if (this.loadFont || this.loadSymbols) this.#loadLink('https://fonts.googleapis.com', 'preconnect')
     this.#loadLink('https://fonts.gstatic.com', 'preconnect', ['crossorigin'])
 
     if (this.loadFont) this.#loadLink('https://fonts.googleapis.com/css2?family=Roboto&display=swap', 'stylesheet')
 
-    if (loadSymbols) this.#loadLink(this.#generateSymbolsLink(), 'stylesheet')
+    if (this.loadSymbols) this.#loadLink(this.#generateSymbolsLink(), 'stylesheet')
   }
 
   #mediaQueryChange = ({ matches }) => {
