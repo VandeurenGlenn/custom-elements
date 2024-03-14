@@ -13,7 +13,7 @@ export class CustomIconSet extends LiteElement {
   ]
 
   #getIcon(name) {
-    return this.querySelector('template').content.querySelector(`span[name="${name}"]`).children[0]
+    return this.querySelector('template').content.querySelector(`span[name="${name}"]`)?.children[0]
   }
 
   getIcon(name: string) {
