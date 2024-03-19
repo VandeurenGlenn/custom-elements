@@ -5,19 +5,19 @@ import '../icon/icon.js'
 @customElement('custom-dialog')
 export class CustomDialog extends LiteElement {
   @property({ type: Boolean, reflect: true })
-  accessor open: boolean = false
+  accessor open: boolean
 
   @property({ type: Boolean, reflect: true })
-  accessor fullscreen: boolean = false
+  accessor fullscreen: boolean
 
   @property({ type: Boolean, reflect: true, attribute: 'has-actions' })
-  accessor hasActions: boolean = false
+  accessor hasActions: boolean
 
   @property({ type: Boolean, reflect: true, attribute: 'has-header' })
-  accessor hasHeader: boolean = false
+  accessor hasHeader: boolean
 
   @property({ type: Boolean, reflect: true, attribute: 'has-hero' })
-  accessor hasHero: boolean = false
+  accessor hasHero: boolean
 
   connectedCallback() {
     const actionsSlot = this.shadowRoot.querySelector('slot[name="actions"]')
@@ -90,8 +90,8 @@ export class CustomDialog extends LiteElement {
       dialog {
         pointer-events: none;
         border: none;
-        min-width: 280px;
-        max-width: 560px;
+        min-width: var('--custom-dialog-min-width', 280px);
+        max-width: var('--custom-dialog-max-width', 560px);
         width: fit-content;
         border-radius: var(--md-sys-shape-corner-extra-large);
         background-color: var(--md-sys-color-surface-container-high);
