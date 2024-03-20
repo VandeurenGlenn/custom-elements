@@ -45,8 +45,8 @@ export class CustomDialog extends LiteElement {
   onChange(propertyKey: any, value: any) {
     if (propertyKey === 'open') {
       this.open
-        ? this.querySelector('[slot="actions"]').addEventListener('click', this._close)
-        : this.querySelector('[slot="actions"]').removeEventListener('click', this._close)
+        ? this.querySelector('[slot="actions"]')?.addEventListener('click', this._close)
+        : this.querySelector('[slot="actions"]')?.removeEventListener('click', this._close)
     }
   }
 
