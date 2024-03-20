@@ -345,6 +345,22 @@
 			"import": "./exports/selector.js",
 			"types": "./exports/selector/selector.d.ts"
 		},
+		"./summary-mirror": {
+			"import": "./exports/summary-mirror.js",
+			"types": "./exports/summary/summary-mirror.d.ts"
+		},
+		"./summary-mirror.js": {
+			"import": "./exports/summary-mirror.js",
+			"types": "./exports/summary/summary-mirror.d.ts"
+		},
+		"./summary": {
+			"import": "./exports/summary.js",
+			"types": "./exports/summary/summary.d.ts"
+		},
+		"./summary.js": {
+			"import": "./exports/summary.js",
+			"types": "./exports/summary/summary.d.ts"
+		},
 		"./supporting-pane": {
 			"import": "./exports/supporting-pane.js",
 			"types": "./exports/supporting-pane/supporting-pane.d.ts"
