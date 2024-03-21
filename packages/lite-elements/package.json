@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lite-elements",
-	"version": "0.3.24",
+	"version": "0.3.25",
 	"description": "set of lite elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -272,6 +272,22 @@
 		"./minute-field.js": {
 			"import": "./exports/minute-field.js",
 			"types": "./exports/time-picker/minute-field.d.ts"
+		},
+		"./notification": {
+			"import": "./exports/notification.js",
+			"types": "./exports/notification/notification.d.ts"
+		},
+		"./notification.js": {
+			"import": "./exports/notification.js",
+			"types": "./exports/notification/notification.d.ts"
+		},
+		"./notifications": {
+			"import": "./exports/notifications.js",
+			"types": "./exports/notification/notifications.d.ts"
+		},
+		"./notifications.js": {
+			"import": "./exports/notifications.js",
+			"types": "./exports/notification/notifications.d.ts"
 		},
 		"./pages": {
 			"import": "./exports/pages.js",
