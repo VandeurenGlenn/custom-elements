@@ -99,7 +99,7 @@ export class CustomDropdownMenu extends LiteElement {
       <span class="scrim" @click=${this._scrimClick}></span>
 
       <custom-button part="button" @click=${() => (this.open = !this.open)}>
-        <custom-icon slot="icon" icon=${this.icon}>more_vert</custom-icon>
+        <custom-icon slot="icon" .icon=${this.icon}></custom-icon>
       </custom-button>
 
       <custom-dropdown part="dropdown" .open=${this.open} ?right=${this.right} ?bottom=${this.bottom}>

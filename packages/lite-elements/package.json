@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lite-elements",
-	"version": "0.3.25",
+	"version": "0.3.39",
 	"description": "set of lite elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -21,7 +21,7 @@
 		"@material-symbols/svg-400": "^0.17.0",
 		"@material/web": "^1.3.0",
 		"@vandeurenglenn/flex-elements": "^1.2.5",
-		"@vandeurenglenn/lite": "^0.2.33",
+		"@vandeurenglenn/lite": "^0.2.37",
 		"custom-element-decorator": "^0.6.0"
 	},
 	"devDependencies": {
@@ -113,6 +113,14 @@
 			"import": "./exports/demo.js",
 			"types": "./exports/demo/demo.d.ts"
 		},
+		"./device": {
+			"import": "./exports/device.js",
+			"types": "./exports/apis/device.d.ts"
+		},
+		"./device.js": {
+			"import": "./exports/device.js",
+			"types": "./exports/apis/device.d.ts"
+		},
 		"./dial": {
 			"import": "./exports/dial.js",
 			"types": "./exports/time-picker/dial.d.ts"
@@ -200,6 +208,22 @@
 		"./elevation.js": {
 			"import": "./exports/elevation.js",
 			"types": "./exports/elevation/elevation.d.ts"
+		},
+		"./fab": {
+			"import": "./exports/fab.js",
+			"types": "./exports/fab/fab.d.ts"
+		},
+		"./fab.js": {
+			"import": "./exports/fab.js",
+			"types": "./exports/fab/fab.d.ts"
+		},
+		"./file-reader-mixin": {
+			"import": "./exports/file-reader-mixin.js",
+			"types": "./exports/mixins/file-reader-mixin.d.ts"
+		},
+		"./file-reader-mixin.js": {
+			"import": "./exports/file-reader-mixin.js",
+			"types": "./exports/mixins/file-reader-mixin.d.ts"
 		},
 		"./hour-field": {
 			"import": "./exports/hour-field.js",
@@ -481,13 +505,13 @@
 			"import": "./exports/upload-file.js",
 			"types": "./exports/upload/upload-file.d.ts"
 		},
-		"./upload": {
-			"import": "./exports/upload.js",
-			"types": "./exports/upload/upload.d.ts"
+		"./upload-image": {
+			"import": "./exports/upload-image.js",
+			"types": "./exports/upload/upload-image.d.ts"
 		},
-		"./upload.js": {
-			"import": "./exports/upload.js",
-			"types": "./exports/upload/upload.d.ts"
+		"./upload-image.js": {
+			"import": "./exports/upload-image.js",
+			"types": "./exports/upload/upload-image.d.ts"
 		}
 	}
 }

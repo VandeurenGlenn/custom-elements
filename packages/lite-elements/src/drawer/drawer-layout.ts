@@ -28,9 +28,15 @@ export class CustomDrawerLayout extends LiteElement {
   @property({ type: String })
   accessor mainDrawerId: string = crypto.randomUUID()
 
-  connectedCallback(): void {
-    const media = matchMedia('(max-width: 860px)')
-    this._onnarrow({ detail: media.matches })
+  @property({attribute: 'mobile-trigger'}) accessor mobileTrigger = '(max-width: 860px)'
+
+  onChange(propertyKey: string, value: any): void {
+    if (propertyKey === 'mobileTrigger') {
+      const media = matchMedia(value)
+      this._onnarrow({ detail: media.matches })
+    }
+  }
+  connectedCallback(): void {    
     document.addEventListener('custom-pane-close', ({ detail }: CustomEvent) => {
       if (this.mainDrawerId === detail) this.drawerOpen = false
     })
@@ -39,7 +45,7 @@ export class CustomDrawerLayout extends LiteElement {
       if (this.mainDrawerId === detail && !this.keepClosed) this.drawerOpen = true
     })
 
-    document.addEventListener('custom-theme-narrow', this._onnarrow)
+    document.addEventListener('custom-theme-narrow', this._onnarrow.bind(this))
   }
 
   _onnarrow({ detail }: CustomEvent) {

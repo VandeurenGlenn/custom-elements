@@ -19,6 +19,11 @@ export class CustomDialog extends LiteElement {
   @property({ type: Boolean, reflect: true, attribute: 'has-hero' })
   accessor hasHero: boolean
 
+  constructor() {
+    super()
+    this._close = this._close.bind(this)
+  }
+
   connectedCallback() {
     const actionsSlot = this.shadowRoot.querySelector('slot[name="actions"]')
     // @ts-ignore
@@ -50,7 +55,7 @@ export class CustomDialog extends LiteElement {
     }
   }
 
-  private _close = (event: Event) => {
+  _close(event: Event) {
     const target = event.composedPath()[0] as HTMLElement
     this.dispatchEvent(new CustomEvent('close', { detail: target.getAttribute('action') || 'close' }))
     this.open = false
@@ -59,7 +64,7 @@ export class CustomDialog extends LiteElement {
   static styles = [
     css`
       :host {
-        position: fixed;
+        position: absolute;
         inset: 0;
         display: flex;
         flex-direction: column;
@@ -184,8 +189,8 @@ export class CustomDialog extends LiteElement {
         <custom-elevation level=${this.fullscreen ? 0 : 3}></custom-elevation>
         <slot name="hero-icon"></slot>
         <slot name="supporting-text"></slot>
-        <flex-row class="header" center>
-          <slot name="header">
+        <slot name="header">
+          <flex-row class="header" center>
             <flex-row center style="width: 100%">
               <slot name="header-start">
                 ${this.fullscreen
@@ -205,8 +210,8 @@ export class CustomDialog extends LiteElement {
                     >`}
               </slot>
             </flex-row>
-          </slot>
-        </flex-row>
+          </flex-row>
+        </slot>
         <flex-column class="body">
           <slot></slot>
         </flex-column>

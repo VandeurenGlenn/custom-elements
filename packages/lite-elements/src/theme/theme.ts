@@ -5,7 +5,9 @@ declare type RelType = 'stylesheet' | 'preconnect'
 // @material-symbols
 
 @customElement('custom-theme')
-export class CustomTheme extends LiteElement {
+export class CustomTheme extends LiteElement {  
+  #mediaListener
+
   @property({ type: Boolean, attribute: 'load-font' })
   accessor loadFont: boolean = true
 
@@ -13,7 +15,7 @@ export class CustomTheme extends LiteElement {
   accessor loadSymbols: boolean = true
 
   @property({ type: String, attribute: 'mobile-trigger' })
-  accessor narrowTrigger: string = '(max-width: 860px)'
+  accessor mobileTrigger: string = '(max-width: 860px)'
 
   @property({ type: Boolean })
   accessor narrow: boolean
@@ -40,11 +42,21 @@ export class CustomTheme extends LiteElement {
     return link
   }
 
-  connectedCallback() {
-    const media = matchMedia('(max-width: 860px)')
+  onChange(propertyKey: string, value: any): void {
+    if (propertyKey === 'mobileTrigger') {
+      this.#setupMediaListener()
+    }
+  }
 
-    media.onchange = this.#mediaQueryChange
-    this.#mediaQueryChange({ matches: media.matches })
+  #setupMediaListener() {
+    this.#mediaListener = matchMedia(this.mobileTrigger)
+
+    this.#mediaListener.onchange = this.#mediaQueryChange
+    this.#mediaQueryChange({ matches: this.#mediaListener.matches })
+  }
+
+  connectedCallback() {
+    
 
     // this.load('./themes/default/tokens.js')
     this.load('./themes/default/theme.css')
@@ -67,7 +79,7 @@ export class CustomTheme extends LiteElement {
     if (this.loadSymbols) this.#loadLink(this.#generateSymbolsLink(), 'stylesheet')
   }
 
-  #mediaQueryChange = ({ matches }) => {
+  #mediaQueryChange({ matches }) {
     this.narrow = matches
 
     document.dispatchEvent(new CustomEvent('custom-theme-narrow', { detail: this.narrow }))

@@ -1,8 +1,8 @@
 import { css, html, LiteElement, customElement, property } from '@vandeurenglenn/lite'
 import './notification.js'
 import { CustomNotification } from './notification.js'
-import '@vandeurenglenn/lite-elements/icon.js'
-import '@vandeurenglenn/lite-elements/pane.js'
+import './../icon/icon.js'
+import './../pane/pane.js'
 import '@vandeurenglenn/flex-elements/row.js'
 
 @customElement('custom-notifications')
@@ -10,7 +10,7 @@ export class CustomNotifications extends LiteElement {
   @property({ type: Boolean, reflect: true })
   accessor open: boolean
 
-  get #list() {
+  get _list() {
     return this.shadowRoot.querySelector('.list')
   }
 
@@ -29,16 +29,16 @@ export class CustomNotifications extends LiteElement {
         _notification.image = image
         _notification.title = title
         _notification.message = message
-        this.#list.appendChild(_notification)
+        this._list.appendChild(_notification)
       }, timeout)
     }
     this.appendChild(notification)
   }
 
-  #onclick() {
-    const children = Array.from(this.#list.querySelectorAll('custom-notification'))
+  _onclick() {
+    const children = Array.from(this._list.querySelectorAll('custom-notification'))
     for (const child of children) {
-      this.#list.removeChild(child)
+      this._list.removeChild(child)
     }
     this.open = false
   }
@@ -64,7 +64,7 @@ export class CustomNotifications extends LiteElement {
       }
 
       :host([open]) {
-        background: rgb(51, 55, 80);
+        background: var(--md-sys-color-surface-container-high);
       }
 
       .recents {
@@ -97,7 +97,7 @@ export class CustomNotifications extends LiteElement {
         <custom-icon
           icon="notifications"
           @click=${() => {
-            if (this.#list.childElementCount === 0) return
+            if (this._list.childElementCount === 0) return
             this.open = !this.open
           }}
         ></custom-icon>
@@ -113,7 +113,7 @@ export class CustomNotifications extends LiteElement {
 
         <flex-row slot="footer" width="100%">
           <flex-it></flex-it>
-          <custom-icon style="margin-right: 24px;" icon="clear-all" @click="${this.#onclick}"></custom-icon>
+          <custom-icon style="margin-right: 24px;" icon="clear-all" @click="${this._onclick}"></custom-icon>
         </flex-row>
       </custom-pane>
     `

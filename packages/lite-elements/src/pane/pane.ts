@@ -1,6 +1,6 @@
 import { customElement, LiteElement, css, html, property, query, assignedElements } from '@vandeurenglenn/lite'
 import '../elevation/elevation.js'
-import '../button/button.js'
+import '../button/icon-button.js'
 import '../icon/icon.js'
 
 @customElement('custom-pane')
@@ -97,7 +97,7 @@ export class CustomPane extends LiteElement {
         }
 
         .content {
-          height: calc(100% - 54px);
+          height: 100%;
           width: 100%;
           overflow-y: auto;
         }
@@ -106,7 +106,7 @@ export class CustomPane extends LiteElement {
           height: 54px;
         }
 
-        :host([right]) custom-button {
+        :host([right]) custom-icon-button {
           transform: rotateZ(180deg);
         }
       </style>
@@ -116,9 +116,8 @@ export class CustomPane extends LiteElement {
           <flex-row center>
             <slot name="headline"></slot>
             <flex-it></flex-it>
-            <custom-button @click=${(e) => this.closePane(e)} .id=${this.id}>
-              <custom-icon slot="icon">menu_open</custom-icon>
-            </custom-button>
+            <custom-icon-button @click=${(e) => this.closePane(e)} .id=${this.id} icon="menu_open">
+            </custom-icon-button>
           </flex-row>
         </slot>
         <flex-column class="content">

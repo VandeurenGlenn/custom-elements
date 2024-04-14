@@ -1,16 +1,15 @@
 import PubSub from '@vandeurenglenn/little-pubsub'
 import { customElement, LiteElement, css, html, property } from '@vandeurenglenn/lite'
-import { state } from '@vandeurenglenn/lite/state'
 
 globalThis.pubsub = globalThis.pubsub || new PubSub(true)
 
 @customElement('custom-icon')
-class Icon extends LiteElement {
+export class CustomIcon extends LiteElement {
   @property()
   accessor host
 
-  @property({ attribute: 'icon' })
-  accessor icon = this.innerHTML
+  @property({ attribute: true, reflect: true })
+  accessor icon
 
   @property()
   accessor setName
@@ -61,5 +60,3 @@ class Icon extends LiteElement {
     return html` ${this._icon} `
   }
 }
-
-export { Icon, Icon as CustomIcon }

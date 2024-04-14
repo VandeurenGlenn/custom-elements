@@ -1,6 +1,5 @@
 import { customElement, LiteElement, html, css, property } from '@vandeurenglenn/lite'
-import '../icon/icon.js'
-import '../button/button.js'
+import '../button/icon-button.js'
 
 @customElement('custom-drawer-button')
 export class CustomDrawerButton extends LiteElement {
@@ -35,10 +34,6 @@ export class CustomDrawerButton extends LiteElement {
   ]
 
   render() {
-    return html`
-      <custom-button @click=${() => this.openPane()}>
-        <custom-icon slot="icon">menu</custom-icon>
-      </custom-button>
-    `
+    return html` <custom-icon-button @click=${() => this.openPane()} icon="menu"> </custom-icon-button> `
   }
 }

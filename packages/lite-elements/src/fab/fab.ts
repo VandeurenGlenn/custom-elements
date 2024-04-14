@@ -1,31 +1,25 @@
 import { customElement, LiteElement, html, css, property } from '@vandeurenglenn/lite'
 import '../elevation/elevation.js'
 
-@customElement('custom-button')
+@customElement('custom-fab')
 export class CustomButton extends LiteElement {
-  @property({ attribute: 'has-icon', reflect: true })
-  accessor hasIcon: boolean
-
-  @property({ attribute: 'has-label', reflect: true })
-  accessor hasLabel: boolean
-
   @property({ attribute: 'type', reflect: true })
-  accessor type: 'elevated' | 'filled' | 'text' | 'tonal' | 'outlined' = 'text'
-
-  @property({ attribute: true })
-  accessor label
+  accessor type: 'normal' | 'extended' = 'normal'
 
   static styles = [
     css`
       :host {
-        color: var(--custom-button-color, --md-sys-color-on-background);
+        color: var(--custom-fab-color, --md-sys-color-on-background);
         display: flex;
 
-        height: 40px;
-        border-radius: 20px;
+        height: 56px;
+        width: 56px;
+        border-radius: var(--md-sys-shape-corner-extra-large);
         position: relative;
         pointer-events: auto;
         cursor: pointer;
+        box-sizing: border-box;
+        padding: 16px;
 
         --elevation-level: 0;
       }
@@ -48,7 +42,6 @@ export class CustomButton extends LiteElement {
         pointer-events: none;
       }
 
-      .label,
       ::slotted(*) {
         font-family: var(--md-sys-typescale-label-large-font-family-name);
         font-style: var(--md-sys-typescale-label-large-font-family-style);
@@ -101,27 +94,27 @@ export class CustomButton extends LiteElement {
         --md-elevation-level: var(--elevation-level);
       }
 
-      :host([type='elevated']) custom-elevation {
+      custom-elevation {
         --elevation-level: 1;
       }
 
-      :host([type='filled']),
-      :host([type='outlined']),
-      :host([type='text']),
-      :host([type='tonal']) {
-        --elevation-level: 0;
-      }
-
-      :host([has-label]) .label {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-
-      :host([has-icon]:not([has-label])) {
-        border-radius: 50%;
-        width: 40px;
+      :host([type='normal']) button {
         align-items: center;
         justify-content: center;
+      }
+
+      :host([type='extended']) button {
+        align-items: center;
+      }
+
+      :host([type='extended']) {
+        min-width: 80px;
+        width: fit-content;
+      }
+
+      :not([name='icon']) ::slotted(*) {
+        margin-left: 24px;
+        margin-right: 24px;
       }
 
       :host([has-icon][has-label]) .label {
@@ -156,32 +149,12 @@ export class CustomButton extends LiteElement {
     `
   ]
 
-  connectedCallback() {
-    const slots = Array.from(this.shadowRoot.querySelectorAll('slot'))
-    for (const slot of slots) {
-      slot.addEventListener('slotchange', () => this.#slotchange(slot))
-    }
-
-    this.#slotchange(slots[0])
-  }
-  onChange(propertyKey, value) {
-    if (propertyKey === 'label') {
-      if (value) this.hasLabel = true
-      else this.hasLabel = false
-    }
-  }
-  #slotchange = (slot) => {
-    if (slot.getAttribute('name') === 'icon') {
-      this.hasIcon = Array.from(slot?.assignedNodes() || []).length !== 0
-    }
-  }
-
   render() {
     return html`
-      <button label=${this.label}>
+      <button>
         <custom-elevation></custom-elevation>
         <slot name="icon"></slot>
-        <span class="label">${this.label}</span>
+        <slot></slot>
       </button>
     `
   }

@@ -1,36 +1,36 @@
-import { customElement } from 'custom-element-decorator';
-import { LitElement, html } from 'lit';
-import { property, query } from 'lit/decorators.js';
-import '../elevation/elevation.js';
-import '../button/button.js';
-import '../pane/pane.js';
+import { customElement } from 'custom-element-decorator'
+import { LitElement, html } from 'lit'
+import { property, query } from 'lit/decorators.js'
+import '../elevation/elevation.js'
+import '../button/button.js'
+import '../pane/pane.js'
 
 @customElement()
 export class CustomDrawer extends LitElement {
   @property({ type: Boolean, reflect: true })
-  open: boolean = false;
+  open: boolean = false
 
   @property({ type: Boolean, reflect: true })
-  mobile: boolean = false;
+  mobile: boolean = false
 
   @property({ type: String, reflect: true })
-  type: 'modal' | undefined;
+  type: 'modal' | undefined
 
   @property({ type: Boolean })
-  right: boolean = false;
+  right: boolean = false
 
   @property({ type: String })
-  id: string;
+  id: string
 
   connectedCallback(): void {
-    super.connectedCallback();
+    super.connectedCallback()
     document.addEventListener('custom-pane-close', ({ detail }) => {
-      if (this.id === detail) this.open = false;
-    });
+      if (this.id === detail) this.open = false
+    })
 
     document.addEventListener('custom-pane-open', ({ detail }) => {
-      if (this.id === detail) this.open = true;
-    });
+      if (this.id === detail) this.open = true
+    })
   }
 
   render() {
@@ -80,20 +80,17 @@ export class CustomDrawer extends LitElement {
         }
 
         aside {
+          display: flex;
+          flex-direction: column;
           width: 100%;
         }
       </style>
 
-      <custom-pane
-        .open=${this.open}
-        .mobile=${this.mobile}
-        .type=${this.type}
-        .id=${this.id}
-      >
+      <custom-pane .open=${this.open} .mobile=${this.mobile} .type=${this.type} .id=${this.id}>
         <slot name="headline" slot="headline"></slot>
         <slot name="menu-button" slot="menu-button"></slot>
         <slot name="content" slot="content"></slot>
         <slot name="footer" slot="footer"></slot>
-      </custom-pane> `;
+      </custom-pane> `
   }
 }

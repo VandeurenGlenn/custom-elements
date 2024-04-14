@@ -1,22 +1,15 @@
 {
-	"compilerOptions": {
-		"module": "ESNext",
-		"target": "ES2022",
-		"moduleResolution": "nodenext",
-		"moduleDetection": "auto",
-		"esModuleInterop": true,
-		"outDir": "exports",
-		"declaration": true,
-		"allowSyntheticDefaultImports": true,
-		"experimentalDecorators": true,
-		"useDefineForClassFields": false,
-		"resolveJsonModule": true,
-		"types": [
-			"html",
-			"rollup-plugin-material-symbols"
-		]
-	},
-	"include": [
-		"./**/*"
-, ".vscode/elements.ts"	]
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2022",
+    "moduleResolution": "nodenext",
+    "moduleDetection": "auto",
+    "esModuleInterop": true,
+    "outDir": "exports",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "types": ["html", "rollup-plugin-material-symbols"]
+  },
+  "include": ["./**/*", ".vscode/elements.ts"]
 }

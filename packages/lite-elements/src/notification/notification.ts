@@ -1,6 +1,6 @@
 import { css, html, LitElement } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import '@vandeurenglenn/lite-elements/icon.js'
+import './../icon/icon.js'
 import '@vandeurenglenn/flex-elements/column.js'
 import '@vandeurenglenn/flex-elements/row.js'
 
@@ -32,10 +32,12 @@ export class CustomNotification extends LitElement {
       padding: 6px 12px;
       box-sizing: border-box;
       margin-bottom: 12px;
+      background: var(--md-sys-color-surface-variant);
     }
 
     flex-row {
       height: 24px;
+      width: 100%;
       box-sizing: border-box;
       align-items: center;
     }
