@@ -95,8 +95,8 @@ export class CustomDialog extends LiteElement {
       dialog {
         pointer-events: none;
         border: none;
-        min-width: var('--custom-dialog-min-width', 280px);
-        max-width: var('--custom-dialog-max-width', 560px);
+        min-width: var(--custom-dialog-min-width, 280px);
+        max-width: var(--custom-dialog-max-width, 560px);
         width: fit-content;
         border-radius: var(--md-sys-shape-corner-extra-large);
         background-color: var(--md-sys-color-surface-container-high);
