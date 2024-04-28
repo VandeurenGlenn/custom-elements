@@ -51,6 +51,8 @@ export class CustomPane extends LiteElement {
           max-width: var(--custom-pane-width);
           transition: var(--md-sys-motion-easing-emphasized-accelerate) 200ms opacity,
             var(--md-sys-motion-easing-emphasized-accelerate) 200ms transform;
+
+          --custom-pane-footer-height: 54px;
         }
 
         :host([left]) {
@@ -97,13 +99,13 @@ export class CustomPane extends LiteElement {
         }
 
         .content {
-          height: 100%;
+          height: calc(100% - var(--custom-pane-footer-height));
           width: 100%;
           overflow-y: auto;
         }
 
         .footer {
-          height: 54px;
+          height: var(--custom-pane-footer-height);
         }
 
         :host([right]) custom-icon-button {
