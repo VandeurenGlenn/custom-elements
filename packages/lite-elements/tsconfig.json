@@ -10,5 +10,5 @@
     "resolveJsonModule": true,
     "types": ["html", "rollup-plugin-material-symbols"]
   },
-  "include": ["./src/**/*", ".vscode/elements.ts"]
+  "include": ["src", "node_modules/@vandeurenglenn/flex-elements"]
 }
