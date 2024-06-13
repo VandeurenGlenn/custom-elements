@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.3.28",
+	"version": "0.3.29",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
