@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "NodeNext",
     "target": "ES2022",
     "moduleResolution": "nodenext",
     "moduleDetection": "auto",
@@ -11,5 +11,5 @@
     "resolveJsonModule": true,
     "types": ["html", "rollup-plugin-material-symbols"]
   },
-  "include": ["./**/*", ".vscode/elements.ts"]
+  "include": ["src", "node_modules/@vandeurenglenn/flex-elements"]
 }

@@ -1,38 +1,35 @@
-import nodeResolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
-import { cp, readFile, writeFile } from 'fs/promises';
-import { globby } from 'globby';
-import { parse, join } from 'path';
-import { rimraf } from 'rimraf';
-import commonJs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import { cpSync } from 'fs';
-import autoExports from 'rollup-plugin-auto-exports';
-import materialSymbols from 'rollup-plugin-material-symbols';
+import nodeResolve from '@rollup/plugin-node-resolve'
+import typescript from '@rollup/plugin-typescript'
+import { cp, readFile, writeFile } from 'fs/promises'
+import { globby } from 'globby'
+import { parse, join } from 'path'
+import { rimraf } from 'rimraf'
+import commonJs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import { cpSync } from 'fs'
+import autoExports from 'rollup-plugin-auto-exports'
+import materialSymbols from 'rollup-plugin-material-symbols'
 
-const input = await globby(['src/**/*.ts']);
+const input = await globby(['src/**/*.ts'])
 
 const cleanBuild = () => ({
   name: 'clean',
   buildStart: async () => {
-    rimraf('./exports/**/*.js', { glob: true });
-    rimraf('./exports/**/*.d.ts', { glob: true });
-  },
-});
+    rimraf('./exports/**/*.js', { glob: true })
+    rimraf('./exports/**/*.d.ts', { glob: true })
+  }
+})
 
 const cloneIndex = (options) => ({
   name: 'clone-index',
   buildStart: async () => {
-    await cp(
-      options.src || 'src/index.html',
-      options.dest || 'exports/index.html'
-    );
-  },
-});
+    await cp(options.src || 'src/index.html', options.dest || 'exports/index.html')
+  }
+})
 
 await cp('src/theme/themes/default', 'exports/themes/default', {
-  recursive: true,
-});
+  recursive: true
+})
 
 export default [
   {
@@ -40,28 +37,28 @@ export default [
     output: [
       {
         dir: 'exports',
-        format: 'es',
-      },
+        format: 'es'
+      }
     ],
     plugins: [
       cleanBuild(),
       typescript(),
+      commonJs(),
       materialSymbols({
         includeHTML: true,
-        copyHTML: true,
+        copyHTML: true
       }),
-      commonJs(),
       autoExports({
         defaultExports: {
           '.': {
             import: './exports/custom-elements.js',
-            types: './exports/custom-elements.d.ts',
-          },
-        },
-      }),
-    ],
-  },
-];
+            types: './exports/custom-elements.d.ts'
+          }
+        }
+      })
+    ]
+  }
+]
 // , {
 //   input: ['src/theme/themes/default/tokens.js'],
 //   output: [{

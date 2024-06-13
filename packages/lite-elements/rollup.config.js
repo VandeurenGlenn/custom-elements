@@ -60,7 +60,6 @@ export default [
         placeholderPrefix: 'symbol'
       }),
       nodeResolve(),
-      commonJs(),
       typescript({ compilerOptions: { declaration: false, outDir: 'exports/bundle' } }),
       terser({
         keep_classnames: true

@@ -1,29 +1,4 @@
-import { CustomPages } from '../elements.js'
-
-export type RouteInfo = {
-  tagName: string // unique <tag-name>
-  import: string // path to file to import,
-  subRoutes: RoutesOption
-}
-
-export type RoutesOption = { [route: string]: RouteInfo }
-
-export type HashRouterConstructorOptions = {
-  host: RouteAble
-  fallback?: { route: string; params: object }
-  routes?: RoutesOption
-}
-
-export type RouteSelectInput = {
-  route: string
-  subRoutes?: string[]
-  params?: object
-}
-
-declare interface RouteAble extends HTMLElement {
-  select: ({ route, subRoutes, params }: RouteSelectInput) => void
-  pages?: CustomPages
-}
+import { HashRouterConstructorOptions, RouteAble, RoutesOption } from './types.js'
 
 export default class HashRouter {
   host: RouteAble
@@ -77,60 +52,54 @@ export default class HashRouter {
     return { route, routes, subRoutes, params, url: splitted[0] }
   }
 
+  #handleSubRoutes = async (routing, routeInfo) => {
+    const { params, subRoutes } = routing
+
+    let selected = this.host.pages.querySelector('.custom-selected') as RouteAble
+
+    if (routing.subRoutes?.length > 0) {
+      for (const route of routing.subRoutes) {
+        const subRouteInfo = routeInfo.subRoutes[route]
+        if (subRouteInfo) {
+          if (!customElements.get(`./${subRouteInfo.tagName}`)) await import(`./${subRouteInfo.import}.js`)
+        } else {
+          if (!customElements.get(`./${route}`)) await import(`./${route}.js`)
+          console.warn(`handling undefined subroute for ${routing.route} falling back to default behavior.`)
+        }
+        selected.select({ route, params, subRoutes })
+        selected = selected.pages.querySelector('.custom-selected')
+      }
+    }
+
+    if (params) {
+      for (const [key, value] of Object.entries(params)) {
+        selected[key] = value
+      }
+    }
+  }
+
   #onhashchange = async () => {
     const routing = HashRouter.parseHash(location.hash)
     const routeInfo = this.routes[routing.url]
+    // todo allow to set loading
     if (routeInfo) {
       if (!customElements.get(`./${routeInfo.tagName}`)) await import(`./${routeInfo.import}.js`)
-      this.host.select(routing)
-
-      if (this.host.pages) {
-        const { params, subRoutes } = routing
-
-        let selected = this.host.pages.querySelector('.custom-selected') as RouteAble
-        if (routing.subRoutes?.length > 0) {
-          for (const route of routing.subRoutes) {
-            if (!customElements.get(`./${route}.js`)) await import(`./${route}.js`)
-            selected.select({ route, params, subRoutes })
-            selected = selected.pages.querySelector('.custom-selected')
-          }
-          if (routing.params) {
-            for (const [key, value] of Object.entries(routing.params)) {
-              selected[key] = value
-            }
-          }
-        } else if (routing.params) {
-          for (const [key, value] of Object.entries(routing.params)) {
-            selected[key] = value
-          }
-        }
-      }
     } else {
-      // todo allow to set loading
-      if (!customElements.get(`./${routing.route}.js`)) await import(`./${routing.route}.js`)
-      this.host.select(routing)
-
-      // when a custom-pages element (or sortlike) is defined loop trough subroutes and make devlife easier
-      if (this.host.pages) {
-        const { params, subRoutes } = routing
-        let selected = this.host.pages.querySelector('.custom-selected') as RouteAble
-        if (routing.subRoutes?.length > 0) {
-          for (const route of routing.subRoutes) {
-            if (!customElements.get(`./${route}.js`)) await import(`./${route}.js`)
-            selected.select({ route, params, subRoutes })
-            selected = selected.pages.querySelector('.custom-selected')
-          }
-          if (routing.params) {
-            for (const [key, value] of Object.entries(routing.params)) {
-              selected[key] = value
-            }
-          }
-        } else if (routing.params) {
-          for (const [key, value] of Object.entries(routing.params)) {
-            selected[key] = value
-          }
-        }
-      }
+      if (!customElements.get(`./${routing.route}`)) await import(`./${routing.route}.js`)
     }
+    this.host.select(routing)
+    // when a custom-pages element (or sortlike) is defined loop trough subroutes and make devlife easier
+    if (this.host.pages) {
+      this.#handleSubRoutes(routing, routeInfo)
+    }
+
+    document.dispatchEvent(
+      new CustomEvent('route-change', {
+        detail: {
+          routing,
+          routeInfo
+        }
+      })
+    )
   }
 }
