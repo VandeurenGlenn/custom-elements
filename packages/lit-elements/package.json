@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lit-elements",
-	"version": "0.3.33",
+	"version": "0.3.34",
 	"description": "set of lit elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -21,7 +21,7 @@
 		"@material-design-icons/svg": "^0.14.13",
 		"@material-symbols/svg-400": "^0.20.0",
 		"@material/web": "^1.5.0",
-		"@vandeurenglenn/custom-shared-styles": "^0.0.13",
+		"@vandeurenglenn/custom-shared-styles": "^0.0.15",
 		"@vandeurenglenn/flex-elements": "^1.3.2",
 		"lit": "^3.1.4",
 		"scoped-pubsub": "^1.0.3"
