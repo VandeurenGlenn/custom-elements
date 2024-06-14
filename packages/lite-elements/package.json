@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lite-elements",
-	"version": "0.3.41",
+	"version": "0.3.45",
 	"description": "set of lite elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -21,6 +21,7 @@
 		"@material-design-icons/svg": "^0.14.13",
 		"@material-symbols/svg-400": "^0.17.0",
 		"@material/web": "^1.3.0",
+		"@vandeurenglenn/custom-shared-styles": "^0.0.13",
 		"@vandeurenglenn/flex-elements": "^1.3.1",
 		"@vandeurenglenn/lite": "^0.2.37",
 		"custom-element-decorator": "^0.6.0"
@@ -52,555 +53,475 @@
 		},
 		"./banner": {
 			"import": "./exports/banner.js",
-			"types": "./exports/src/banner/banner.d.ts"
+			"types": "./exports/banner/banner.d.ts"
 		},
 		"./banner.js": {
 			"import": "./exports/banner.js",
-			"types": "./exports/src/banner/banner.d.ts"
+			"types": "./exports/banner/banner.d.ts"
 		},
 		"./button": {
 			"import": "./exports/button.js",
-			"types": "./exports/src/button/button.d.ts"
+			"types": "./exports/button/button.d.ts"
 		},
 		"./button.js": {
 			"import": "./exports/button.js",
-			"types": "./exports/src/button/button.d.ts"
+			"types": "./exports/button/button.d.ts"
 		},
 		"./card": {
 			"import": "./exports/card.js",
-			"types": "./exports/src/card/card.d.ts"
+			"types": "./exports/card/card.d.ts"
 		},
 		"./card.js": {
 			"import": "./exports/card.js",
-			"types": "./exports/src/card/card.d.ts"
+			"types": "./exports/card/card.d.ts"
 		},
 		"./code": {
 			"import": "./exports/code.js",
-			"types": "./exports/src/demo/code.d.ts"
+			"types": "./exports/demo/code.d.ts"
 		},
 		"./code.js": {
 			"import": "./exports/code.js",
-			"types": "./exports/src/demo/code.d.ts"
-		},
-		"./column": {
-			"import": "./exports/column.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/column.d.ts"
-		},
-		"./column.js": {
-			"import": "./exports/column.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/column.d.ts"
-		},
-		"./container": {
-			"import": "./exports/container.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/container.d.ts"
-		},
-		"./container.js": {
-			"import": "./exports/container.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/container.d.ts"
+			"types": "./exports/demo/code.d.ts"
 		},
 		"./demo-elements": {
 			"import": "./exports/demo-elements.js",
-			"types": "./exports/src/demo-elements.d.ts"
+			"types": "./exports/demo-elements.d.ts"
 		},
 		"./demo-elements.js": {
 			"import": "./exports/demo-elements.js",
-			"types": "./exports/src/demo-elements.d.ts"
+			"types": "./exports/demo-elements.d.ts"
 		},
 		"./demo-icons": {
 			"import": "./exports/demo-icons.js",
-			"types": "./exports/src/demo/demo-icons.d.ts"
+			"types": "./exports/demo/demo-icons.d.ts"
 		},
 		"./demo-icons.js": {
 			"import": "./exports/demo-icons.js",
-			"types": "./exports/src/demo/demo-icons.d.ts"
+			"types": "./exports/demo/demo-icons.d.ts"
 		},
 		"./demo-shell": {
 			"import": "./exports/demo-shell.js",
-			"types": "./exports/src/demo/demo-shell.d.ts"
+			"types": "./exports/demo/demo-shell.d.ts"
 		},
 		"./demo-shell.js": {
 			"import": "./exports/demo-shell.js",
-			"types": "./exports/src/demo/demo-shell.d.ts"
+			"types": "./exports/demo/demo-shell.d.ts"
 		},
 		"./demo": {
 			"import": "./exports/demo.js",
-			"types": "./exports/src/demo/demo.d.ts"
+			"types": "./exports/demo/demo.d.ts"
 		},
 		"./demo.js": {
 			"import": "./exports/demo.js",
-			"types": "./exports/src/demo/demo.d.ts"
+			"types": "./exports/demo/demo.d.ts"
 		},
 		"./device": {
 			"import": "./exports/device.js",
-			"types": "./exports/src/apis/device.d.ts"
+			"types": "./exports/apis/device.d.ts"
 		},
 		"./device.js": {
 			"import": "./exports/device.js",
-			"types": "./exports/src/apis/device.d.ts"
+			"types": "./exports/apis/device.d.ts"
 		},
 		"./dial": {
 			"import": "./exports/dial.js",
-			"types": "./exports/src/time-picker/dial.d.ts"
+			"types": "./exports/time-picker/dial.d.ts"
 		},
 		"./dial.js": {
 			"import": "./exports/dial.js",
-			"types": "./exports/src/time-picker/dial.d.ts"
+			"types": "./exports/time-picker/dial.d.ts"
 		},
 		"./dialog": {
 			"import": "./exports/dialog.js",
-			"types": "./exports/src/dialog/dialog.d.ts"
+			"types": "./exports/dialog/dialog.d.ts"
 		},
 		"./dialog.js": {
 			"import": "./exports/dialog.js",
-			"types": "./exports/src/dialog/dialog.d.ts"
-		},
-		"./display": {
-			"import": "./exports/display.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/internal/display.d.ts"
-		},
-		"./display.js": {
-			"import": "./exports/display.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/internal/display.d.ts"
+			"types": "./exports/dialog/dialog.d.ts"
 		},
 		"./divider": {
 			"import": "./exports/divider.js",
-			"types": "./exports/src/divider/divider.d.ts"
+			"types": "./exports/divider/divider.d.ts"
 		},
 		"./divider.js": {
 			"import": "./exports/divider.js",
-			"types": "./exports/src/divider/divider.d.ts"
+			"types": "./exports/divider/divider.d.ts"
 		},
 		"./drawer-button": {
 			"import": "./exports/drawer-button.js",
-			"types": "./exports/src/drawer/drawer-button.d.ts"
+			"types": "./exports/drawer/drawer-button.d.ts"
 		},
 		"./drawer-button.js": {
 			"import": "./exports/drawer-button.js",
-			"types": "./exports/src/drawer/drawer-button.d.ts"
+			"types": "./exports/drawer/drawer-button.d.ts"
 		},
 		"./drawer-item": {
 			"import": "./exports/drawer-item.js",
-			"types": "./exports/src/drawer/drawer-item.d.ts"
+			"types": "./exports/drawer/drawer-item.d.ts"
 		},
 		"./drawer-item.js": {
 			"import": "./exports/drawer-item.js",
-			"types": "./exports/src/drawer/drawer-item.d.ts"
+			"types": "./exports/drawer/drawer-item.d.ts"
 		},
 		"./drawer-layout": {
 			"import": "./exports/drawer-layout.js",
-			"types": "./exports/src/drawer/drawer-layout.d.ts"
+			"types": "./exports/drawer/drawer-layout.d.ts"
 		},
 		"./drawer-layout.js": {
 			"import": "./exports/drawer-layout.js",
-			"types": "./exports/src/drawer/drawer-layout.d.ts"
+			"types": "./exports/drawer/drawer-layout.d.ts"
 		},
 		"./drawer": {
 			"import": "./exports/drawer.js",
-			"types": "./exports/src/drawer/drawer.d.ts"
+			"types": "./exports/drawer/drawer.d.ts"
 		},
 		"./drawer.js": {
 			"import": "./exports/drawer.js",
-			"types": "./exports/src/drawer/drawer.d.ts"
+			"types": "./exports/drawer/drawer.d.ts"
 		},
 		"./dropdown-menu": {
 			"import": "./exports/dropdown-menu.js",
-			"types": "./exports/src/dropdown/dropdown-menu.d.ts"
+			"types": "./exports/dropdown/dropdown-menu.d.ts"
 		},
 		"./dropdown-menu.js": {
 			"import": "./exports/dropdown-menu.js",
-			"types": "./exports/src/dropdown/dropdown-menu.d.ts"
+			"types": "./exports/dropdown/dropdown-menu.d.ts"
 		},
 		"./dropdown": {
 			"import": "./exports/dropdown.js",
-			"types": "./exports/src/dropdown/dropdown.d.ts"
+			"types": "./exports/dropdown/dropdown.d.ts"
 		},
 		"./dropdown.js": {
 			"import": "./exports/dropdown.js",
-			"types": "./exports/src/dropdown/dropdown.d.ts"
+			"types": "./exports/dropdown/dropdown.d.ts"
 		},
 		"./elements": {
 			"import": "./exports/elements.js",
-			"types": "./exports/src/elements.d.ts"
+			"types": "./exports/elements.d.ts"
 		},
 		"./elements.js": {
 			"import": "./exports/elements.js",
-			"types": "./exports/src/elements.d.ts"
+			"types": "./exports/elements.d.ts"
 		},
 		"./elevation": {
 			"import": "./exports/elevation.js",
-			"types": "./exports/src/elevation/elevation.d.ts"
+			"types": "./exports/elevation/elevation.d.ts"
 		},
 		"./elevation.js": {
 			"import": "./exports/elevation.js",
-			"types": "./exports/src/elevation/elevation.d.ts"
+			"types": "./exports/elevation/elevation.d.ts"
 		},
 		"./fab": {
 			"import": "./exports/fab.js",
-			"types": "./exports/src/fab/fab.d.ts"
+			"types": "./exports/fab/fab.d.ts"
 		},
 		"./fab.js": {
 			"import": "./exports/fab.js",
-			"types": "./exports/src/fab/fab.d.ts"
+			"types": "./exports/fab/fab.d.ts"
 		},
 		"./file-reader-mixin": {
 			"import": "./exports/file-reader-mixin.js",
-			"types": "./exports/src/mixins/file-reader-mixin.d.ts"
+			"types": "./exports/mixins/file-reader-mixin.d.ts"
 		},
 		"./file-reader-mixin.js": {
 			"import": "./exports/file-reader-mixin.js",
-			"types": "./exports/src/mixins/file-reader-mixin.d.ts"
+			"types": "./exports/mixins/file-reader-mixin.d.ts"
 		},
 		"./hash-router": {
 			"import": "./exports/hash-router.js",
-			"types": "./exports/src/router/hash-router.d.ts"
+			"types": "./exports/router/hash-router.d.ts"
 		},
 		"./hash-router.js": {
 			"import": "./exports/hash-router.js",
-			"types": "./exports/src/router/hash-router.d.ts"
+			"types": "./exports/router/hash-router.d.ts"
 		},
 		"./hour-field": {
 			"import": "./exports/hour-field.js",
-			"types": "./exports/src/time-picker/hour-field.d.ts"
+			"types": "./exports/time-picker/hour-field.d.ts"
 		},
 		"./hour-field.js": {
 			"import": "./exports/hour-field.js",
-			"types": "./exports/src/time-picker/hour-field.d.ts"
+			"types": "./exports/time-picker/hour-field.d.ts"
 		},
 		"./icon-button": {
 			"import": "./exports/icon-button.js",
-			"types": "./exports/src/button/icon-button.d.ts"
+			"types": "./exports/button/icon-button.d.ts"
 		},
 		"./icon-button.js": {
 			"import": "./exports/icon-button.js",
-			"types": "./exports/src/button/icon-button.d.ts"
+			"types": "./exports/button/icon-button.d.ts"
 		},
 		"./icon-set": {
 			"import": "./exports/icon-set.js",
-			"types": "./exports/src/icon/icon-set.d.ts"
+			"types": "./exports/icon/icon-set.d.ts"
 		},
 		"./icon-set.js": {
 			"import": "./exports/icon-set.js",
-			"types": "./exports/src/icon/icon-set.d.ts"
+			"types": "./exports/icon/icon-set.d.ts"
 		},
 		"./icon": {
 			"import": "./exports/icon.js",
-			"types": "./exports/src/icon/icon.d.ts"
+			"types": "./exports/icon/icon.d.ts"
 		},
 		"./icon.js": {
 			"import": "./exports/icon.js",
-			"types": "./exports/src/icon/icon.d.ts"
+			"types": "./exports/icon/icon.d.ts"
 		},
 		"./input": {
 			"import": "./exports/input.js",
-			"types": "./exports/src/time-picker/input.d.ts"
+			"types": "./exports/time-picker/input.d.ts"
 		},
 		"./input.js": {
 			"import": "./exports/input.js",
-			"types": "./exports/src/time-picker/input.d.ts"
-		},
-		"./it": {
-			"import": "./exports/it.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/it.d.ts"
-		},
-		"./it.js": {
-			"import": "./exports/it.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/it.d.ts"
+			"types": "./exports/time-picker/input.d.ts"
 		},
 		"./list-item": {
 			"import": "./exports/list-item.js",
-			"types": "./exports/src/list/list-item.d.ts"
+			"types": "./exports/list/list-item.d.ts"
 		},
 		"./list-item.js": {
 			"import": "./exports/list-item.js",
-			"types": "./exports/src/list/list-item.d.ts"
+			"types": "./exports/list/list-item.d.ts"
 		},
 		"./list": {
 			"import": "./exports/list.js",
-			"types": "./exports/src/list/list.d.ts"
+			"types": "./exports/list/list.d.ts"
 		},
 		"./list.js": {
 			"import": "./exports/list.js",
-			"types": "./exports/src/list/list.d.ts"
+			"types": "./exports/list/list.d.ts"
 		},
 		"./menu": {
 			"import": "./exports/menu.js",
-			"types": "./exports/src/tabs/menu.d.ts"
+			"types": "./exports/tabs/menu.d.ts"
 		},
 		"./menu.js": {
 			"import": "./exports/menu.js",
-			"types": "./exports/src/tabs/menu.d.ts"
+			"types": "./exports/tabs/menu.d.ts"
 		},
 		"./minute-field": {
 			"import": "./exports/minute-field.js",
-			"types": "./exports/src/time-picker/minute-field.d.ts"
+			"types": "./exports/time-picker/minute-field.d.ts"
 		},
 		"./minute-field.js": {
 			"import": "./exports/minute-field.js",
-			"types": "./exports/src/time-picker/minute-field.d.ts"
+			"types": "./exports/time-picker/minute-field.d.ts"
 		},
 		"./notification": {
 			"import": "./exports/notification.js",
-			"types": "./exports/src/notification/notification.d.ts"
+			"types": "./exports/notification/notification.d.ts"
 		},
 		"./notification.js": {
 			"import": "./exports/notification.js",
-			"types": "./exports/src/notification/notification.d.ts"
+			"types": "./exports/notification/notification.d.ts"
 		},
 		"./notifications": {
 			"import": "./exports/notifications.js",
-			"types": "./exports/src/notification/notifications.d.ts"
+			"types": "./exports/notification/notifications.d.ts"
 		},
 		"./notifications.js": {
 			"import": "./exports/notifications.js",
-			"types": "./exports/src/notification/notifications.d.ts"
+			"types": "./exports/notification/notifications.d.ts"
 		},
 		"./pages": {
 			"import": "./exports/pages.js",
-			"types": "./exports/src/pages/pages.d.ts"
+			"types": "./exports/pages/pages.d.ts"
 		},
 		"./pages.js": {
 			"import": "./exports/pages.js",
-			"types": "./exports/src/pages/pages.d.ts"
+			"types": "./exports/pages/pages.d.ts"
 		},
 		"./pane": {
 			"import": "./exports/pane.js",
-			"types": "./exports/src/pane/pane.d.ts"
+			"types": "./exports/pane/pane.d.ts"
 		},
 		"./pane.js": {
 			"import": "./exports/pane.js",
-			"types": "./exports/src/pane/pane.d.ts"
+			"types": "./exports/pane/pane.d.ts"
 		},
 		"./rail": {
 			"import": "./exports/rail.js",
-			"types": "./exports/src/rail/rail.d.ts"
+			"types": "./exports/rail/rail.d.ts"
 		},
 		"./rail.js": {
 			"import": "./exports/rail.js",
-			"types": "./exports/src/rail/rail.d.ts"
+			"types": "./exports/rail/rail.d.ts"
 		},
 		"./root": {
 			"import": "./exports/root.js",
-			"types": "./exports/src/root/root.d.ts"
+			"types": "./exports/root/root.d.ts"
 		},
 		"./root.js": {
 			"import": "./exports/root.js",
-			"types": "./exports/src/root/root.d.ts"
-		},
-		"./row": {
-			"import": "./exports/row.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/row.d.ts"
-		},
-		"./row.js": {
-			"import": "./exports/row.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/row.d.ts"
+			"types": "./exports/root/root.d.ts"
 		},
 		"./scroll-mixin": {
 			"import": "./exports/scroll-mixin.js",
-			"types": "./exports/src/mixins/scroll-mixin.d.ts"
+			"types": "./exports/mixins/scroll-mixin.d.ts"
 		},
 		"./scroll-mixin.js": {
 			"import": "./exports/scroll-mixin.js",
-			"types": "./exports/src/mixins/scroll-mixin.d.ts"
+			"types": "./exports/mixins/scroll-mixin.d.ts"
 		},
 		"./section": {
 			"import": "./exports/section.js",
-			"types": "./exports/src/section/section.d.ts"
+			"types": "./exports/section/section.d.ts"
 		},
 		"./section.js": {
 			"import": "./exports/section.js",
-			"types": "./exports/src/section/section.d.ts"
+			"types": "./exports/section/section.d.ts"
 		},
 		"./select-mixin": {
 			"import": "./exports/select-mixin.js",
-			"types": "./exports/src/mixins/select-mixin.d.ts"
+			"types": "./exports/mixins/select-mixin.d.ts"
 		},
 		"./select-mixin.js": {
 			"import": "./exports/select-mixin.js",
-			"types": "./exports/src/mixins/select-mixin.d.ts"
+			"types": "./exports/mixins/select-mixin.d.ts"
 		},
 		"./selector-mixin": {
 			"import": "./exports/selector-mixin.js",
-			"types": "./exports/src/mixins/selector-mixin.d.ts"
+			"types": "./exports/mixins/selector-mixin.d.ts"
 		},
 		"./selector-mixin.js": {
 			"import": "./exports/selector-mixin.js",
-			"types": "./exports/src/mixins/selector-mixin.d.ts"
+			"types": "./exports/mixins/selector-mixin.d.ts"
 		},
 		"./selector": {
 			"import": "./exports/selector.js",
-			"types": "./exports/src/selector/selector.d.ts"
+			"types": "./exports/selector/selector.d.ts"
 		},
 		"./selector.js": {
 			"import": "./exports/selector.js",
-			"types": "./exports/src/selector/selector.d.ts"
+			"types": "./exports/selector/selector.d.ts"
 		},
 		"./summary-mirror": {
 			"import": "./exports/summary-mirror.js",
-			"types": "./exports/src/summary/summary-mirror.d.ts"
+			"types": "./exports/summary/summary-mirror.d.ts"
 		},
 		"./summary-mirror.js": {
 			"import": "./exports/summary-mirror.js",
-			"types": "./exports/src/summary/summary-mirror.d.ts"
+			"types": "./exports/summary/summary-mirror.d.ts"
 		},
 		"./summary": {
 			"import": "./exports/summary.js",
-			"types": "./exports/src/summary/summary.d.ts"
+			"types": "./exports/summary/summary.d.ts"
 		},
 		"./summary.js": {
 			"import": "./exports/summary.js",
-			"types": "./exports/src/summary/summary.d.ts"
+			"types": "./exports/summary/summary.d.ts"
 		},
 		"./supporting-pane": {
 			"import": "./exports/supporting-pane.js",
-			"types": "./exports/src/supporting-pane/supporting-pane.d.ts"
+			"types": "./exports/supporting-pane/supporting-pane.d.ts"
 		},
 		"./supporting-pane.js": {
 			"import": "./exports/supporting-pane.js",
-			"types": "./exports/src/supporting-pane/supporting-pane.d.ts"
+			"types": "./exports/supporting-pane/supporting-pane.d.ts"
 		},
 		"./tab": {
 			"import": "./exports/tab.js",
-			"types": "./exports/src/tabs/tab.d.ts"
+			"types": "./exports/tabs/tab.d.ts"
 		},
 		"./tab.js": {
 			"import": "./exports/tab.js",
-			"types": "./exports/src/tabs/tab.d.ts"
+			"types": "./exports/tabs/tab.d.ts"
 		},
 		"./tabs": {
 			"import": "./exports/tabs.js",
-			"types": "./exports/src/tabs/tabs.d.ts"
+			"types": "./exports/tabs/tabs.d.ts"
 		},
 		"./tabs.js": {
 			"import": "./exports/tabs.js",
-			"types": "./exports/src/tabs/tabs.d.ts"
+			"types": "./exports/tabs/tabs.d.ts"
 		},
 		"./text-field": {
 			"import": "./exports/text-field.js",
-			"types": "./exports/src/text-field/text-field.d.ts"
+			"types": "./exports/text-field/text-field.d.ts"
 		},
 		"./text-field.js": {
 			"import": "./exports/text-field.js",
-			"types": "./exports/src/text-field/text-field.d.ts"
+			"types": "./exports/text-field/text-field.d.ts"
 		},
 		"./theme": {
 			"import": "./exports/theme.js",
-			"types": "./exports/src/theme/theme.d.ts"
+			"types": "./exports/theme/theme.d.ts"
 		},
 		"./theme.js": {
 			"import": "./exports/theme.js",
-			"types": "./exports/src/theme/theme.d.ts"
+			"types": "./exports/theme/theme.d.ts"
 		},
 		"./time-picker": {
 			"import": "./exports/time-picker.js",
-			"types": "./exports/src/time-picker/time-picker.d.ts"
+			"types": "./exports/time-picker/time-picker.d.ts"
 		},
 		"./time-picker.js": {
 			"import": "./exports/time-picker.js",
-			"types": "./exports/src/time-picker/time-picker.d.ts"
+			"types": "./exports/time-picker/time-picker.d.ts"
 		},
 		"./title": {
 			"import": "./exports/title.js",
-			"types": "./exports/src/typography/title.d.ts"
+			"types": "./exports/typography/title.d.ts"
 		},
 		"./title.js": {
 			"import": "./exports/title.js",
-			"types": "./exports/src/typography/title.d.ts"
+			"types": "./exports/typography/title.d.ts"
 		},
 		"./toggle-button": {
 			"import": "./exports/toggle-button.js",
-			"types": "./exports/src/toggle/toggle-button.d.ts"
+			"types": "./exports/toggle/toggle-button.d.ts"
 		},
 		"./toggle-button.js": {
 			"import": "./exports/toggle-button.js",
-			"types": "./exports/src/toggle/toggle-button.d.ts"
+			"types": "./exports/toggle/toggle-button.d.ts"
 		},
 		"./toggle": {
 			"import": "./exports/toggle.js",
-			"types": "./exports/src/toggle/toggle.d.ts"
+			"types": "./exports/toggle/toggle.d.ts"
 		},
 		"./toggle.js": {
 			"import": "./exports/toggle.js",
-			"types": "./exports/src/toggle/toggle.d.ts"
+			"types": "./exports/toggle/toggle.d.ts"
 		},
 		"./top-app-bar": {
 			"import": "./exports/top-app-bar.js",
-			"types": "./exports/src/bar/top-app-bar.d.ts"
+			"types": "./exports/bar/top-app-bar.d.ts"
 		},
 		"./top-app-bar.js": {
 			"import": "./exports/top-app-bar.js",
-			"types": "./exports/src/bar/top-app-bar.d.ts"
+			"types": "./exports/bar/top-app-bar.d.ts"
 		},
 		"./types": {
 			"import": "./exports/types.js",
-			"types": "./exports/src/router/types.d.ts"
+			"types": "./exports/router/types.d.ts"
 		},
 		"./types.js": {
 			"import": "./exports/types.js",
-			"types": "./exports/src/router/types.d.ts"
+			"types": "./exports/router/types.d.ts"
 		},
 		"./typography": {
 			"import": "./exports/typography.js",
-			"types": "./exports/src/typography/typography.d.ts"
+			"types": "./exports/typography/typography.d.ts"
 		},
 		"./typography.js": {
 			"import": "./exports/typography.js",
-			"types": "./exports/src/typography/typography.d.ts"
+			"types": "./exports/typography/typography.d.ts"
 		},
 		"./upload-file": {
 			"import": "./exports/upload-file.js",
-			"types": "./exports/src/upload/upload-file.d.ts"
+			"types": "./exports/upload/upload-file.d.ts"
 		},
 		"./upload-file.js": {
 			"import": "./exports/upload-file.js",
-			"types": "./exports/src/upload/upload-file.d.ts"
+			"types": "./exports/upload/upload-file.d.ts"
 		},
 		"./upload-image": {
 			"import": "./exports/upload-image.js",
-			"types": "./exports/src/upload/upload-image.d.ts"
+			"types": "./exports/upload/upload-image.d.ts"
 		},
 		"./upload-image.js": {
 			"import": "./exports/upload-image.js",
-			"types": "./exports/src/upload/upload-image.d.ts"
-		},
-		"./wrap-around": {
-			"import": "./exports/wrap-around.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-around.d.ts"
-		},
-		"./wrap-around.js": {
-			"import": "./exports/wrap-around.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-around.d.ts"
-		},
-		"./wrap-between": {
-			"import": "./exports/wrap-between.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-between.d.ts"
-		},
-		"./wrap-between.js": {
-			"import": "./exports/wrap-between.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-between.d.ts"
-		},
-		"./wrap-center": {
-			"import": "./exports/wrap-center.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-center.d.ts"
-		},
-		"./wrap-center.js": {
-			"import": "./exports/wrap-center.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-center.d.ts"
-		},
-		"./wrap-evenly": {
-			"import": "./exports/wrap-evenly.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-evenly.d.ts"
-		},
-		"./wrap-evenly.js": {
-			"import": "./exports/wrap-evenly.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap-evenly.d.ts"
-		},
-		"./wrap": {
-			"import": "./exports/wrap.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap.d.ts"
-		},
-		"./wrap.js": {
-			"import": "./exports/wrap.js",
-			"types": "./exports/node_modules/@vandeurenglenn/flex-elements/lib/wrap.d.ts"
+			"types": "./exports/upload/upload-image.d.ts"
 		}
 	}
 }
