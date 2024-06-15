@@ -1,22 +1,22 @@
-import { customElement } from 'lit/decorators.js';
-import '../button/button.js';
-import { LitElement, html } from 'lit';
+import { customElement } from 'lit/decorators.js'
+import '../button/button.js'
+import { LitElement, html } from 'lit'
 
 @customElement('custom-divider')
 export class CustomDivider extends LitElement {
   static properties = {
     inset: { type: Boolean, reflect: true, attribute: 'inset' },
-    middleInset: { type: Boolean, reflect: true, attribute: 'middle-inset' },
-  };
+    middleInset: { type: Boolean, reflect: true, attribute: 'middle-inset' }
+  }
 
   constructor() {
-    super();
+    super()
   }
 
   async connectedCallback(): Promise<void> {
-    super.connectedCallback();
-    await this.updateComplete;
-    this.requestUpdate();
+    super.connectedCallback()
+    await this.updateComplete
+    this.requestUpdate()
   }
 
   render() {
@@ -28,6 +28,7 @@ export class CustomDivider extends LitElement {
           min-height: 1px;
           margin: 8px 0 16px 0;
           background: var(--md-sys-color-outline);
+          width: 100%;
         }
 
         :host([inset]) {
@@ -40,6 +41,6 @@ export class CustomDivider extends LitElement {
           margin-right: 16px;
         }
       </style>
-    `;
+    `
   }
 }
