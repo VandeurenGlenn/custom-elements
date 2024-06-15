@@ -1,39 +1,38 @@
-import { customElement } from 'custom-element-decorator';
-import { LiteElement, html, query, property } from '@vandeurenglenn/lite';
+import { LitElement, html } from 'lit'
+import './../pane/pane.js'
+import { property, query, customElement } from 'lit/decorators.js'
 
-import './../pane/pane.js';
-
-@customElement()
-export class CustomSupportingPane extends LiteElement {
+@customElement('custom-supporting-pane')
+export class CustomSupportingPane extends LitElement {
   @property({ type: Boolean, reflect: true })
-  open: boolean = false;
+  open: boolean = false
 
   @property({ type: String, reflect: true })
-  variant: 'compact' | 'medium' | 'expanded' = 'expanded';
+  variant: 'compact' | 'medium' | 'expanded' = 'expanded'
 
   @property({ type: Boolean, reflect: true })
-  left: boolean = false;
+  left: boolean = false
 
   @property({ type: String, reflect: true })
-  id: string;
+  id: string
 
   @query('.support')
-  supporting;
+  supporting
 
   onPaneClose({ detail }: CustomEvent) {
-    console.log(detail, this.id);
+    console.log(detail, this.id)
 
     if (this.id === detail) {
-      this.open = false;
+      this.open = false
     }
   }
 
   connectedCallback(): void {
-    document.addEventListener('custom-pane-close', this.onPaneClose.bind(this));
+    document.addEventListener('custom-pane-close', this.onPaneClose.bind(this))
 
     document.addEventListener('custom-pane-open', ({ detail }) => {
-      if (this.id === detail) this.open = true;
-    });
+      if (this.id === detail) this.open = true
+    })
   }
 
   render() {
@@ -78,16 +77,11 @@ export class CustomSupportingPane extends LiteElement {
       <main>
         <slot></slot>
       </main>
-      <custom-pane
-        class="support"
-        ?open=${this.open}
-        ?right=${!this.left}
-        id=${this.id}
-      >
+      <custom-pane class="support" ?open=${this.open} ?right=${!this.left} id=${this.id}>
         <slot name="supporting">
           <slot name="supporting-header" slot="header"></slot>
           <slot name="supporting-content"></slot>
         </slot>
-      </custom-pane>`;
+      </custom-pane>`
   }
 }

@@ -36,7 +36,6 @@
 		"@types/node": "^20.14.2",
 		"@web/rollup-plugin-html": "^2.3.0",
 		"chrome-launcher": "^1.1.1",
-		"custom-element-decorator": "^0.6.0",
 		"globby": "^14.0.1",
 		"lighthouse": "^12.0.0",
 		"material-symbols": "^0.20.0",

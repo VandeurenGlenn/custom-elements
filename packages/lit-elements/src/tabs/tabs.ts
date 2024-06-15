@@ -1,10 +1,9 @@
-import { customElement } from 'custom-element-decorator';
-import { SelectorBase } from '../mixins/selector-mixin.js';
-import { LitElement, PropertyValueMap, html } from 'lit';
-import './tab.js';
-import { property } from 'lit/decorators.js';
+import { SelectorBase } from '../mixins/selector-mixin.js'
+import { html } from 'lit'
+import './tab.js'
+import { customElement } from 'lit/decorators.js'
 
-@customElement()
+@customElement('custom-tabs')
 export class CustomTabs extends SelectorBase {
   // TODO: make scrollable
 
@@ -59,6 +58,6 @@ export class CustomTabs extends SelectorBase {
         }
       </style>
       <slot></slot>
-    `;
+    `
   }
 }

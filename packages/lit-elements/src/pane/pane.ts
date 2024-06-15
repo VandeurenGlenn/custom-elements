@@ -1,12 +1,11 @@
-import { customElement } from 'custom-element-decorator'
 import { CSSResultGroup, LitElement, html } from 'lit'
-import { property, query } from 'lit/decorators.js'
+import { property, customElement } from 'lit/decorators.js'
 import '../elevation/elevation.js'
 import '../button/button.js'
 import '../icon/icon.js'
 import style from '@vandeurenglenn/custom-shared-styles/pane.css'
 
-@customElement()
+@customElement('custom-pane')
 export class CustomPane extends LitElement {
   @property({ type: Boolean, reflect: true })
   open: boolean = false

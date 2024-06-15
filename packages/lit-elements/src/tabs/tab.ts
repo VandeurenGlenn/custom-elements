@@ -1,7 +1,7 @@
-import { customElement } from 'custom-element-decorator';
-import { LitElement, html } from 'lit';
+import { LitElement, html } from 'lit'
+import { customElement } from 'lit/decorators.js'
 
-@customElement()
+@customElement('custom-tab')
 export class CustomTab extends LitElement {
   render() {
     return html`
@@ -25,6 +25,6 @@ export class CustomTab extends LitElement {
         }
       </style>
       <slot></slot>
-    `;
+    `
   }
 }
