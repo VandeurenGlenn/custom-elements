@@ -1,13 +1,11 @@
-import { provide } from '@lit-labs/context'
-import { customElement } from 'custom-element-decorator'
 import { LitElement } from 'lit'
-import { property } from 'lit/decorators.js'
+import { property, customElement } from 'lit/decorators.js'
 
 declare type RelType = 'stylesheet' | 'preconnect'
 
 // @material-symbols
 
-@customElement()
+@customElement('custom-theme')
 export class CustomTheme extends LitElement {
   @property({ type: Boolean })
   loadFont: boolean = true
