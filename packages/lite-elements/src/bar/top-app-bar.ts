@@ -12,7 +12,7 @@ export class CustomTopAppBar extends LiteElement {
   @property({ type: Boolean, reflect: true })
   accessor scrolling: boolean
 
-  static styles = [style]
+  static styles = [style as CSSStyleSheet]
 
   connectedCallback(): void {
     document.addEventListener('custom-scroll', ({ detail }: CustomEvent) => {
