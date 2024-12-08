@@ -48,6 +48,11 @@ export class CustomButton extends LiteElement {
         pointer-events: none;
       }
 
+      .label {
+        flex: 1;
+        text-align: end;
+      }
+
       .label,
       ::slotted(*) {
         font-family: var(--md-sys-typescale-label-large-font-family-name);
