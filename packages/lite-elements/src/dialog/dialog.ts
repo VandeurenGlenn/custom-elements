@@ -109,12 +109,14 @@ export class CustomDialog extends LiteElement {
       }
 
       .body {
+        margin-top: 16px;
+        margin-bottom: 24px;
         overflow-y: auto;
       }
 
       :host([has-actions]) .body {
-        padding-top: 16px;
-        padding-bottom: 24px;
+        margin-top: 16px;
+        margin-bottom: 24px;
       }
 
       :host([has-header][has-hero]) .header {
