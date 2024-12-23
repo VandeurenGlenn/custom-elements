@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lite-elements",
-	"version": "0.3.55",
+	"version": "0.3.56",
 	"description": "set of lite elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {
@@ -330,6 +330,14 @@
 		"./pane.js": {
 			"import": "./exports/pane.js",
 			"types": "./exports/pane/pane.d.ts"
+		},
+		"./prompt": {
+			"import": "./exports/prompt.js",
+			"types": "./exports/prompt/prompt.d.ts"
+		},
+		"./prompt.js": {
+			"import": "./exports/prompt.js",
+			"types": "./exports/prompt/prompt.d.ts"
 		},
 		"./rail": {
 			"import": "./exports/rail.js",
