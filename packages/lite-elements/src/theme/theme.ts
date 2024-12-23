@@ -5,7 +5,7 @@ declare type RelType = 'stylesheet' | 'preconnect'
 // @material-symbols
 
 @customElement('custom-theme')
-export class CustomTheme extends LiteElement {  
+export class CustomTheme extends LiteElement {
   #mediaListener
 
   @property({ type: Boolean, attribute: 'load-font' })
@@ -55,8 +55,8 @@ export class CustomTheme extends LiteElement {
     this.#mediaQueryChange({ matches: this.#mediaListener.matches })
   }
 
-  connectedCallback() {
-    
+  async connectedCallback() {
+    await this.rendered
 
     // this.load('./themes/default/tokens.js')
     this.load('./themes/default/theme.css')
