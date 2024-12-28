@@ -55,9 +55,7 @@ export class CustomTheme extends LiteElement {
     this.#mediaQueryChange({ matches: this.#mediaListener.matches })
   }
 
-  async connectedCallback() {
-    await this.rendered
-
+  connectedCallback() {
     // this.load('./themes/default/tokens.js')
     this.load('./themes/default/theme.css')
     const style = document.createElement('style')
