@@ -18,11 +18,12 @@ export class CustomButton extends LiteElement {
   static styles = [
     css`
       :host {
+        --custom-button-border-radius: var(--md-sys-shape-corner-large);
         color: var(--custom-button-color, --md-sys-color-on-background);
         display: flex;
 
         height: 40px;
-        border-radius: 20px;
+        border-radius: var(--custom-button-border-radius);
         position: relative;
         pointer-events: auto;
         cursor: pointer;
@@ -41,10 +42,11 @@ export class CustomButton extends LiteElement {
         outline: none;
         cursor: pointer;
         border-radius: inherit;
-        padding: none;
+        padding: 0;
         width: inherit;
         height: inherit;
         display: flex;
+        position: relative;
         pointer-events: none;
       }
 
@@ -98,8 +100,8 @@ export class CustomButton extends LiteElement {
       :host([type='tonal']),
       :host([type='tonal']) ::slotted(*) {
         background: var(--md-sys-color-secondary-container);
-        color: var(--md-sys-color-on-seconday-container);
-        fill: var(--md-sys-color-on-seconday-container);
+        color: var(--md-sys-color-on-secondary-container);
+        fill: var(--md-sys-color-on-secondary-container);
       }
 
       custom-elevation {
@@ -139,15 +141,15 @@ export class CustomButton extends LiteElement {
 
       :host([disabled]) .label,
       :host([disabled]) slot[name='icon']::slotted(*) {
-        opacity: 0.38;
+        opacity: 0.28;
       }
 
       ::slotted(*) {
         pointer-events: none;
       }
 
-      :host(:focus),
-      :host(:hover) {
+      :host([type='elevated']:focus),
+      :host([type='elevated']:hover) {
         --elevation-level: 2;
       }
 
@@ -157,6 +159,53 @@ export class CustomButton extends LiteElement {
 
       button * {
         pointer-events: none;
+      }
+      .hover {
+        position: absolute;
+        inset: 0;
+        background-color: var(--md-sys-color-primary);
+        opacity: 0;
+        transition: opacity 200ms;
+        border-radius: var(--custom-button-border-radius);
+      }
+
+      :host(:focus) .hover,
+      :host(:hover) .hover {
+        opacity: 0.1;
+      }
+
+      :host(:active) .hover {
+        opacity: 0.2;
+      }
+
+      :host([type='filled']:focus) .hover,
+      :host([type='filled']:hover) .hover {
+        background-color: var(--md-sys-color-on-primary);
+        opacity: 0.1;
+      }
+
+      :host([type='filled']:active) .hover {
+        opacity: 0.2;
+      }
+
+      :host([type='tertiary']:focus) .hover,
+      :host([type='tertiary']:hover) .hover {
+        background-color: var(--md-sys-color-on-tertiary);
+        opacity: 0.1;
+      }
+
+      :host([type='tertiary']:active) .hover {
+        opacity: 0.2;
+      }
+
+      :host([type='tonal']:focus) .hover,
+      :host([type='tonal']:hover) .hover {
+        background-color: var(--md-sys-color-on-secondary-container);
+        opacity: 0.1;
+      }
+
+      :host([type='tonal']:active) .hover {
+        opacity: 0.2;
       }
     `
   ]
@@ -187,6 +236,8 @@ export class CustomButton extends LiteElement {
         <custom-elevation></custom-elevation>
         <slot name="icon"></slot>
         <span class="label">${this.label}</span>
+
+        <span class="hover"></span>
       </button>
     `
   }
