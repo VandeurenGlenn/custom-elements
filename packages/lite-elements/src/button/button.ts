@@ -27,6 +27,7 @@ export class CustomButton extends LiteElement {
         position: relative;
         pointer-events: auto;
         cursor: pointer;
+        overflow: hidden;
 
         --elevation-level: 0;
       }
@@ -122,6 +123,9 @@ export class CustomButton extends LiteElement {
       :host([has-label]) .label {
         padding-left: 24px;
         padding-right: 24px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
       }
 
       :host([has-icon]:not([has-label])) {
@@ -236,7 +240,6 @@ export class CustomButton extends LiteElement {
         <custom-elevation></custom-elevation>
         <slot name="icon"></slot>
         <span class="label">${this.label}</span>
-
         <span class="hover"></span>
       </button>
     `

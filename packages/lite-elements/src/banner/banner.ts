@@ -1,12 +1,9 @@
-import '../button/button.js'
+import '../button/icon-button.js'
 import { customElement, LiteElement, html } from '@vandeurenglenn/lite'
 import '@vandeurenglenn/flex-elements/it.js'
 
 @customElement('custom-banner')
 export class CustomBanner extends LiteElement {
-  constructor() {
-    super()
-  }
   render() {
     return html`
       <style>
@@ -34,16 +31,16 @@ export class CustomBanner extends LiteElement {
           --custom-icon-size: 12px;
         }
 
-        custom-button {
+        custom-icon-button {
           height: 24px;
           width: 24px;
         }
       </style>
       <slot></slot>
       <flex-it flex="1"></flex-it>
-      <custom-button type="tertiary">
-        <custom-icon slot="icon">close</custom-icon>
-      </custom-button>
+      <slot name="actions">
+        <custom-icon-button icon="close"></custom-icon-button>
+      </slot>
     `
   }
 }
