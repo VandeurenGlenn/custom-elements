@@ -54,7 +54,6 @@ export class CustomButton extends LiteElement {
       .label {
         flex: 1;
         text-align: end;
-        font-size: inherit;
       }
 
       .label,
@@ -147,6 +146,9 @@ export class CustomButton extends LiteElement {
       :host([disabled]) .label,
       :host([disabled]) slot[name='icon']::slotted(*) {
         opacity: 0.28;
+      }
+      .label {
+        font-size: inherit;
       }
 
       ::slotted(*) {
