@@ -44,8 +44,8 @@ export class CustomButton extends LiteElement {
         cursor: pointer;
         border-radius: inherit;
         padding: 0;
-        width: inherit;
-        height: inherit;
+        width: 100%;
+        height: 100%;
         display: flex;
         position: relative;
         pointer-events: none;
@@ -54,6 +54,7 @@ export class CustomButton extends LiteElement {
       .label {
         flex: 1;
         text-align: end;
+        font-size: inherit;
       }
 
       .label,
