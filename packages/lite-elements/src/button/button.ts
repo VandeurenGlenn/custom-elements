@@ -49,11 +49,12 @@ export class CustomButton extends LiteElement {
         display: flex;
         position: relative;
         pointer-events: none;
+        font-size: inherit;
       }
 
       .label {
         flex: 1;
-        text-align: end;
+        text-align: center;
       }
 
       .label,
@@ -138,6 +139,7 @@ export class CustomButton extends LiteElement {
       :host([has-icon][has-label]) .label {
         padding-left: 8px;
         padding-right: 24px;
+        text-align: end;
       }
       :host([has-icon][has-label]) slot[name='icon']::slotted(*) {
         padding-left: 16px;
