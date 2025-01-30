@@ -21,6 +21,12 @@ export class CustomIconButton extends LiteElement {
         cursor: pointer;
       }
 
+      .hover,
+      custom-icon,
+      custom-elevation {
+        pointer-events: none;
+      }
+
       .hover {
         position: absolute;
         inset: 0;
