@@ -69,42 +69,54 @@ export class CustomButton extends LiteElement {
         text-decoration: var(--md-sys-typescale-label-large-text-decoration);
       }
 
+      :host([type='filled']) {
+        background: var(--md-sys-color-primary);
+      }
+
       :host([type='filled']),
       :host([type='filled']) ::slotted(*) {
         color: var(--md-sys-color-on-primary);
         fill: var(--md-sys-color-on-primary);
-        background: var(--md-sys-color-primary);
       }
 
       :host([type='outlined']) {
         border: solid 1px;
         border-color: var(--md-sys-color-outline);
+        background: var(--md-sys-color-surface);
       }
 
       :host([type='outlined']),
       :host([type='outlined']) ::slotted(*) {
         color: var(--md-sys-color-on-surface);
         fill: var(--md-sys-color-on-surface);
-        background: var(--md-sys-color-surface);
+      }
+
+      :host([type='elevated']) {
+        background: var(--md-sys-color-surface-container-low);
       }
 
       :host([type='elevated']),
       :host([type='elevated']) ::slotted(*) {
         color: var(--md-sys-color-primary);
         fill: var(--md-sys-color-primary);
-        background: var(--md-sys-color-surface-container-low);
+      }
+
+      :host([type='tertiary']) {
+        background: var(--md-sys-color-tertiary);
       }
 
       :host([type='tertiary']),
       :host([type='tertiary']) ::slotted(*) {
-        background: var(--md-sys-color-tertiary);
         color: var(--md-sys-color-on-tertiary);
         fill: var(--md-sys-color-on-tertiary);
       }
 
+      :host([type='tonal']) {
+        background: var(--md-sys-color-secondary-container);
+      }
+
       :host([type='tonal']),
       :host([type='tonal']) ::slotted(*) {
-        background: var(--md-sys-color-secondary-container);
         color: var(--md-sys-color-on-secondary-container);
         fill: var(--md-sys-color-on-secondary-container);
       }
