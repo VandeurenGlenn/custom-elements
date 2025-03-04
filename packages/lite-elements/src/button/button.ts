@@ -234,7 +234,7 @@ export class CustomButton extends LiteElement {
     `
   ]
 
-  connectedCallback() {
+  firstRender(): void {
     const slots = Array.from(this.shadowRoot.querySelectorAll('slot'))
     for (const slot of slots) {
       slot.addEventListener('slotchange', () => this.#slotchange(slot))
@@ -242,12 +242,14 @@ export class CustomButton extends LiteElement {
 
     this.#slotchange(slots[0])
   }
+
   onChange(propertyKey, value) {
     if (propertyKey === 'label') {
       if (value) this.hasLabel = true
       else this.hasLabel = false
     }
   }
+
   #slotchange = (slot) => {
     if (slot.getAttribute('name') === 'icon') {
       this.hasIcon = Array.from(slot?.assignedNodes() || []).length !== 0
