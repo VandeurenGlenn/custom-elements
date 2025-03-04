@@ -76,13 +76,16 @@ export class CustomButton extends LiteElement {
         background: var(--md-sys-color-primary);
       }
 
+      :host([type='outlined']) {
+        border: solid 1px;
+        border-color: var(--md-sys-color-outline);
+      }
+
       :host([type='outlined']),
       :host([type='outlined']) ::slotted(*) {
         color: var(--md-sys-color-on-surface);
         fill: var(--md-sys-color-on-surface);
         background: var(--md-sys-color-surface);
-        border: solid 1px;
-        border-color: var(--md-sys-color-outline);
       }
 
       :host([type='elevated']),
