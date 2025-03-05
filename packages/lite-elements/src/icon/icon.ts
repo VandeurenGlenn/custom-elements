@@ -11,8 +11,8 @@ export class CustomIcon extends LiteElement {
   @property({ attribute: true, reflect: true })
   accessor icon
 
-  @property()
-  accessor setName
+  @property({ attribute: true, reflect: true })
+  accessor setName = 'icons'
 
   @property()
   accessor _icon
@@ -43,17 +43,13 @@ export class CustomIcon extends LiteElement {
       }
 
       svg {
-        fill: var(--custom-icon-color, --md-sys-color-on-surface);
+        fill: var(--custom-icon-color, var(--md-sys-color-on-surface));
         height: inherit;
         width: inherit;
         pointer-events: none;
       }
     `
   ]
-
-  connectedCallback() {
-    this.setName = this.getAttribute('set-name') || 'icons'
-  }
   render() {
     return html` ${this._icon} `
   }
