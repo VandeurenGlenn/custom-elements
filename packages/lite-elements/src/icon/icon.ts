@@ -11,7 +11,7 @@ export class CustomIcon extends LiteElement {
   @property({ attribute: true, reflect: true })
   accessor icon
 
-  @property({ attribute: true, reflect: true })
+  @property({ attribute: 'set-name', reflect: true })
   accessor setName = 'icons'
 
   @property()
