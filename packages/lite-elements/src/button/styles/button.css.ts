@@ -35,11 +35,6 @@ export default css`
     font-size: inherit;
   }
 
-  .label {
-    flex: 1;
-    text-align: center;
-  }
-
   .label,
   ::slotted(*) {
     font-family: var(--md-sys-typescale-label-large-font-family-name);
@@ -125,6 +120,8 @@ export default css`
     align-items: center;
     display: flex;
     justify-content: center;
+    flex: 1;
+    text-align: center;
   }
 
   :host([has-icon]:not([has-label])) {

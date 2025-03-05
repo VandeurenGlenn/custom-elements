@@ -37,15 +37,13 @@ export class CustomIcon extends LiteElement {
   static styles = [
     css`
       :host {
-        --__custom-icon-size: var(--custom-icon-size, 24px);
-        --custom-icon-color: var(--md-sys-color-on-surface);
         display: flex;
         height: var(--custom-icon-size, 24px);
         width: var(--custom-icon-size, 24px);
       }
 
       svg {
-        fill: var(--custom-icon-color);
+        fill: var(--custom-icon-color, --md-sys-color-on-surface);
         height: inherit;
         width: inherit;
         pointer-events: none;

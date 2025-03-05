@@ -1,75 +1,63 @@
 import { customElement, LiteElement, html, css, property } from '@vandeurenglenn/lite'
 import './button.js'
 import './../icon/icon.js'
+import { CustomButton } from './button.js'
 
 @customElement('custom-icon-button')
-export class CustomIconButton extends LiteElement {
+export class CustomIconButton extends CustomButton {
   @property({ type: String })
   accessor icon: string
 
   static styles = [
+    ...CustomButton.styles,
     css`
       :host {
         --custom-button-border-radius: var(--md-sys-shape-corner-medium);
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: var(--custom-button-border-radius);
         width: 40px;
         height: 40px;
-        cursor: pointer;
+        align-items: center;
+        justify-content: center;
       }
 
-      .hover,
-      custom-icon,
-      custom-elevation {
-        pointer-events: none;
-      }
-
-      .hover {
-        position: absolute;
-        inset: 0;
-        background-color: var(--md-sys-color-primary);
-        opacity: 0;
-        transition: opacity 200ms;
-        border-radius: var(--custom-button-border-radius);
-      }
-
-      :host(:focus) .hover,
-      :host(:hover) .hover {
-        opacity: 0.1;
-      }
-
-      :host(:active) .hover {
-        opacity: 0.2;
-      }
-
-      custom-elevation {
-        --md-elevation-level: var(--elevation-level);
-      }
-
-      :host([type='elevated']) custom-elevation {
-        --elevation-level: 1;
-      }
-
-      :host(:active) {
-        --elevation-level: 0;
-      }
-
-      custom-icon {
+      :host([type='text']) {
         --custom-icon-color: var(--md-sys-color-on-surface);
+      }
+
+      :host([type='filled']),
+      :host([type='filled']) ::slotted(*) {
+        --custom-icon-color: var(--md-sys-color-on-primary);
+      }
+
+      :host([type='outlined']),
+      :host([type='outlined']) ::slotted(*) {
+        --custom-icon-color: var(--md-sys-color-on-surface);
+      }
+
+      :host([type='elevated']),
+      :host([type='elevated']) ::slotted(*) {
+        --custom-icon-color: var(--md-sys-color-primary);
+      }
+
+      :host([type='tertiary']),
+      :host([type='tertiary']) ::slotted(*) {
+        --custom-icon-color: var(--md-sys-color-on-tertiary);
+      }
+
+      :host([type='tonal']),
+      :host([type='tonal']) ::slotted(*) {
+        --custom-icon-color: var(--md-sys-color-on-secondary-container);
       }
     `
   ]
 
   render() {
     return html`
-      <custom-elevation></custom-elevation>
-
-      <custom-icon slot="icon" .icon=${this.icon}></custom-icon>
-
-      <span class="hover"></span>
+      <button label=${this.label}>
+        <custom-elevation></custom-elevation>
+        <slot name="icon"> <custom-icon .icon=${this.icon}></custom-icon></slot>
+        <span class="label">${this.label}</span>
+        <span class="hover"></span>
+      </button>
     `
   }
 }

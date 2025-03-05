@@ -7,14 +7,14 @@ export class CustomButton extends LiteElement {
   @property({ attribute: 'has-icon', reflect: true })
   accessor hasIcon: boolean
 
-  @property({ attribute: 'has-label', reflect: true })
-  accessor hasLabel: boolean
-
   @property({ attribute: 'type', reflect: true })
   accessor type: 'elevated' | 'filled' | 'text' | 'tonal' | 'outlined' = 'text'
 
   @property({ attribute: true })
   accessor label
+
+  @property({ attribute: 'has-label', reflect: true })
+  accessor hasLabel: boolean
 
   static styles = [style]
 
@@ -23,8 +23,7 @@ export class CustomButton extends LiteElement {
     for (const slot of slots) {
       slot.addEventListener('slotchange', () => this.#slotchange(slot))
     }
-
-    this.#slotchange(slots[0])
+    if (slots?.length > 0) for (const slot of slots) this.#slotchange(slot)
   }
 
   onChange(propertyKey, value) {
