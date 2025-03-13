@@ -11,8 +11,8 @@ export class CustomIcon extends LiteElement {
   @property({ attribute: true, reflect: true })
   accessor icon
 
-  @property({ attribute: 'set-name', reflect: true })
-  accessor setName = 'icons'
+  @property()
+  accessor setName
 
   @property()
   accessor _icon
@@ -50,6 +50,11 @@ export class CustomIcon extends LiteElement {
       }
     `
   ]
+
+  beforeRender(): void {
+    this.setName = this.getAttribute('set-name') || 'icons'
+  }
+
   render() {
     return html` ${this._icon} `
   }
