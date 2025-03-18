@@ -8,7 +8,7 @@ export class CustomIcon extends LiteElement {
   @property()
   accessor host
 
-  @property({ attribute: true, reflect: true })
+  @property({ type: String })
   accessor icon
 
   @property()
