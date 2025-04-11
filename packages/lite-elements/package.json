@@ -1,6 +1,6 @@
 {
 	"name": "@vandeurenglenn/lite-elements",
-	"version": "0.3.72",
+	"version": "0.3.73",
 	"description": "set of lite elements following Material Design 3 spec",
 	"type": "module",
 	"scripts": {

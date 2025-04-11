@@ -53,6 +53,7 @@ export class DemoShell extends LiteElement {
             <custom-drawer-item route="drawer">drawer</custom-drawer-item>
             <custom-drawer-item route="pane">pane</custom-drawer-item>
             <custom-drawer-item route="supporting-pane">supporting pane</custom-drawer-item>
+            <custom-drawer-item route="notifications">notifications</custom-drawer-item>
             <custom-drawer-item route="tabs">tabs</custom-drawer-item>
             <custom-drawer-item route="menu">menu</custom-drawer-item>
             <custom-drawer-item route="dropdown-menu">dropdown-menu</custom-drawer-item>
@@ -197,6 +198,10 @@ export class DemoShell extends LiteElement {
                 <custom-icon-button slot="start" icon="menu"></custom-icon-button>
                 <span slot="title">title</span>
               </custom-top-app-bar>
+            </demo-section>
+
+            <demo-section route="notifications">
+              <custom-notifications></custom-notifications>
             </demo-section>
 
             <demo-section route="typography">
