@@ -16,6 +16,6 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
-		"@vandeurenglenn/lite": "^0.1.1"
+		"@vandeurenglenn/lite": "^0.2.64"
 	}
 }
