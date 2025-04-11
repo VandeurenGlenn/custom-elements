@@ -33,14 +33,14 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Build
-        run: cd packages/lit-elements && npm run build
+        run: cd packages/lite-elements && npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './packages/lit-elements/exports/bundle'
+          path: './packages/lite-elements/exports/bundle'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
