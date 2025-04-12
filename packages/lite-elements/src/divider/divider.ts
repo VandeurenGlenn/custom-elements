@@ -16,7 +16,6 @@ export class CustomDivider extends LiteElement {
           box-sizing: border-box;
           min-height: 1px;
           margin: 8px 0 16px 0;
-          width: 100%;
           background: var(--md-sys-color-outline);
         }
 
