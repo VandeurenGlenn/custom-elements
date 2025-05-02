@@ -4,7 +4,8 @@ export class SelectBase extends LiteElement {
   #selected: string | number | HTMLElement | string[] | HTMLElement[]
   currentSelected: HTMLElement
 
-  beforeRender(): void {
+  firstRender(): void {
+    super.firstRender?.()
     this.selected = this.defaultSelected
   }
 
