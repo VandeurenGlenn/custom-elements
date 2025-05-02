@@ -5,9 +5,8 @@ export class SelectorBase extends SelectBase {
     super()
   }
 
-  async connectedCallback() {
-    super.connectedCallback && (await super.connectedCallback())
-    // this.updateComplete && await this.updateComplete
+  firstRender(): void {
+    super.firstRender?.()
     this.slotted.addEventListener('click', this.#onClick.bind(this))
   }
 

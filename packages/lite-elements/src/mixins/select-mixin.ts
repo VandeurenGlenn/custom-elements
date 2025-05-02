@@ -4,7 +4,7 @@ export class SelectBase extends LiteElement {
   #selected: string | number | HTMLElement | string[] | HTMLElement[]
   currentSelected: HTMLElement
 
-  connectedCallback() {
+  beforeRender(): void {
     this.selected = this.defaultSelected
   }
 
