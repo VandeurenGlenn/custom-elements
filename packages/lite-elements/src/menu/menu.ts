@@ -25,7 +25,7 @@ export class CustomMenu extends LiteElement {
     this.dispatchEvent(new CustomEvent('selected', { detail }))
   }
 
-  connectedCallback() {
+  firstRender(): void {
     this.selector.addEventListener('selected', this.#onselected)
   }
 

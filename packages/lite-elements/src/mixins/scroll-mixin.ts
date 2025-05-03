@@ -9,7 +9,7 @@ export const ScrollMixin = (Base) =>
       return this.hasAttribute('scrolling')
     }
 
-    scrollElement = this
+    scrollElement
 
     #onscroll = () => {
       if (this.isScrolling) clearTimeout(this.isScrolling)
@@ -21,13 +21,9 @@ export const ScrollMixin = (Base) =>
       }, this.scrollTimeout)
     }
 
-    async connectedCallback(
-      options: { scrollElement: undefined | string } = { scrollElement: undefined }
-    ): Promise<void> {
-      super.connectedCallback && super.connectedCallback()
-
-      await this.updateComplete
-      this.scrollElement = this.shadowRoot.querySelector(options.scrollElement) || this
+    firstRender() {
+      super.firstRender?.()
+      this.scrollElement = this.scrollElement ? this.shadowRoot.querySelector(this.scrollElement) : this
       this.scrollTimeout = 100
       this.scrollElement.addEventListener('scroll', this.#onscroll)
     }

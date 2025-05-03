@@ -6,7 +6,7 @@ import { DemoCode } from './code.js'
 const replaceHtmlEntities = (str) => str.replace(/(\  <\/(?=[^<\/]*$))/g, '<')
 @customElement('demo-section')
 export class DemoSection extends LiteElement {
-  async connectedCallback(): Promise<void> {
+  async firstRender(): Promise<void> {
     const assignedElements = this.shadowRoot.querySelector('slot').assignedElements()
     for (const element of assignedElements) {
       const code = document.createElement('demo-code') as DemoCode

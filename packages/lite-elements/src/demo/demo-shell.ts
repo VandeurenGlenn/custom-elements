@@ -9,7 +9,7 @@ export class DemoShell extends LiteElement {
   @query('custom-pages')
   accessor pages
 
-  connectedCallback() {
+  firstRender() {
     const onSelected = async ({ detail }) => {
       document.dispatchEvent(new CustomEvent('custom-scroll', { detail: { scrolling: false } }))
       this.pages.select(detail)
@@ -108,7 +108,7 @@ export class DemoShell extends LiteElement {
         <flex-row slot="top-app-bar-end">
           <custom-theme-mode></custom-theme-mode>
           <custom-button>
-            <custom-icon slot="icon">more_vert</custom-icon>
+            <custom-icon icon="more_vert" slot="icon"></custom-icon>
           </custom-button>
         </flex-row>
 
@@ -364,7 +364,7 @@ export class DemoShell extends LiteElement {
 
               <custom-tabs round>
                 <custom-tab>
-                  <custom-icon>home</custom-icon>
+                  <custom-icon icon="home"></custom-icon>
                   home
                 </custom-tab>
                 <custom-tab>about</custom-tab>
@@ -373,7 +373,9 @@ export class DemoShell extends LiteElement {
 
             <demo-section route="dialog">
               <flex-container>
-                <custom-button class="fullscreen-dialog"><custom-icon slot="icon">menu</custom-icon></custom-button>
+                <custom-button class="fullscreen-dialog"
+                  ><custom-icon slot="icon" icon="menu"></custom-icon
+                ></custom-button>
                 <custom-dialog fullscreen>
                   <span slot="title">title</span>
                   <p>
@@ -549,7 +551,7 @@ export class DemoShell extends LiteElement {
               </custom-list-item>
             </demo-section>
             <demo-section route="toggle">
-              <custom-toggle togglers='["check_box","check_box_outline_blank", "info"]'></custom-toggle>
+              <custom-toggle .togglers=${"['check_box', 'check_box_outline_blank', 'info']"}></custom-toggle>
 
               <custom-button label="next"></custom-button>
 
