@@ -2,11 +2,13 @@ import { css } from '@vandeurenglenn/lite'
 export default css`
   :host {
     --custom-button-border-radius: var(--md-sys-shape-corner-large);
+
     color: var(--custom-button-color, --md-sys-color-on-background);
     display: flex;
 
     height: 40px;
     border-radius: var(--custom-button-border-radius);
+
     position: relative;
     pointer-events: auto;
     cursor: pointer;
@@ -37,7 +39,7 @@ export default css`
 
   .label,
   ::slotted(*) {
-    font-family: var(--md-sys-typescale-label-large-font-family-name);
+    font-family: inherit;
     font-style: var(--md-sys-typescale-label-large-font-family-style);
     font-weight: var(--md-sys-typescale-label-large-font-weight);
     font-size: var(--md-sys-typescale-label-large-font-size);
