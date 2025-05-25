@@ -44,7 +44,7 @@ export class CustomButton extends LiteElement {
       <button label=${this.label}>
         <custom-elevation></custom-elevation>
         <slot name="icon"></slot>
-        ${this.label}
+        <span class="label">${this.label}</span>
         <span class="hover"></span>
       </button>
     `
