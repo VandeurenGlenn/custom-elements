@@ -21,7 +21,7 @@ export class CustomDrawer extends LiteElement {
   @property({ type: String })
   accessor id: string
 
-  connectedCallback(): void {
+  firstRender(): void {
     document.addEventListener('custom-pane-close', ({ detail }: CustomEvent) => {
       if (this.id === detail) this.open = false
     })
@@ -31,7 +31,7 @@ export class CustomDrawer extends LiteElement {
     })
   }
 
-  static styles? = [style]
+  static styles = [style]
 
   render() {
     return html`

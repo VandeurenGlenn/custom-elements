@@ -52,9 +52,9 @@ export class CustomIconButton extends CustomButton {
 
   render() {
     return html`
-      <button label=${this.label}>
+      <button label=${this.label || this.icon}>
         <custom-elevation></custom-elevation>
-        <slot name="icon"> <custom-icon .icon=${this.icon}></custom-icon></slot>
+        <slot name="icon"> <custom-icon .icon=${this.icon || this.label}></custom-icon></slot>
         <span class="label">${this.label}</span>
         <span class="hover"></span>
       </button>

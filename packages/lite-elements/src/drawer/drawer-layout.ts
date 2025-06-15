@@ -28,7 +28,7 @@ export class CustomDrawerLayout extends LiteElement {
   @property({ type: String })
   accessor mainDrawerId: string = crypto.randomUUID()
 
-  @property({attribute: 'mobile-trigger'}) accessor mobileTrigger = '(max-width: 860px)'
+  @property({ attribute: 'mobile-trigger' }) accessor mobileTrigger = '(max-width: 860px)'
 
   onChange(propertyKey: string, value: any): void {
     if (propertyKey === 'mobileTrigger') {
@@ -36,7 +36,7 @@ export class CustomDrawerLayout extends LiteElement {
       this._onnarrow({ detail: media.matches })
     }
   }
-  connectedCallback(): void {    
+  connectedCallback(): void {
     document.addEventListener('custom-pane-close', ({ detail }: CustomEvent) => {
       if (this.mainDrawerId === detail) this.drawerOpen = false
     })
