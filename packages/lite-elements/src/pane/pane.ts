@@ -46,8 +46,10 @@ export class CustomPane extends LiteElement {
             <slot name="headline"></slot>
             <flex-it></flex-it>
 
-            <custom-icon-button @click=${(e) => this.closePane(e)} .id=${this.id} .icon=${this.icon || 'menu_open'}>
-            </custom-icon-button>
+            <slot name="close">
+              <custom-icon-button @click=${(e) => this.closePane(e)} .id=${this.id} .icon=${this.icon || 'menu_open'}>
+              </custom-icon-button>
+            </slot>
           </flex-row>
         </slot>
         <flex-column class="content">
