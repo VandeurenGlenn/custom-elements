@@ -100,6 +100,7 @@ export class DemoShell extends LiteElement {
             <custom-drawer-item route="toggle">toggle</custom-drawer-item>
             <custom-drawer-item route="toggle-button">toggle-button</custom-drawer-item>
             <custom-drawer-item route="time-picker">time-picker</custom-drawer-item>
+            <custom-drawer-item route="places-input">places-input</custom-drawer-item>
           </custom-selector>
         </flex-column>
 
@@ -568,6 +569,10 @@ export class DemoShell extends LiteElement {
             </demo-section>
           </custom-pages>
         </flex-column>
+
+        <demo-section route="places-input">
+          <places-input placeholder="place"> </places-input>
+        </demo-section>
       </custom-drawer-layout>
       <!-- </custom-root> -->
       <!-- </flex-row> -->

@@ -60,6 +60,8 @@ export class DemoShell extends LiteElement {
             <custom-drawer-item route="list-item">list-item</custom-drawer-item>
             <custom-drawer-item route="toggle">toggle</custom-drawer-item>
             <custom-drawer-item route="toggle-button">toggle-button</custom-drawer-item>
+
+            <custom-drawer-item route="places-input">places-input</custom-drawer-item>
           </custom-selector>
         </flex-column>
 

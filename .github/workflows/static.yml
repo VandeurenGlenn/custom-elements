@@ -34,10 +34,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'node'
-      - name: Install dependencies
-        run: npm i
       - name: Build
-        run: cd packages/lite-elements && npm run build
+        run: cd packages/lite-elements && npm i && npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
