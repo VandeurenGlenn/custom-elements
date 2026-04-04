@@ -1,17 +1,12 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
-import { cp, readFile, writeFile } from 'fs/promises'
-import { globby } from 'globby'
-import { parse, join } from 'path'
+import { cp, glob } from 'fs/promises'
 import { rimraf } from 'rimraf'
-import commonJs from '@rollup/plugin-commonjs'
-import json from '@rollup/plugin-json'
-import { cpSync } from 'fs'
 import autoExports from 'rollup-plugin-auto-exports'
 import materialSymbols from 'rollup-plugin-material-symbols'
 import terser from '@rollup/plugin-terser'
 
-const input = await globby(['src/**/*.ts'])
+const input = await Array.fromAsync(glob(['src/**/*.ts', '!src/**/*.d.ts']))
 
 const cleanBuild = () => ({
   name: 'clean',
