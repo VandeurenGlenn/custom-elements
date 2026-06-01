@@ -19,12 +19,12 @@ export class CustomListItem extends LiteElement {
   @query('slot[name="start"]')
   accessor startSlot
 
-  #startSlotChange = () => {
-    this.hasStart = true
+  firstRender() {
+    this.addEventListener('slotchange', this.#slotChange)
   }
 
-  connectedCallback() {
-    this.startSlot.addEventListener('slotchange', this.#startSlotChange)
+  #slotChange() {
+    this.hasStart = this.assignedStartElements.length > 0
   }
   static styles = [
     css`

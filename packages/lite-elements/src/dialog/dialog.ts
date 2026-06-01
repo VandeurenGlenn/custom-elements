@@ -24,7 +24,7 @@ export class CustomDialog extends LiteElement {
     this._close = this._close.bind(this)
   }
 
-  connectedCallback() {
+  firstRender() {
     const actionsSlot = this.shadowRoot.querySelector('slot[name="actions"]')
     // @ts-ignore
     this.hasActions = Array.from(actionsSlot?.assignedNodes() || []).length !== 0
@@ -44,7 +44,7 @@ export class CustomDialog extends LiteElement {
 
     const heroSlot = this.shadowRoot.querySelector('slot[name="hero-icon"]')
     // @ts-ignore
-    this.hashero = Array.from(heroSlot?.assignedNodes() || []).length !== 0
+    this.hasHero = Array.from(heroSlot?.assignedNodes() || []).length !== 0
   }
 
   onChange(propertyKey: any, value: any) {
@@ -80,7 +80,8 @@ export class CustomDialog extends LiteElement {
 
       .scrim,
       .dialog {
-        transition: var(--md-sys-motion-easing-emphasized-accelerate) 200ms opacity,
+        transition:
+          var(--md-sys-motion-easing-emphasized-accelerate) 200ms opacity,
           var(--md-sys-motion-easing-emphasized-accelerate) 200ms transform;
       }
 
@@ -165,7 +166,8 @@ export class CustomDialog extends LiteElement {
         pointer-events: auto;
         opacity: 1;
         transform: scaleY(1);
-        transition: var(--md-sys-motion-easing-emphasized-decelerate) 500ms opacity,
+        transition:
+          var(--md-sys-motion-easing-emphasized-decelerate) 500ms opacity,
           var(--md-sys-motion-easing-emphasized-decelerate) 500ms transform;
       }
 
