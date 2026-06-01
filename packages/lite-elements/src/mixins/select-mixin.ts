@@ -1,12 +1,23 @@
 import { LiteElement } from '@vandeurenglenn/lite'
 
 export class SelectBase extends LiteElement {
-  #selected: string | number | HTMLElement | string[] | HTMLElement[]
-  currentSelected: HTMLElement
+  #selected!: string | number | HTMLElement | string[] | HTMLElement[]
+  currentSelected?: HTMLElement
+  #slot?: HTMLSlotElement
+  #slotchange = () => this.#requestSelectedUpdate()
 
   firstRender(): void {
     super.firstRender?.()
+    this.#attachSlotChangeListener()
     this.selected = this.defaultSelected
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback && super.disconnectedCallback()
+    if (this.#slot) {
+      this.#slot.removeEventListener('slotchange', this.#slotchange)
+      this.#slot = undefined
+    }
   }
 
   get multi() {
@@ -30,17 +41,24 @@ export class SelectBase extends LiteElement {
     return this.#selected
   }
 
-  get slotted() {
-    if (this.shadowRoot) return this.shadowRoot.querySelector('slot')
-    return this
+  get slotted(): HTMLSlotElement | this {
+    return this.shadowRoot?.querySelector('slot') || this
   }
 
-  get #assignedNodes() {
+  #attachSlotChangeListener() {
+    const slot = this.shadowRoot?.querySelector('slot') as HTMLSlotElement | null
+    if (!slot || slot === this.#slot) return
+    this.#slot?.removeEventListener('slotchange', this.#slotchange)
+    this.#slot = slot
+    this.#slot.addEventListener('slotchange', this.#slotchange)
+  }
+
+  get #assignedNodes(): HTMLElement[] {
     const nodes = 'assignedNodes' in this.slotted ? this.slotted.assignedNodes() : this.children
-    const arr = []
-    for (var i = 0; i < nodes.length; i++) {
-      const node = nodes[i]
-      if (node.nodeType === 1) arr.push(node)
+    const arr: HTMLElement[] = []
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i] as Node
+      if (node.nodeType === 1) arr.push(node as HTMLElement)
     }
     return arr
   }
@@ -62,20 +80,20 @@ export class SelectBase extends LiteElement {
     this.setAttribute('attr-for-selected', value)
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     if (oldValue !== newValue) {
       // check if value is number
-      if (!isNaN(newValue)) {
-        newValue = Number(newValue)
+      if (newValue !== null && !isNaN(Number(newValue))) {
+        newValue = Number(newValue) as unknown as string
       }
-      this[name] = newValue
+      ;(this as any)[name] = newValue
     }
   }
 
   /**
    * @param {string|number|HTMLElement} selected
    */
-  select(selected) {
+  select(selected: string | number | HTMLElement | string[] | HTMLElement[]) {
     if (selected) this.selected = selected
     // TODO: fix selectedobservers
     if (this.multi) this.#requestSelectedUpdate()
@@ -100,8 +118,8 @@ export class SelectBase extends LiteElement {
     }
   }
 
-  getIndexFor(element) {
-    return this.#assignedNodes.indexOf(element || this.selected)
+  getIndexFor(element: HTMLElement | string | number | undefined) {
+    return this.#assignedNodes.indexOf((element as HTMLElement) || (this.selected as HTMLElement))
   }
 
   #updateSelected(selected: HTMLElement, currentSelected: HTMLElement) {
@@ -114,7 +132,7 @@ export class SelectBase extends LiteElement {
 
   #updateMultiSelected(selected: string[]) {
     for (const child of this.#assignedNodes) {
-      if (selected.includes(child.getAttribute(this.attrForSelected))) {
+      if (selected.includes(child.getAttribute(this.attrForSelected) ?? '')) {
         child.classList.add('custom-selected')
       } else {
         child.classList.remove('custom-selected')
@@ -131,19 +149,19 @@ export class SelectBase extends LiteElement {
   }
 
   #requestSelectedUpdate() {
-    if (this.selected === undefined) {
+    const selected = this.selected
+    if (selected === undefined || selected === null) {
       this.currentSelected && this.currentSelected.classList.remove('custom-selected')
       return
     }
 
-    const type = typeof this.selected
-    if (Array.isArray(this.selected)) return this.#updateMultiSelected(this.selected as string[])
-    if (type === 'object')
-      return this.#updateSelected(this.selected as HTMLElement, this.currentSelected as HTMLElement)
-    if (type === 'string') return this.#updateStringSelected(this.selected as string)
+    if (Array.isArray(selected)) return this.#updateMultiSelected(selected as string[])
+    const type = typeof selected
+    if (type === 'object') return this.#updateSelected(selected as HTMLElement, this.currentSelected as HTMLElement)
+    if (type === 'string') return this.#updateStringSelected(selected as string)
 
     // set selected by index
-    const child = this.#assignedNodes[this.selected as number]
+    const child = this.#assignedNodes[selected as number]
     if (child) this.#updateSelected(child, this.currentSelected as HTMLElement)
     // remove selected even when nothing found, better to return nothing
   }
