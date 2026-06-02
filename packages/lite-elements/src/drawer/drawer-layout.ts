@@ -30,12 +30,13 @@ export class CustomDrawerLayout extends LiteElement {
 
   @property({ attribute: 'mobile-trigger' }) accessor mobileTrigger = '(max-width: 860px)'
 
+  #mediaQuery?: MediaQueryList
+  #onMediaChange = (event: MediaQueryListEvent) => this._onnarrow({ detail: event.matches } as CustomEvent)
+
   onChange(propertyKey: string, value: any): void {
-    if (propertyKey === 'mobileTrigger') {
-      const media = matchMedia(value)
-      this._onnarrow({ detail: media.matches })
-    }
+    if (propertyKey === 'mobileTrigger') this.#watchMobileTrigger(value)
   }
+
   connectedCallback(): void {
     document.addEventListener('custom-pane-close', ({ detail }: CustomEvent) => {
       if (this.mainDrawerId === detail) this.drawerOpen = false
@@ -46,6 +47,24 @@ export class CustomDrawerLayout extends LiteElement {
     })
 
     document.addEventListener('custom-theme-narrow', this._onnarrow.bind(this))
+  }
+
+  firstRender(): void {
+    // evaluate after first render so the nested drawer/pane are upgraded and
+    // reflect the `open` attribute the CSS relies on
+    this.#watchMobileTrigger(this.mobileTrigger)
+  }
+
+  disconnectedCallback(): void {
+    this.#mediaQuery?.removeEventListener('change', this.#onMediaChange)
+    this.#mediaQuery = undefined
+  }
+
+  #watchMobileTrigger(value: string) {
+    this.#mediaQuery?.removeEventListener('change', this.#onMediaChange)
+    this.#mediaQuery = matchMedia(value)
+    this.#mediaQuery.addEventListener('change', this.#onMediaChange)
+    this._onnarrow({ detail: this.#mediaQuery.matches } as CustomEvent)
   }
 
   _onnarrow({ detail }: CustomEvent) {
@@ -98,12 +117,14 @@ export class CustomDrawerLayout extends LiteElement {
           position: absolute;
           transform: translateX(var(--custom-drawer-width));
 
-          transition: var(--md-sys-motion-easing-emphasized-decelerate) 500ms width,
+          transition:
+            var(--md-sys-motion-easing-emphasized-decelerate) 500ms width,
             var(--md-sys-motion-easing-emphasized-decelerate) 500ms transform;
         }
 
         :host(:not([drawer-open])) .middle-pane {
-          transition: var(--md-sys-motion-easing-emphasized-accelerate) 200ms width,
+          transition:
+            var(--md-sys-motion-easing-emphasized-accelerate) 200ms width,
             var(--md-sys-motion-easing-emphasized-accelerate) 200ms transform;
           transform: translateX(0);
           width: 100%;

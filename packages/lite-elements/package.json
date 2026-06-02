@@ -19,11 +19,11 @@
   "license": "MIT",
   "dependencies": {
     "@material-design-icons/svg": "^0.14.15",
-    "@material-symbols/svg-400": "^0.44.10",
+    "@material-symbols/svg-400": "^0.44.11",
     "@material/web": "^2.4.1",
     "@vandeurenglenn/custom-shared-styles": "^0.0.23",
     "@vandeurenglenn/flex-elements": "^1.4.0",
-    "@vandeurenglenn/lite": "^1.2.2"
+    "@vandeurenglenn/lite": "^1.2.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.3",
