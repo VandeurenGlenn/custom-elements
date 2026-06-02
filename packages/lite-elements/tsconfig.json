@@ -5,6 +5,7 @@
     "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "outDir": "exports",
+    "rootDir": "src",
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
