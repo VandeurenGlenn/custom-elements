@@ -42,8 +42,8 @@ export class CustomTheme extends LiteElement {
     return link
   }
 
-  onChange(propertyKey: string, value: any): void {
-    if (propertyKey === 'mobileTrigger') {
+  onChange = (propertyKey: string, value: unknown): void => {
+    if (propertyKey === 'mobileTrigger' && typeof value === 'string') {
       this.#setupMediaListener()
     }
   }

@@ -33,8 +33,8 @@ export class CustomDrawerLayout extends LiteElement {
   #mediaQuery?: MediaQueryList
   #onMediaChange = (event: MediaQueryListEvent) => this._onnarrow({ detail: event.matches } as CustomEvent)
 
-  onChange(propertyKey: string, value: any): void {
-    if (propertyKey === 'mobileTrigger') this.#watchMobileTrigger(value)
+  onChange = (propertyKey: string, value: unknown): void => {
+    if (propertyKey === 'mobileTrigger' && typeof value === 'string') this.#watchMobileTrigger(value)
   }
 
   connectedCallback(): void {
