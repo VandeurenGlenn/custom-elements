@@ -1,5 +1,6 @@
 import { customElement, LiteElement, html, css, listen, query } from '@vandeurenglenn/lite'
 import './../elements.js'
+import './code.js'
 
 type SelectableElement = HTMLElement & { select: (value: string) => void }
 type OpenableElement = HTMLElement & { open: boolean }
@@ -350,6 +351,57 @@ export class DemoShell extends LiteElement {
         letter-spacing: -0.035em;
       }
 
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+        width: 100%;
+      }
+
+      .example-card {
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        min-width: 0;
+        padding: 16px;
+        border: 1px solid var(--demo-line);
+        border-radius: 22px;
+        background: color-mix(in srgb, var(--md-sys-color-surface-container-highest) 48%, transparent);
+      }
+
+      .example-card h3 {
+        margin: 0;
+        font: 600 1rem/1.2 'Space Grotesk', sans-serif;
+      }
+
+      .example-card p {
+        margin: 0;
+        color: var(--md-sys-color-on-surface-variant);
+        font-size: 0.84rem;
+        line-height: 1.45;
+      }
+
+      .example-preview {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 16px;
+        background: var(--md-sys-color-surface-container);
+      }
+
+      .example-card demo-code {
+        display: block;
+        max-height: 120px;
+        overflow: auto;
+        margin: 0;
+        padding: 10px;
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--md-sys-color-surface) 75%, transparent);
+        font-size: 0.72rem;
+      }
+
       .cluster,
       .stack {
         display: flex;
@@ -603,49 +655,15 @@ export class DemoShell extends LiteElement {
 
           <section class="panel" route="qa">
             <div class="surface stack">
-              <h2>All components QA</h2>
-              <p class="picker-state">Compact snapshot route for quick visual regression checks.</p>
-
-              <div class="cluster">
-                <custom-banner>Banner preview</custom-banner>
-                <custom-divider></custom-divider>
-              </div>
-
-              <div class="cluster">
-                <custom-button type="text" label="Text"></custom-button>
-                <custom-button type="filled" label="Filled"></custom-button>
-                <custom-icon-button icon="menu" type="outlined"></custom-icon-button>
-                <custom-toggle-button togglers='["check_box","check_box_outline_blank"]'></custom-toggle-button>
-                <custom-toggle togglers='["dark_mode","light_mode"]'></custom-toggle>
-              </div>
-
-              <custom-card type="outlined">
-                <span slot="headline">Compact card</span>
-                <span slot="subline">QA surface</span>
-                <p slot="supportingText">Use this section to quickly verify baseline rendering after changes.</p>
-                <div slot="actions" class="cluster">
-                  <custom-button type="outlined" label="Inspect"></custom-button>
-                </div>
-              </custom-card>
-
-              <div class="cluster">
-                <custom-menu>
-                  <custom-list-item type="menu"><custom-icon slot="start">info</custom-icon>Menu item</custom-list-item>
-                </custom-menu>
-
-                <custom-dropdown-menu>
-                  <custom-list-item type="menu"
-                    ><custom-icon slot="start">schedule</custom-icon>Dropdown item</custom-list-item
-                  >
-                </custom-dropdown-menu>
-              </div>
-
-              <div class="cluster">
-                <custom-tabs>
-                  <custom-tab>One</custom-tab>
-                  <custom-tab>Two</custom-tab>
-                </custom-tabs>
-                <custom-time-picker value="09:15" minute-step="15"></custom-time-picker>
+              <h2>Component catalog</h2>
+              <p class="picker-state">Every tile includes a live preview and the HTML used to create it.</p>
+              <div class="showcase-grid">
+                <div class="example-card"><h3>Banner</h3><p>Short, high-priority feedback.</p><div class="example-preview"><custom-banner>Banner preview</custom-banner></div><demo-code .code=${'<custom-banner>Banner preview</custom-banner>'}></demo-code></div>
+                <div class="example-card"><h3>Buttons</h3><p>Five visual treatments from one element.</p><div class="example-preview cluster"><custom-button type="filled" label="Filled"></custom-button><custom-button type="outlined" label="Outlined"></custom-button></div><demo-code .code=${'<custom-button type="filled" label="Filled"></custom-button>'}></demo-code></div>
+                <div class="example-card"><h3>Card</h3><p>Content, supporting text, and actions.</p><div class="example-preview"><custom-card type="outlined"><span slot="headline">Compact card</span><span slot="supportingText">A useful surface.</span></custom-card></div><demo-code .code=${'<custom-card type="outlined">\n  <span slot="headline">Compact card</span>\n</custom-card>'}></demo-code></div>
+                <div class="example-card"><h3>Navigation</h3><p>Tabs, menus, and list items.</p><div class="example-preview"><custom-tabs><custom-tab>One</custom-tab><custom-tab>Two</custom-tab></custom-tabs></div><demo-code .code=${'<custom-tabs>\n  <custom-tab>One</custom-tab>\n</custom-tabs>'}></demo-code></div>
+                <div class="example-card"><h3>Time picker</h3><p>Interactive hour and minute selection.</p><div class="example-preview"><custom-time-picker value="09:15" minute-step="15"></custom-time-picker></div><demo-code .code=${'<custom-time-picker value="09:15" minute-step="15"></custom-time-picker>'}></demo-code></div>
+                <div class="example-card"><h3>Feedback</h3><p>Toggle states and icon actions.</p><div class="example-preview cluster"><custom-toggle-button togglers='["check_box","check_box_outline_blank"]'></custom-toggle-button><custom-icon-button icon="menu" type="outlined"></custom-icon-button></div><demo-code .code=${'<custom-toggle-button togglers="[&quot;check_box&quot;,&quot;check_box_outline_blank&quot;]"></custom-toggle-button>'}></demo-code></div>
               </div>
             </div>
           </section>
@@ -653,20 +671,10 @@ export class DemoShell extends LiteElement {
           <section class="panel" route="buttons">
             <div class="surface stack">
               <h2>Buttons</h2>
-              <div class="cluster">
-                <custom-button type="text" label="Text"></custom-button>
-                <custom-button type="filled" label="Filled"></custom-button>
-                <custom-button type="elevated" label="Elevated"></custom-button>
-                <custom-button type="outlined" label="Outlined"></custom-button>
-                <custom-button type="tonal" label="Tonal"></custom-button>
-                <custom-button type="tertiary" label="Tertiary"></custom-button>
-              </div>
-              <div class="cluster">
-                <custom-icon-button icon="menu"></custom-icon-button>
-                <custom-icon-button icon="menu" type="filled"></custom-icon-button>
-                <custom-icon-button icon="menu" type="elevated"></custom-icon-button>
-                <custom-icon-button icon="menu" type="outlined"></custom-icon-button>
-                <custom-icon-button icon="menu" type="tonal"></custom-icon-button>
+              <div class="showcase-grid">
+                <div class="example-card"><h3>Filled</h3><div class="example-preview"><custom-button type="filled" label="Continue"></custom-button></div><demo-code .code=${'<custom-button type="filled" label="Continue"></custom-button>'}></demo-code></div>
+                <div class="example-card"><h3>Outlined</h3><div class="example-preview"><custom-button type="outlined" label="Learn more"></custom-button></div><demo-code .code=${'<custom-button type="outlined" label="Learn more"></custom-button>'}></demo-code></div>
+                <div class="example-card"><h3>Icon buttons</h3><div class="example-preview cluster"><custom-icon-button icon="menu" type="filled"></custom-icon-button><custom-icon-button icon="settings" type="outlined"></custom-icon-button></div><demo-code .code=${'<custom-icon-button icon="settings" type="outlined"></custom-icon-button>'}></demo-code></div>
               </div>
             </div>
           </section>
@@ -707,6 +715,7 @@ export class DemoShell extends LiteElement {
                   </div>
                 </custom-card>
               </div>
+              <demo-code .code=${'<custom-card type="filled">\n  <span slot="headline">Filled card</span>\n  <p slot="supportingText">Supporting text</p>\n  <div slot="actions">…</div>\n</custom-card>'}></demo-code>
             </div>
           </section>
 
