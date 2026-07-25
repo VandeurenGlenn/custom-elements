@@ -1,4 +1,4 @@
-import { LiteElement, customElement, css, html } from '@vandeurenglenn/lite'
+import { LiteElement, customElement, css, html, listen } from '@vandeurenglenn/lite'
 import './../dropdown/dropdown.js'
 import { CustomSelector } from './../selector/selector.js'
 import './../selector/selector.js'
@@ -21,16 +21,9 @@ export class CustomMenu extends LiteElement {
     this.selector.select(selected)
   }
 
-  #onselected = ({ detail }: CustomEvent) => {
+  @listen('selected', { target: 'custom-selector' })
+  onSelected({ detail }: CustomEvent): void {
     this.dispatchEvent(new CustomEvent('selected', { detail }))
-  }
-
-  firstRender(): void {
-    this.selector.addEventListener('selected', this.#onselected)
-  }
-
-  disconnectedCallback() {
-    this.selector.removeEventListener('selected', this.#onselected)
   }
 
   static styles = [

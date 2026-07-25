@@ -1,4 +1,4 @@
-import { customElement, LiteElement, html, css, property } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, property, listen } from '@vandeurenglenn/lite'
 import '@vandeurenglenn/flex-elements/it.js'
 import '@vandeurenglenn/flex-elements/row.js'
 import style from '@vandeurenglenn/custom-shared-styles/top-app-bar.css'
@@ -14,10 +14,9 @@ export class CustomTopAppBar extends LiteElement {
 
   static styles = [style as CSSStyleSheet]
 
-  connectedCallback(): void {
-    document.addEventListener('custom-scroll', ({ detail }: CustomEvent) => {
-      this.scrolling = detail.scrolling
-    })
+  @listen('custom-scroll', { target: 'document' })
+  onCustomScroll({ detail }: CustomEvent<{ scrolling: boolean }>): void {
+    this.scrolling = detail.scrolling
   }
 
   render() {

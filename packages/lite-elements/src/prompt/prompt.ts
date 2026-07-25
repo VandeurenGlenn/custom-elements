@@ -1,4 +1,4 @@
-import { LiteElement, css, html, property } from '@vandeurenglenn/lite'
+import { LiteElement, css, customElement, html, property } from '@vandeurenglenn/lite'
 // import './../dialog/dialog'
 
 globalThis.customPrompt = (promptTitle: string) => {
@@ -6,21 +6,21 @@ globalThis.customPrompt = (promptTitle: string) => {
   dialog.promptTitle = promptTitle
   document.body.appendChild(dialog)
   return new Promise<string>((resolve) => {
-    dialog.addEventListener('close', ({ detail }: CustomEvent) => {
-      dialog.remove()
-      resolve(detail)
-    })
+    dialog.addEventListener(
+      'close',
+      ({ detail }: CustomEvent) => {
+        dialog.remove()
+        resolve(detail)
+      },
+      { once: true }
+    )
   })
 }
 
+@customElement('custom-prompt')
 export class CustomPrompt extends LiteElement {
   @property({ type: String })
   accessor promptTitle: string = 'Prompt Title'
-
-  constructor(promptTitle: string) {
-    super()
-    this.setAttribute('prompt-title', promptTitle)
-  }
 
   cancel = () => this.dispatchEvent(new CustomEvent('close', { detail: undefined }))
   ok = () => this.dispatchEvent(new CustomEvent('close', { detail: this.shadowRoot.querySelector('input').value }))

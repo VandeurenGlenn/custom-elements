@@ -1,4 +1,4 @@
-import { customElement, LiteElement, css, html, property, query } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, css, html, property, query, listen } from '@vandeurenglenn/lite'
 
 @customElement('text-field')
 export class TextField extends LiteElement {
@@ -14,19 +14,21 @@ export class TextField extends LiteElement {
   @property({ type: Boolean, reflect: true, attribute: 'has-trailing-icon' })
   accessor hasTrailingIcon
 
-  #leadingIconSlotChange = () => {
+  @listen('slotchange', { target: 'slot[name="leading-icon"]' })
+  onLeadingIconSlotChange(): void {
     if (this.leadingIconSlot.assignedElements.length > 0) this.hasLeadingIcon = true
     else this.hasLeadingIcon = false
   }
 
-  #trailingIconSlotChange = () => {
+  @listen('slotchange', { target: 'slot[name="trailing-icon"]' })
+  onTrailingIconSlotChange(): void {
     if (this.trailingIconSlot.assignedElements.length > 0) this.hasTrailingIcon = true
     else this.hasTrailingIcon = false
   }
 
-  connectedCallback(): void {
-    this.leadingIconSlot.addEventListener('slotchange', this.#leadingIconSlotChange)
-    this.trailingIconSlot.addEventListener('slotchange', this.#trailingIconSlotChange)
+  firstRender(): void {
+    this.onLeadingIconSlotChange()
+    this.onTrailingIconSlotChange()
   }
 
   static styles = [

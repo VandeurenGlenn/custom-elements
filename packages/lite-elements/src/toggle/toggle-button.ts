@@ -1,4 +1,4 @@
-import { customElement, LiteElement, css, html, property, query } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, property, listen } from '@vandeurenglenn/lite'
 import '../button/button.js'
 import './toggle.js'
 
@@ -14,16 +14,9 @@ export class CustomToggleButton extends LiteElement {
     return this.shadowRoot.querySelector('custom-toggle')
   }
 
-  private _click = () => {
+  @listen('click')
+  onClick() {
     this._toggle.next()
-  }
-
-  connectedCallback() {
-    this.addEventListener('click', this._click)
-  }
-
-  disconnectedCallback() {
-    this.removeEventListener('click', this._click)
   }
 
   private _onactive = (event: CustomEvent) => {

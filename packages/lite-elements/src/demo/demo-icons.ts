@@ -22,6 +22,16 @@ export class DemoIcons extends LiteElement {
         <span name="more_vert">@symbol-more_vert</span>
         <span name="close">@symbol-close</span>
         <span name="check_box_outline_blank">@symbol-check_box_outline_blank</span>
+        <span name="widgets">@symbol-widgets</span>
+        <span name="explore">@symbol-explore</span>
+        <span name="schedule">@symbol-schedule</span>
+        <span name="light_mode">@symbol-light_mode</span>
+        <span name="dark_mode">@symbol-dark_mode</span>
+        <span name="palette">@symbol-palette</span>
+        <span name="view_quilt">@symbol-view_quilt</span>
+        <span name="dashboard">@symbol-dashboard</span>
+        <span name="analytics">@symbol-analytics</span>
+        <span name="settings">@symbol-settings</span>
       </template>
     </custom-icon-set>`
   }

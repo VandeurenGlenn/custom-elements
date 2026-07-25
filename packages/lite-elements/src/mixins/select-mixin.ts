@@ -1,23 +1,16 @@
-import { LiteElement } from '@vandeurenglenn/lite'
+import { LiteElement, listen } from '@vandeurenglenn/lite'
 
 export class SelectBase extends LiteElement {
   #selected!: string | number | HTMLElement | string[] | HTMLElement[]
   currentSelected?: HTMLElement
-  #slot?: HTMLSlotElement
-  #slotchange = () => this.#requestSelectedUpdate()
+  @listen('slotchange', { target: 'slot' })
+  onSlotChange(): void {
+    this.#requestSelectedUpdate()
+  }
 
   firstRender(): void {
     super.firstRender?.()
-    this.#attachSlotChangeListener()
     this.selected = this.defaultSelected
-  }
-
-  disconnectedCallback(): void {
-    super.disconnectedCallback && super.disconnectedCallback()
-    if (this.#slot) {
-      this.#slot.removeEventListener('slotchange', this.#slotchange)
-      this.#slot = undefined
-    }
   }
 
   get multi() {
@@ -43,14 +36,6 @@ export class SelectBase extends LiteElement {
 
   get slotted(): HTMLSlotElement | this {
     return this.shadowRoot?.querySelector('slot') || this
-  }
-
-  #attachSlotChangeListener() {
-    const slot = this.shadowRoot?.querySelector('slot') as HTMLSlotElement | null
-    if (!slot || slot === this.#slot) return
-    this.#slot?.removeEventListener('slotchange', this.#slotchange)
-    this.#slot = slot
-    this.#slot.addEventListener('slotchange', this.#slotchange)
   }
 
   get #assignedNodes(): HTMLElement[] {
@@ -81,6 +66,7 @@ export class SelectBase extends LiteElement {
   }
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+    super.attributeChangedCallback(name, oldValue, newValue)
     if (oldValue !== newValue) {
       // check if value is number
       if (newValue !== null && !isNaN(Number(newValue))) {

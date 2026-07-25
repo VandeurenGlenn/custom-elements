@@ -1,14 +1,12 @@
-import { css, html } from '@vandeurenglenn/lite'
+import { css, html, listen } from '@vandeurenglenn/lite'
 import { SelectBase } from '../mixins/select-mixin.js'
 
 /**
  * @extends HTMLElement
  */
 export class CustomPages extends SelectBase {
-  async connectedCallback() {
-    super.connectedCallback && (await super.connectedCallback())
-    this.slotchange = this.slotchange.bind(this)
-    this.shadowRoot.querySelector('slot').addEventListener('slotchange', this.slotchange)
+  firstRender(): void {
+    super.firstRender()
     this.slotchange()
     this.selected = this.defaultSelected
   }
@@ -20,6 +18,7 @@ export class CustomPages extends SelectBase {
   /**
    * set animation class when slot changes
    */
+  @listen('slotchange', { target: 'slot' })
   slotchange() {
     let call = 0
     for (const child of this.slotted.assignedNodes()) {

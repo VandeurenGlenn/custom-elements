@@ -29,8 +29,7 @@ export class CustomIconSet extends LiteElement {
     return this.getAttribute('set-name') || 'icons'
   }
 
-  connectedCallback() {
-    globalThis.pubsub.subscribe(`custom-icon-set-${this.setName}-connected`, () => {})
+  firstRender(): void {
     globalThis.pubsub.publish(`custom-icon-set-${this.setName}-connected`, this)
   }
 }

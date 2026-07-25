@@ -1,4 +1,4 @@
-import { customElement, LiteElement, html, property } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, property, listen } from '@vandeurenglenn/lite'
 import '../elevation/elevation.js'
 import style from './styles/button.css.js'
 
@@ -19,11 +19,7 @@ export class CustomButton extends LiteElement {
   static styles = [style]
 
   firstRender(): void {
-    const slots = Array.from(this.shadowRoot.querySelectorAll('slot'))
-    for (const slot of slots) {
-      slot.addEventListener('slotchange', () => this.#slotchange(slot))
-    }
-    if (slots?.length > 0) for (const slot of slots) this.#slotchange(slot)
+    for (const slot of this.shadowRoot.querySelectorAll('slot')) this.#updateSlot(slot)
   }
 
   onChange(propertyKey, value) {
@@ -33,7 +29,12 @@ export class CustomButton extends LiteElement {
     }
   }
 
-  #slotchange = (slot) => {
+  @listen('slotchange', { target: 'slot' })
+  onSlotChange(event: Event): void {
+    this.#updateSlot(event.target as HTMLSlotElement)
+  }
+
+  #updateSlot(slot: HTMLSlotElement) {
     if (slot.getAttribute('name') === 'icon') {
       this.hasIcon = Array.from(slot?.assignedNodes() || []).length !== 0
     }
