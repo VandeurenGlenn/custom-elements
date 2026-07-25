@@ -446,6 +446,14 @@
       "import": "./exports/text-field.js",
       "types": "./exports/text-field/text-field.d.ts"
     },
+    "./theme-editor": {
+      "import": "./exports/theme-editor.js",
+      "types": "./exports/theme/theme-editor.d.ts"
+    },
+    "./theme-editor.js": {
+      "import": "./exports/theme-editor.js",
+      "types": "./exports/theme/theme-editor.d.ts"
+    },
     "./theme": {
       "import": "./exports/theme.js",
       "types": "./exports/theme/theme.d.ts"

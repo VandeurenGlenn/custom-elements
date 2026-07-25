@@ -3,7 +3,7 @@ export default css`
   :host {
     --custom-button-border-radius: var(--md-sys-shape-corner-large);
     --custom-button-font-family: var(--md-sys-typescale-label-large-font-family);
-    color: var(--custom-button-color, --md-sys-color-on-background);
+    color: var(--custom-button-color, var(--md-sys-color-on-background));
     display: flex;
     height: 40px;
     border-radius: var(--custom-button-border-radius);
@@ -143,6 +143,12 @@ export default css`
   }
   .label {
     font-size: inherit;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
   }
 
   ::slotted(*) {
