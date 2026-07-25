@@ -23,10 +23,7 @@ export class CustomButton extends LiteElement {
   }
 
   onChange(propertyKey, value) {
-    if (propertyKey === 'label') {
-      if (value) this.hasLabel = true
-      else this.hasLabel = false
-    }
+    if (propertyKey === 'label') this.hasLabel = Boolean(value) || this.#hasSlottedLabel()
   }
 
   @listen('slotchange', { target: 'slot' })
@@ -37,15 +34,22 @@ export class CustomButton extends LiteElement {
   #updateSlot(slot: HTMLSlotElement) {
     if (slot.getAttribute('name') === 'icon') {
       this.hasIcon = Array.from(slot?.assignedNodes() || []).length !== 0
+    } else {
+      this.hasLabel = Boolean(this.label) || this.#hasSlottedLabel()
     }
+  }
+
+  #hasSlottedLabel(): boolean {
+    const slot = this.shadowRoot?.querySelector('slot:not([name])') as HTMLSlotElement | null
+    return Boolean(slot?.assignedNodes().some((node) => node.textContent?.trim()))
   }
 
   render() {
     return html`
-      <button label=${this.label}>
+      <button type="button" aria-label=${this.label || ''}>
         <custom-elevation></custom-elevation>
         <slot name="icon"></slot>
-        <span class="label">${this.label}</span>
+        <span class="label">${this.label || html`<slot></slot>`}</span>
         <span class="hover"></span>
       </button>
     `

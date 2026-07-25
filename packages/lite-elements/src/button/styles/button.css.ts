@@ -112,8 +112,8 @@ export default css`
   }
 
   :host([has-label]) .label {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -130,8 +130,8 @@ export default css`
 
   :host([has-icon][has-label]) .label {
     padding-left: 8px;
-    padding-right: 24px;
-    text-align: end;
+    padding-right: 16px;
+    text-align: center;
   }
   :host([has-icon][has-label]) slot[name='icon']::slotted(*) {
     padding-left: 16px;
