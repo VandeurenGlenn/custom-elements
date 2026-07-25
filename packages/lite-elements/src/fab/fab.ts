@@ -3,7 +3,7 @@ import '../elevation/elevation.js'
 
 @customElement('custom-fab')
 export class CustomButton extends LiteElement {
-  @property({ attribute: 'type', reflect: true })
+  @property({ type: String, attribute: 'type', reflect: true })
   accessor type: 'normal' | 'extended' = 'normal'
 
   static styles = [

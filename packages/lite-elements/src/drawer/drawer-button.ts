@@ -6,7 +6,7 @@ export class CustomDrawerButton extends LiteElement {
   @property({ type: Boolean, reflect: true, attribute: 'drawer-open' })
   accessor drawerOpen: boolean
 
-  @property()
+  @property({ type: String })
   accessor id: string
 
   @property({ type: String, reflect: true }) accessor label: string = 'menu'

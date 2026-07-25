@@ -3,7 +3,7 @@ import { LiteElement, css, customElement, html, property } from '@vandeurenglenn
 @customElement('custom-upload-file')
 export class CustomUploadFile extends LiteElement {
   @property({ type: Boolean })
-  accessor multiple
+  accessor multiple: boolean
 
   static get styles() {
     return [
