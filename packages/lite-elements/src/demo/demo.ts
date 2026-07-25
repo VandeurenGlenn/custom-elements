@@ -91,6 +91,26 @@ export class DemoShell extends LiteElement {
     await (globalThis as typeof globalThis & { customPrompt?: (title: string) => Promise<string> }).customPrompt?.('Try a prompt')
   }
 
+  @listen('click', { target: '.theme-preset' })
+  onThemePreset(event: Event): void {
+    const preset = (event.target as HTMLElement).closest<HTMLElement>('.theme-preset')?.dataset.theme
+    if (preset) this.#applyTheme(preset)
+  }
+
+  @listen('input', { target: '#theme-accent' })
+  onAccentInput(event: Event): void {
+    this.#applyTheme((event.target as HTMLInputElement).value)
+  }
+
+  #applyTheme(accent: string): void {
+    const root = document.documentElement
+    root.style.setProperty('--md-sys-color-primary', accent)
+    root.style.setProperty('--md-sys-color-primary-container', `color-mix(in srgb, ${accent} 32%, var(--md-sys-color-surface-container-high))`)
+    root.style.setProperty('--md-sys-color-on-primary', '#ffffff')
+    root.style.setProperty('--md-sys-color-on-primary-container', '#ffffff')
+    root.style.setProperty('--demo-accent', accent)
+  }
+
   static styles = [
     css`
       :host {
@@ -522,6 +542,63 @@ export class DemoShell extends LiteElement {
         font: 0.78rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
       }
 
+      .theme-presets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .theme-preset,
+      .theme-color {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 1px solid var(--demo-line);
+        border-radius: 999px;
+        background: var(--md-sys-color-surface-container);
+        color: var(--md-sys-color-on-surface);
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .theme-preset span {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+      }
+
+      .theme-color input {
+        width: 28px;
+        height: 22px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+
+      .theme-preview {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 24px;
+        border-radius: 24px;
+        background: color-mix(in srgb, var(--demo-accent, var(--md-sys-color-primary)) 24%, var(--md-sys-color-surface-container-high));
+      }
+
+      .theme-preview div:first-child {
+        display: grid;
+        gap: 6px;
+      }
+
+      .theme-preview strong {
+        font: 600 1.35rem/1.1 'Space Grotesk', sans-serif;
+      }
+
+      .theme-preview span {
+        color: var(--md-sys-color-on-surface-variant);
+      }
+
       @media (max-width: 1100px) {
         .hero {
           grid-template-columns: 1fr;
@@ -586,6 +663,7 @@ export class DemoShell extends LiteElement {
             <custom-drawer-item route="dialogs">Dialogs</custom-drawer-item>
             <custom-drawer-item route="foundations">Foundations</custom-drawer-item>
             <custom-drawer-item route="feedback">Feedback</custom-drawer-item>
+            <custom-drawer-item route="theme-lab">Theme lab</custom-drawer-item>
             <custom-drawer-item route="time-picker">Time picker</custom-drawer-item>
           </custom-selector>
 
@@ -863,6 +941,25 @@ export class DemoShell extends LiteElement {
                 <p class="picker-state">Camera and library flows are available as a composable upload surface.</p>
                 <custom-upload-image></custom-upload-image>
               </div>
+            </div>
+          </section>
+
+          <section class="panel" route="theme-lab">
+            <div class="surface stack theme-lab">
+              <h2>Theme lab</h2>
+              <p class="picker-state">Try a preset or create an accent color. The playground updates live through CSS custom properties.</p>
+              <div class="theme-presets">
+                <button class="theme-preset" data-theme="#a78bfa"><span style="background:#a78bfa"></span>Violet</button>
+                <button class="theme-preset" data-theme="#65a30d"><span style="background:#65a30d"></span>Lime</button>
+                <button class="theme-preset" data-theme="#06b6d4"><span style="background:#06b6d4"></span>Cyan</button>
+                <button class="theme-preset" data-theme="#f97316"><span style="background:#f97316"></span>Sunset</button>
+                <label class="theme-color"><span>Custom accent</span><input id="theme-accent" type="color" value="#a78bfa" /></label>
+              </div>
+              <div class="theme-preview">
+                <div><small>Live preview</small><strong>One token changes the mood</strong><span>Use the same token system in your own elements.</span></div>
+                <div class="cluster"><custom-button type="filled" label="Primary action"></custom-button><custom-button type="outlined" label="Secondary"></custom-button></div>
+              </div>
+              <demo-code .code=${':root {\n  --md-sys-color-primary: #a78bfa;\n  --md-sys-color-primary-container: ...;\n}'}></demo-code>
             </div>
           </section>
 
