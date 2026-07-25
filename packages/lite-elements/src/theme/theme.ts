@@ -8,6 +8,17 @@ declare type RelType = 'stylesheet' | 'preconnect'
 export class CustomTheme extends LiteElement {
   #mediaListener
 
+  constructor() {
+    super()
+    this.addConnectionEffect(() => {
+      this.#setupMediaListener()
+      return () => {
+        if (this.#mediaListener) this.#mediaListener.onchange = null
+        this.#mediaListener = undefined
+      }
+    })
+  }
+
   @property({ type: Boolean, attribute: 'load-font' })
   accessor loadFont: boolean = true
 
@@ -43,19 +54,20 @@ export class CustomTheme extends LiteElement {
   }
 
   onChange = (propertyKey: string, value: unknown): void => {
-    if (propertyKey === 'mobileTrigger' && typeof value === 'string') {
+    if (propertyKey === 'mobileTrigger' && typeof value === 'string' && this.isConnected) {
       this.#setupMediaListener()
     }
   }
 
   #setupMediaListener() {
+    if (this.#mediaListener) this.#mediaListener.onchange = null
     this.#mediaListener = matchMedia(this.mobileTrigger)
 
     this.#mediaListener.onchange = this.#mediaQueryChange
     this.#mediaQueryChange({ matches: this.#mediaListener.matches })
   }
 
-  connectedCallback() {
+  firstRender(): void {
     // this.load('./themes/default/tokens.js')
     this.load('./themes/default/theme.css')
     const style = document.createElement('style')

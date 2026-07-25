@@ -1,14 +1,17 @@
 import { css, customElement, html, LiteElement } from '@vandeurenglenn/lite'
 @customElement('custom-summary-mirror')
 export class CustomSummaryMirror extends LiteElement {
-  connectedCallback() {
-    const match = window.matchMedia('(min-width: 1200px)')
-    this._matches(match)
-    this._matches = this._matches.bind(this)
-    match.onchange = this._matches
+  constructor() {
+    super()
+    this.addConnectionEffect(() => {
+      const mediaQuery = window.matchMedia('(min-width: 1200px)')
+      mediaQuery.addEventListener('change', this._matches)
+      this._matches(mediaQuery)
+      return () => mediaQuery.removeEventListener('change', this._matches)
+    })
   }
 
-  _matches({ matches }) {
+  _matches = ({ matches }: MediaQueryList | MediaQueryListEvent) => {
     const left = this.querySelector('[slot="left"]')
     const right = this.querySelector('[slot="right"]')
     if (matches) {
@@ -24,7 +27,7 @@ export class CustomSummaryMirror extends LiteElement {
     }
   }
 
-  get template() {
+  render() {
     return html`
       <style>
         :host {

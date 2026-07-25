@@ -1,4 +1,4 @@
-import { customElement, LiteElement, html, query, property } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, query, property, listen } from '@vandeurenglenn/lite'
 
 import './../pane/pane.js'
 
@@ -19,18 +19,16 @@ export class CustomSupportingPane extends LiteElement {
   @query('.support')
   accessor supporting
 
-  onPaneClose({ detail }: CustomEvent) {
+  @listen('custom-pane-close', { target: 'document' })
+  onPaneClose({ detail }: CustomEvent<string>) {
     if (this.id === detail) {
       this.open = false
     }
   }
 
-  connectedCallback(): void {
-    document.addEventListener('custom-pane-close', this.onPaneClose.bind(this))
-
-    document.addEventListener('custom-pane-open', ({ detail }: CustomEvent) => {
-      if (this.id === detail) this.open = true
-    })
+  @listen('custom-pane-open', { target: 'document' })
+  onPaneOpen({ detail }: CustomEvent<string>) {
+    if (this.id === detail) this.open = true
   }
 
   render() {

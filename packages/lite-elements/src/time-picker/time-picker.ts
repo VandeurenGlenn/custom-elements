@@ -44,7 +44,7 @@ export class CustomTimePicker extends LiteElement {
     }
   }
 
-  #syncDraftFromValue = (timeValue: string) => {
+  #syncDraftFromValue(timeValue: string): void {
     const parsed = this.#parseValue(timeValue)
     if (!parsed) return
     this.draftHour24 = parsed.hour24
@@ -52,7 +52,7 @@ export class CustomTimePicker extends LiteElement {
     this.draftMeridiem = parsed.meridiem
   }
 
-  #parseValue = (timeValue: string): { hour24: number; minute: number; meridiem: Meridiem } | undefined => {
+  #parseValue(timeValue: string): { hour24: number; minute: number; meridiem: Meridiem } | undefined {
     const match = /^(\d{1,2}):(\d{2})$/.exec(timeValue.trim())
     if (!match) return undefined
 
@@ -69,25 +69,27 @@ export class CustomTimePicker extends LiteElement {
     }
   }
 
-  #twoDigits = (value: number): string => `${value}`.padStart(2, '0')
+  #twoDigits(value: number): string {
+    return `${value}`.padStart(2, '0')
+  }
 
-  #toDisplayHour = (hour24: number): number => {
+  #toDisplayHour(hour24: number): number {
     if (this.use24Hour) return hour24
     const hour12 = hour24 % 12
     return hour12 === 0 ? 12 : hour12
   }
 
-  #toHour24From12 = (hour12: number, meridiem: Meridiem): number => {
+  #toHour24From12(hour12: number, meridiem: Meridiem): number {
     if (hour12 === 12) return meridiem === 'AM' ? 0 : 12
     return meridiem === 'PM' ? hour12 + 12 : hour12
   }
 
-  #hourOptions = (): number[] => {
+  #hourOptions(): number[] {
     if (this.use24Hour) return Array.from({ length: 24 }, (_, index) => index)
     return Array.from({ length: 12 }, (_, index) => index + 1)
   }
 
-  #minuteOptions = (): number[] => {
+  #minuteOptions(): number[] {
     const step = Math.max(1, Math.min(30, this.minuteStep || 5))
     const result: number[] = []
     for (let minute = 0; minute < 60; minute += step) result.push(minute)

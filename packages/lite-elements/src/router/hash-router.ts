@@ -1,4 +1,11 @@
-import { HashRouterConstructorOptions, RouteAble, RoutesOption } from './types.js'
+import {
+  HashRouterConstructorOptions,
+  RouteAble,
+  RouteInfo,
+  RouteParams,
+  RouteSelection,
+  RoutesOption
+} from './types.js'
 
 export default class HashRouter {
   host: RouteAble
@@ -8,89 +15,97 @@ export default class HashRouter {
     this.host = host
     this.routes = routes
 
-    globalThis.onhashchange = this.#onhashchange
+    globalThis.addEventListener('hashchange', this.#onHashChange)
 
     if (!location.hash && fallback?.route) {
       location.hash = HashRouter.bang(
         fallback.params ? `${fallback.route}?${HashRouter.queryIt(fallback.params)}` : fallback.route
       )
-    } else this.#onhashchange()
+    } else void this.#onHashChange()
   }
 
-  static queryIt(params) {
-    return Object.entries(params)
-      .map(([key, value]) => `${key}=${value}`)
-      .join('&')
+  destroy(): void {
+    globalThis.removeEventListener('hashchange', this.#onHashChange)
   }
 
-  static dequeryIt(query) {
-    const params = {}
-    if (!query) return params
-    for (const item of query.split('&')) {
-      const [key, value] = item.split('=')
-      params[key] = value
-    }
-    return
+  static queryIt(params: RouteParams): string {
+    return new URLSearchParams(params).toString()
+  }
+
+  static dequeryIt(query = ''): RouteParams {
+    return Object.fromEntries(new URLSearchParams(query))
   }
 
   static bang(route: string) {
     return `#!/${route}`
   }
 
-  static debang(route: string) {
-    return route.split('#!/')[1]
+  static debang(route: string): string {
+    return route.startsWith('#!/') ? route.slice(3) : route.replace(/^#/, '')
   }
 
-  static parseHash(hash) {
+  static parseHash(hash: string): RouteSelection {
     const afterBang = HashRouter.debang(hash)
-    const splitted = afterBang.split('?')
-    const routes = splitted[0].split('/')
+    const [url = '', query = ''] = afterBang.split('?')
+    const routes = url.split('/').filter(Boolean)
     const route = routes[0]
-    const subRoutes = routes.slice(1, -1)
-    const params = HashRouter.dequeryIt(splitted[1])
+    const subRoutes = routes.slice(1)
+    const params = HashRouter.dequeryIt(query)
 
-    return { route, routes, subRoutes, params, url: splitted[0] }
+    return { route, routes, subRoutes, params, url }
   }
 
-  #handleSubRoutes = async (routing, routeInfo) => {
+  static async #loadRoute(route: string, routeInfo?: RouteInfo): Promise<void> {
+    const tagName = routeInfo?.tagName ?? route
+    const importPath = routeInfo?.import ?? route
+    if (!tagName || customElements.get(tagName)) return
+    await import(`./${importPath}.js`)
+  }
+
+  #handleSubRoutes = async (routing: RouteSelection, routeInfo?: RouteInfo): Promise<void> => {
     const { params, subRoutes } = routing
 
-    let selected = this.host.pages.querySelector('.custom-selected') as RouteAble
+    let selected = (this.host.pages?.querySelector('.custom-selected') as RouteAble | null) ?? null
+    if (!selected) return
 
-    if (routing.subRoutes?.length > 0) {
-      for (const route of routing.subRoutes) {
-        const subRouteInfo = routeInfo.subRoutes[route]
-        if (subRouteInfo) {
-          if (!customElements.get(`./${subRouteInfo.tagName}`)) await import(`./${subRouteInfo.import}.js`)
-        } else {
-          if (!customElements.get(`./${route}`)) await import(`./${route}.js`)
-          console.warn(`handling undefined subroute for ${routing.route} falling back to default behavior.`)
-        }
-        selected.select({ route, params, subRoutes })
-        selected = selected.pages.querySelector('.custom-selected')
+    for (const route of subRoutes) {
+      const subRouteInfo = routeInfo?.subRoutes?.[route]
+      if (!subRouteInfo) {
+        console.warn(`Undefined subroute "${route}" for "${routing.route}"; using the conventional module path.`)
       }
+      await HashRouter.#loadRoute(route, subRouteInfo)
+      selected.select({ route, params, subRoutes })
+      selected = (selected.pages?.querySelector('.custom-selected') as RouteAble | null) ?? null
+      if (!selected) break
     }
 
-    if (params) {
+    if (selected) {
       for (const [key, value] of Object.entries(params)) {
         selected[key] = value
       }
     }
   }
 
-  #onhashchange = async () => {
+  #onHashChange = async (): Promise<void> => {
     const routing = HashRouter.parseHash(location.hash)
-    const routeInfo = this.routes[routing.url]
-    // todo allow to set loading
-    if (routeInfo) {
-      if (!customElements.get(`./${routeInfo.tagName}`)) await import(`./${routeInfo.import}.js`)
-    } else {
-      if (!customElements.get(`./${routing.route}`)) await import(`./${routing.route}.js`)
-    }
-    this.host.select(routing)
-    // when a custom-pages element (or sortlike) is defined loop trough subroutes and make devlife easier
-    if (this.host.pages) {
-      this.#handleSubRoutes(routing, routeInfo)
+    if (!routing.route) return
+
+    const routeInfo = this.routes[routing.url] ?? this.routes[routing.route]
+
+    try {
+      await HashRouter.#loadRoute(routing.route, routeInfo)
+      this.host.select(routing)
+
+      if (this.host.pages) {
+        await this.#handleSubRoutes(routing, routeInfo)
+      }
+    } catch (error) {
+      document.dispatchEvent(
+        new CustomEvent('route-error', {
+          detail: { error, routing, routeInfo }
+        })
+      )
+      return
     }
 
     document.dispatchEvent(

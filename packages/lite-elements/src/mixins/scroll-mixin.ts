@@ -1,5 +1,16 @@
+import { listen } from '@vandeurenglenn/lite'
+
 export const ScrollMixin = (Base) =>
   class ScrollMixin extends Base {
+    scrollTimeout = 100
+
+    constructor(...args) {
+      super(...args)
+      this.addConnectionEffect(() => () => {
+        if (this.isScrolling) clearTimeout(this.isScrolling)
+      })
+    }
+
     set scrolling(value) {
       if (value) this.setAttribute('scrolling', '')
       else this.removeAttribute('scrolling')
@@ -9,9 +20,8 @@ export const ScrollMixin = (Base) =>
       return this.hasAttribute('scrolling')
     }
 
-    scrollElement
-
-    #onscroll = () => {
+    @listen('scroll')
+    onScroll() {
       if (this.isScrolling) clearTimeout(this.isScrolling)
       else document.dispatchEvent(new CustomEvent('custom-scroll', { detail: { scrolling: this.scrollTop !== 0 } }))
       this.isScrolling = setTimeout(() => {
@@ -21,15 +31,4 @@ export const ScrollMixin = (Base) =>
       }, this.scrollTimeout)
     }
 
-    firstRender() {
-      super.firstRender?.()
-      this.scrollElement = this.scrollElement ? this.shadowRoot.querySelector(this.scrollElement) : this
-      this.scrollTimeout = 100
-      this.scrollElement.addEventListener('scroll', this.#onscroll)
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback && super.disconnectedCallback()
-      this.scrollElement.removeEventListener('scroll', this.#onscroll)
-    }
   }

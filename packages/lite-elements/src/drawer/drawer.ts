@@ -1,4 +1,4 @@
-import { customElement, LiteElement, html, property } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, property, listen } from '@vandeurenglenn/lite'
 import '../elevation/elevation.js'
 import '../button/button.js'
 import '../pane/pane.js'
@@ -21,14 +21,14 @@ export class CustomDrawer extends LiteElement {
   @property({ type: String })
   accessor id: string
 
-  firstRender(): void {
-    document.addEventListener('custom-pane-close', ({ detail }: CustomEvent) => {
-      if (this.id === detail) this.open = false
-    })
+  @listen('custom-pane-close', { target: 'document' })
+  onPaneClose({ detail }: CustomEvent<string>): void {
+    if (this.id === detail) this.open = false
+  }
 
-    document.addEventListener('custom-pane-open', ({ detail }: CustomEvent) => {
-      if (this.id === detail) this.open = true
-    })
+  @listen('custom-pane-open', { target: 'document' })
+  onPaneOpen({ detail }: CustomEvent<string>): void {
+    if (this.id === detail) this.open = true
   }
 
   static styles = [style]

@@ -12,24 +12,30 @@ import './../tabs/tab.js'
 import './../selector/selector.js'
 import './../pages/pages.js'
 import { FileReaderMixin } from '../mixins/file-reader-mixin.js'
+import type { CustomDialog } from './../dialog/dialog.js'
+
+type UploadFields = Record<string, string>
+type UploadImage = { data: string | { name: string; data: string }[] | null; type: string | null }
+type LibraryImage = { firebaseKey: string; link: string }
+type SelectableElement = HTMLElement & { select(value: string): void }
 
 declare type actionResult = {
   action: string
-  fields: []
-  image?: { data: string | { name: string; data: string }[]; type: string }
+  fields: UploadFields
+  image: UploadImage
 }
 
 @customElement('custom-upload-image')
 export class CustomUploadImage extends FileReaderMixin(LiteElement) {
   deviceApi: DeviceApi = new DeviceApi()
   @query('custom-pages')
-  accessor pages
+  accessor pages!: SelectableElement
 
   @property({ type: Array, consumes: true })
-  accessor images
+  accessor images: LibraryImage[] = []
 
   @query('custom-tabs')
-  accessor selector
+  accessor selector!: SelectableElement
 
   @property({ type: Boolean, reflect: true })
   accessor open: boolean = false
@@ -41,7 +47,7 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
   accessor rearCameraDisabled: boolean = false
 
   @property({ type: Boolean, attribute: 'has-library' })
-  accessor hasLibrary: boolean
+  accessor hasLibrary: boolean = false
 
   static styles = [
     css`
@@ -140,16 +146,16 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
     `
   ]
 
-  get #dialog() {
-    return this.shadowRoot.querySelector('custom-dialog')
+  get #dialog(): CustomDialog {
+    return this.shadowRoot!.querySelector('custom-dialog') as CustomDialog
   }
 
-  get #cameraPreview() {
-    return this.shadowRoot.querySelector('.camera-preview')
+  get #cameraPreview(): HTMLVideoElement {
+    return this.shadowRoot!.querySelector('.camera-preview') as HTMLVideoElement
   }
 
   #cameraFacingMode = 'user'
-  #image: { data: string | { name: string; data: string }[]; type: string } = { data: null, type: null }
+  #image: UploadImage = { data: null, type: null }
 
   #takePhoto = async () => {
     // this._previewEl.stop();
@@ -159,68 +165,70 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
     // const fd = new FormData();
     // fd.append('image', blob);
 
-    this.#image.data = await globalThis.readAsDataURL(blob)
+    this.#image.data = (await this.readAsDataURL(blob)) as string
     this.#image.type = 'base64'
 
     const img = document.createElement('img')
     img.src = this.#image.data as string
-    this.shadowRoot.querySelector('flex-container').replaceChild(img.cloneNode(true), this.#cameraPreview)
+    this.shadowRoot!.querySelector('flex-container')?.replaceChild(img.cloneNode(true), this.#cameraPreview)
   }
 
-  #selectFile = ({}) => {
+  #selectFile = () => {
     const input = document.createElement('input')
     input.type = 'file'
     input.multiple = true
 
-    const onchange = async (event) => {
-      const files = await Promise.all(
-        Array.from(input.files).map(async (file) => {
-          const data = await this.readAsDataURL(file)
-          const item = document.createElement('md-list-item')
-          item.headline = file.name
-          item.setAttribute('noninteractive', '')
-          item.innerHTML = `
+    input.addEventListener(
+      'change',
+      async () => {
+        const selectedFiles = Array.from(input.files ?? [])
+        if (selectedFiles.length === 0) return
+
+        const files = await Promise.all(
+          selectedFiles.map(async (file) => {
+            const data = await this.readAsDataURL(file)
+            const item = document.createElement('md-list-item')
+            item.setAttribute('headline', file.name)
+            item.setAttribute('noninteractive', '')
+            item.innerHTML = `
           <img data-variant="icon" slot="start" src="${data}">
           <md-standard-icon-button slot="end"><custom-icon>delete</custom-icon></md-standard-icon-button>
         `
-          item.onclick = () => {
-            this.shadowRoot.querySelector('section[route="file"]').removeChild(item)
-          }
-          this.shadowRoot.querySelector('section[route="file"]').appendChild(item)
-          return { name: file.name, data }
-        })
-      )
+            item.addEventListener('click', () => item.remove(), { once: true })
+            this.shadowRoot?.querySelector('section[route="file"]')?.appendChild(item)
+            return { name: file.name, data }
+          })
+        )
 
-      this.#image.data = files as { name: string; data: string }[]
-      this.#image.type = 'base64[]'
-      input.removeEventListener('change', onchange)
-    }
-
-    input.addEventListener('change', onchange)
+        this.#image.data = files as { name: string; data: string }[]
+        this.#image.type = 'base64[]'
+      },
+      { once: true }
+    )
 
     input.click()
   }
 
-  onChange(propertyKey, value): void {
+  onChange(propertyKey: string, value: unknown): void {
     if (propertyKey === 'open' && value) {
       this.hasLibrary ? this.select('library') : this.select('url')
     }
   }
 
-  select(value) {
+  select(value: string): void {
     this.selector.select(value)
   }
 
-  #onSelected = async ({ detail }) => {
-    this.shadowRoot.querySelector('custom-pages').select(detail)
+  #onSelected = async ({ detail }: CustomEvent<string>) => {
+    this.pages.select(detail)
     if (detail === 'camera') {
       this.frontCameraDisabled = !(await this.deviceApi.hasFrontCam())
       this.rearCameraDisabled = !(await this.deviceApi.hasBackCam())
-      this.deviceApi.camera.preview(this.#cameraPreview, this.#cameraFacingMode)
+      await this.deviceApi.camera.preview(this.#cameraPreview, this.#cameraFacingMode)
     }
   }
 
-  #onlibclick = (event, hash) => {
+  #onlibclick = (hash: string) => {
     this.#image.data = hash
     this.#image.type = 'library'
   }
@@ -232,7 +240,7 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
   #addImageTemplate() {
     return html`
       <form id="form-content" method="dialog">
-        <custom-tabs attr-for-selected="route" @selected=${this.#onSelected.bind(this)}>
+        <custom-tabs attr-for-selected="route" @selected=${this.#onSelected}>
           ${this.hasLibrary
             ? html`
                 <custom-tab route="library">
@@ -265,7 +273,7 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
                     ${this.images.map(
                       (image) => html`
                         <img
-                          @click=${(event) => this.#onlibclick.call(this, event, image.firebaseKey)}
+                          @click=${() => this.#onlibclick(image.firebaseKey)}
                           src=${`${location.origin}/api/image?image=${image.link.replace('.png', 'b.png')}`}
                         />
                       `
@@ -316,7 +324,7 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
           </section>
 
           <section route="file">
-            <md-filled-tonal-button @click=${this.#selectFile.bind(this)}>
+            <md-filled-tonal-button @click=${this.#selectFile}>
               <custom-icon slot="icon">upload</custom-icon>
               select
             </md-filled-tonal-button>
@@ -333,44 +341,44 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
   }
 
   #onAction = (): Promise<actionResult> =>
-    new Promise((resolve, reject) => {
-      const action = (event) => {
-        const inputFields = Array.from(this.shadowRoot.querySelectorAll('[input-field]')) as MdFilledTextField[]
-        const fields = {}
+    new Promise((resolve) => {
+      this.#dialog.addEventListener(
+        'close',
+        ((event: Event) => {
+          const { detail: action } = event as CustomEvent<string>
+          const inputFields = Array.from(
+            this.shadowRoot!.querySelectorAll<HTMLElement & { label: string; value: string }>('[input-field]')
+          )
+          const fields: UploadFields = {}
 
-        for (const field of inputFields) {
-          fields[field.label] = field.value
-        }
+          for (const field of inputFields) {
+            fields[field.label] = field.value
+          }
 
-        if (!this.#image.type) {
-          const inputField = this.shadowRoot.querySelector('[input-field]') as HTMLInputElement
-          this.#image.type = inputField ? 'url' : undefined
-          this.#image.data = inputField?.value
-        }
+          if (!this.#image.type) {
+            const inputField = this.shadowRoot!.querySelector('[input-field]') as HTMLInputElement | null
+            this.#image.type = inputField ? 'url' : null
+            this.#image.data = inputField?.value ?? null
+          }
 
-        const image = {
-          type: this.#image.type,
-          data: Array.isArray(this.#image.data) ? [...this.#image.data] : this.#image.data
-        }
+          const image: UploadImage = {
+            type: this.#image.type,
+            data: Array.isArray(this.#image.data) ? [...this.#image.data] : this.#image.data
+          }
 
-        resolve({ action: event.returnValue, fields, image })
+          resolve({ action, fields, image })
 
-        // @ts-ignore
-        this.#dialog.removeEventListener('closed', action)
+          this.#image.data = null
+          this.#image.type = null
 
-        this.#image.data = null
-        this.#image.type = null
-
-        this.deviceApi.camera.close()
-        this.#dialog.close()
-        render(html``, this.#dialog)
-      }
-
-      // @ts-ignore
-      this.#dialog.addEventListener('closed', action)
+          this.deviceApi.camera.close()
+          render(html``, this.#dialog)
+        }) as EventListener,
+        { once: true }
+      )
     })
 
-  #busytemplate(title, description) {
+  #busytemplate(title: string, description?: string) {
     return html`
       <flex-row slot="title">
         <h5>${title}</h5>
@@ -390,7 +398,7 @@ export class CustomUploadImage extends FileReaderMixin(LiteElement) {
     return this.#onAction()
   }
 
-  async busy(title, description?) {
+  async busy(title: string, description?: string) {
     render(this.#busytemplate(title, description), this.#dialog)
     this.show()
   }

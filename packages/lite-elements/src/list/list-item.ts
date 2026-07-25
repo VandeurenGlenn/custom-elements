@@ -1,4 +1,4 @@
-import { customElement, LiteElement, css, html, property, query, assignedElements } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, css, html, property, query, assignedElements, listen } from '@vandeurenglenn/lite'
 @customElement('custom-list-item')
 export class CustomListItem extends LiteElement {
   @property({ type: String, reflect: true })
@@ -20,10 +20,11 @@ export class CustomListItem extends LiteElement {
   accessor startSlot
 
   firstRender() {
-    this.addEventListener('slotchange', this.#slotChange)
+    this.onStartSlotChange()
   }
 
-  #slotChange() {
+  @listen('slotchange', { target: 'slot[name="start"]' })
+  onStartSlotChange(): void {
     this.hasStart = this.assignedStartElements.length > 0
   }
   static styles = [

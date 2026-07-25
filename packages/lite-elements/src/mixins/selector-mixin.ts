@@ -1,27 +1,12 @@
 import { SelectBase } from './select-mixin.js'
+import { listen } from '@vandeurenglenn/lite'
 
 export class SelectorBase extends SelectBase {
-  constructor() {
-    super()
-  }
-
-  firstRender(): void {
-    super.firstRender?.()
-    this.slotted.addEventListener('click', this.#onClick.bind(this))
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback && super.disconnectedCallback()
-    this.slotted.removeEventListener('click', this.#onClick.bind(this))
-  }
-
-  #onClick(event: Event) {
+  @listen('click')
+  onClick(event: Event): void {
     const target = event.composedPath()[0] as HTMLElement
 
-    if (target.localName === this.localName) {
-      // was just a click in the host element so we don't need todo anything
-      return
-    }
+    if (target.localName === this.localName) return
 
     const selected = target.getAttribute(this.attrForSelected) || target
 
@@ -30,11 +15,10 @@ export class SelectorBase extends SelectBase {
       const index = selectedArray.indexOf(selected)
       if (index === -1) selectedArray.push(selected)
       else selectedArray.splice(index, 1)
-      // trigger observer
       this.selected = selectedArray
     } else this.selected = selected
 
-    this.dispatchEvent(new CustomEvent('selected', { detail: selected }))
+    this.dispatchEvent(new CustomEvent('selected', { detail: selected, bubbles: true, composed: true }))
   }
 }
 

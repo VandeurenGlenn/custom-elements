@@ -1,4 +1,5 @@
-import { customElement, LiteElement, html, css, query } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, css, listen, query } from '@vandeurenglenn/lite'
+import './../elements.js'
 
 type SelectableElement = HTMLElement & { select: (value: string) => void }
 type OpenableElement = HTMLElement & { open: boolean }
@@ -35,51 +36,60 @@ export class DemoShell extends LiteElement {
     localStorage.setItem('last-selected', route)
   }
 
-  #onSelectorSelected = ({ detail }: CustomEvent<string>) => {
+  @listen('selected', { target: 'custom-selector' })
+  onSelectorSelected({ detail }: CustomEvent<string>) {
     document.dispatchEvent(new CustomEvent('custom-scroll', { detail: { scrolling: false } }))
     this.pages.select(detail)
     localStorage.setItem('last-selected', detail)
   }
 
   firstRender() {
-    this.selector?.addEventListener('selected', this.#onSelectorSelected as EventListener)
-
     const lastSelected = localStorage.getItem('last-selected')
     if (lastSelected) this.#goToRoute(lastSelected)
+  }
 
-    this.shadowRoot?.querySelector('#jump-time-picker')?.addEventListener('click', () => this.#goToRoute('time-picker'))
-    this.shadowRoot?.querySelector('#jump-buttons')?.addEventListener('click', () => this.#goToRoute('buttons'))
-    this.shadowRoot?.querySelector('#jump-qa')?.addEventListener('click', () => this.#goToRoute('qa'))
+  @listen('click', { target: '#jump-time-picker' })
+  openTimePicker(): void {
+    this.#goToRoute('time-picker')
+  }
 
-    this.shadowRoot?.querySelector('#open-dialog')?.addEventListener('click', () => {
-      this.dialog.open = true
-    })
+  @listen('click', { target: '#jump-buttons' })
+  openButtons(): void {
+    this.#goToRoute('buttons')
+  }
 
-    this.shadowRoot?.querySelector('#open-fullscreen-dialog')?.addEventListener('click', () => {
-      this.fullscreenDialog.open = true
-    })
+  @listen('click', { target: '#jump-qa' })
+  openQa(): void {
+    this.#goToRoute('qa')
+  }
 
-    this.timePicker?.addEventListener('time-change', (({ detail }: CustomEvent<TimeChangeDetail>) => {
-      if (!this.timePickerOutput) return
-      this.timePickerOutput.textContent = `Selected: ${detail.value} (${detail.hour}:${String(detail.minute).padStart(2, '0')} ${detail.meridiem})`
-    }) as EventListener)
+  @listen('click', { target: '#open-dialog' })
+  openDialog(): void {
+    this.dialog.open = true
+  }
 
-    this.toggleHourModeButton?.addEventListener('click', () => {
-      if (!this.timePicker || !this.toggleHourModeButton) return
-      const uses24Hour = this.timePicker.hasAttribute('use-24-hour')
-      if (uses24Hour) {
-        this.timePicker.removeAttribute('use-24-hour')
-        this.toggleHourModeButton.label = 'Switch to 24h'
-      } else {
-        this.timePicker.setAttribute('use-24-hour', '')
-        this.toggleHourModeButton.label = 'Switch to 12h'
-      }
-    })
+  @listen('click', { target: '#open-fullscreen-dialog' })
+  openFullscreenDialog(): void {
+    this.fullscreenDialog.open = true
+  }
+
+  @listen('time-change', { target: '#demo-time-picker' })
+  onTimeChange({ detail }: CustomEvent<TimeChangeDetail>): void {
+    this.timePickerOutput.textContent = `Selected: ${detail.value} (${detail.hour}:${String(detail.minute).padStart(2, '0')} ${detail.meridiem})`
+  }
+
+  @listen('click', { target: '#toggle-12-24' })
+  toggleHourMode(): void {
+    const uses24Hour = this.timePicker.hasAttribute('use-24-hour')
+    this.timePicker.toggleAttribute('use-24-hour', !uses24Hour)
+    this.toggleHourModeButton.label = uses24Hour ? 'Switch to 24h' : 'Switch to 12h'
   }
 
   static styles = [
     css`
       :host {
+        --demo-line: color-mix(in srgb, var(--md-sys-color-outline-variant) 54%, transparent);
+        --demo-glass: color-mix(in srgb, var(--md-sys-color-surface-container-high) 82%, transparent);
         position: absolute;
         inset: 0;
         display: block;
@@ -88,14 +98,14 @@ export class DemoShell extends LiteElement {
         color: var(--md-sys-color-on-background);
         background:
           radial-gradient(
-            circle at 15% 10%,
-            color-mix(in srgb, var(--md-sys-color-primary-container) 46%, transparent),
-            transparent 36%
+            circle at 14% 8%,
+            color-mix(in srgb, var(--md-sys-color-primary) 24%, transparent),
+            transparent 30%
           ),
           radial-gradient(
-            circle at 85% 86%,
-            color-mix(in srgb, var(--md-sys-color-tertiary-container) 38%, transparent),
-            transparent 42%
+            circle at 88% 84%,
+            color-mix(in srgb, var(--md-sys-color-tertiary) 18%, transparent),
+            transparent 34%
           ),
           var(--md-sys-color-background);
       }
@@ -103,53 +113,91 @@ export class DemoShell extends LiteElement {
       custom-drawer-layout {
         position: absolute;
         inset: 0;
+        --custom-drawer-width: 292px;
       }
 
       .drawer-content {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
         box-sizing: border-box;
         height: 100%;
-        padding: 8px 12px 16px;
+        padding: 10px 14px 18px;
       }
 
       .drawer-hero {
+        position: relative;
+        overflow: hidden;
         margin: 8px 0 2px;
-        padding: 14px;
-        border-radius: var(--md-sys-shape-corner-large);
-        background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 86%, transparent);
-        border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 72%, transparent);
+        padding: 18px;
+        border-radius: 24px;
+        background:
+          linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--md-sys-color-primary-container) 76%, transparent),
+            color-mix(in srgb, var(--md-sys-color-tertiary-container) 58%, transparent)
+          );
+        border: 1px solid color-mix(in srgb, var(--md-sys-color-primary) 22%, transparent);
+        box-shadow: 0 18px 42px color-mix(in srgb, var(--md-sys-color-shadow) 20%, transparent);
+      }
+
+      .drawer-hero::after {
+        content: '';
+        position: absolute;
+        width: 92px;
+        height: 92px;
+        right: -28px;
+        bottom: -42px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--md-sys-color-primary) 32%, transparent);
+        filter: blur(2px);
       }
 
       .drawer-kicker {
         margin: 0;
         color: var(--md-sys-color-on-surface-variant);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
       }
 
       .drawer-title {
         margin: 6px 0 0;
         font-family: 'Space Grotesk', sans-serif;
-        font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-        font-weight: 600;
+        font-size: clamp(1.12rem, 2.2vw, 1.42rem);
+        font-weight: 700;
+        letter-spacing: -0.025em;
       }
 
       .drawer-foot {
         margin-top: auto;
-        padding: 10px 12px;
-        border-radius: var(--md-sys-shape-corner-medium);
-        background: color-mix(in srgb, var(--md-sys-color-surface-container) 76%, transparent);
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--md-sys-color-surface-container) 68%, transparent);
+        border: 1px solid var(--demo-line);
         color: var(--md-sys-color-on-surface-variant);
-        font-size: 0.85rem;
+        font-size: 0.78rem;
+        line-height: 1.45;
       }
 
       custom-selector {
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 4px;
         overflow-y: auto;
-        padding-right: 2px;
+        padding: 2px;
+      }
+
+      custom-drawer-item {
+        border-radius: 16px;
+        transition:
+          transform 180ms ease,
+          background 180ms ease;
+      }
+
+      custom-drawer-item:hover {
+        transform: translateX(3px);
       }
 
       .top-end {
@@ -168,42 +216,84 @@ export class DemoShell extends LiteElement {
         flex-direction: column;
         overflow: auto;
         box-sizing: border-box;
-        gap: 16px;
-        padding: clamp(14px, 2.2vw, 28px);
+        gap: 18px;
+        padding: clamp(18px, 2.8vw, 36px);
+        scrollbar-width: thin;
+        scrollbar-color: var(--md-sys-color-outline-variant) transparent;
       }
 
       .hero {
         display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 16px;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+        gap: 18px;
       }
 
       .hero-card,
       .surface {
-        border-radius: var(--md-sys-shape-corner-extra-large);
-        background: color-mix(in srgb, var(--md-sys-color-surface-container-high) 86%, transparent);
-        border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 72%, transparent);
-        backdrop-filter: blur(8px);
+        border-radius: 30px;
+        background: var(--demo-glass);
+        border: 1px solid var(--demo-line);
+        box-shadow:
+          0 1px 0 color-mix(in srgb, white 9%, transparent) inset,
+          0 22px 60px color-mix(in srgb, var(--md-sys-color-shadow) 14%, transparent);
+        backdrop-filter: blur(18px) saturate(1.15);
       }
 
       .hero-card {
-        padding: clamp(16px, 2.6vw, 28px);
+        position: relative;
+        overflow: hidden;
+        padding: clamp(24px, 4vw, 48px);
+      }
+
+      .hero-card:first-child {
+        min-height: 285px;
+        background:
+          radial-gradient(
+            circle at 92% 12%,
+            color-mix(in srgb, var(--md-sys-color-primary) 28%, transparent),
+            transparent 31%
+          ),
+          linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--md-sys-color-primary-container) 34%, var(--demo-glass)),
+            var(--demo-glass)
+          );
+      }
+
+      .hero-card:first-child::after {
+        content: '</>';
+        position: absolute;
+        right: clamp(18px, 3vw, 40px);
+        bottom: 18px;
+        color: color-mix(in srgb, var(--md-sys-color-primary) 18%, transparent);
+        font: 700 clamp(4rem, 9vw, 8rem) / 1 'Space Grotesk', sans-serif;
+        letter-spacing: -0.12em;
+        pointer-events: none;
       }
 
       .hero-card h1 {
-        margin: 8px 0;
+        position: relative;
+        z-index: 1;
+        max-width: 13ch;
+        margin: 14px 0 12px;
         font-family: 'Space Grotesk', sans-serif;
-        font-size: clamp(1.4rem, 3.8vw, 2.7rem);
-        line-height: 1.08;
+        font-size: clamp(2rem, 4.7vw, 4.2rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
       }
 
       .hero-card p,
       .picker-state {
+        position: relative;
+        z-index: 1;
         margin: 0;
         color: var(--md-sys-color-on-surface-variant);
+        line-height: 1.55;
       }
 
       .hero-actions {
+        position: relative;
+        z-index: 1;
         margin-top: 18px;
         display: flex;
         gap: 8px;
@@ -211,16 +301,26 @@ export class DemoShell extends LiteElement {
       }
 
       .metrics {
-        padding: clamp(14px, 2vw, 20px);
+        padding: 12px;
         display: grid;
-        gap: 10px;
-        align-content: start;
+        gap: 8px;
+        align-content: stretch;
       }
 
       .metric {
-        background: color-mix(in srgb, var(--md-sys-color-surface-container-highest) 76%, transparent);
-        border-radius: var(--md-sys-shape-corner-large);
-        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 70px;
+        background:
+          linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--md-sys-color-surface-container-highest) 90%, transparent),
+            color-mix(in srgb, var(--md-sys-color-secondary-container) 28%, transparent)
+          );
+        border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 35%, transparent);
+        border-radius: 22px;
+        padding: 14px 16px;
       }
 
       .metric small {
@@ -230,17 +330,19 @@ export class DemoShell extends LiteElement {
 
       .metric strong {
         font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.25rem;
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        letter-spacing: -0.025em;
       }
 
       .surface {
-        padding: clamp(14px, 2vw, 20px);
+        padding: clamp(18px, 2.5vw, 28px);
       }
 
       .surface h2 {
-        margin: 0 0 12px;
+        margin: 0 0 16px;
         font-family: 'Space Grotesk', sans-serif;
-        font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+        font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+        letter-spacing: -0.035em;
       }
 
       .cluster,
@@ -259,7 +361,18 @@ export class DemoShell extends LiteElement {
       .cards-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+        gap: 16px;
+      }
+
+      .cards-grid custom-card {
+        transition:
+          transform 220ms ease,
+          filter 220ms ease;
+      }
+
+      .cards-grid custom-card:hover {
+        transform: translateY(-5px);
+        filter: drop-shadow(0 18px 22px color-mix(in srgb, var(--md-sys-color-shadow) 20%, transparent));
       }
 
       custom-card img[slot='image'] {
@@ -283,6 +396,7 @@ export class DemoShell extends LiteElement {
         padding: 8px 12px;
         background: color-mix(in srgb, var(--md-sys-color-secondary-container) 86%, transparent);
         color: var(--md-sys-color-on-secondary-container);
+        border: 1px solid color-mix(in srgb, var(--md-sys-color-secondary) 18%, transparent);
       }
 
       @media (max-width: 1100px) {
@@ -303,6 +417,19 @@ export class DemoShell extends LiteElement {
         .panel {
           padding: 12px;
         }
+
+        .hero-card,
+        .surface {
+          border-radius: 24px;
+        }
+
+        .hero-card:first-child {
+          min-height: 0;
+        }
+
+        .hero-card:first-child::after {
+          opacity: 0.5;
+        }
       }
     `
   ]
@@ -317,8 +444,8 @@ export class DemoShell extends LiteElement {
 
         <div class="drawer-content" slot="drawer-content">
           <div class="drawer-hero">
-            <p class="drawer-kicker">Material 3</p>
-            <p class="drawer-title">Component Playground</p>
+            <p class="drawer-kicker">Built with Lite</p>
+            <p class="drawer-title">Element studio</p>
           </div>
 
           <custom-selector attr-for-selected="route" default-selected="overview">
@@ -332,7 +459,7 @@ export class DemoShell extends LiteElement {
           </custom-selector>
 
           <div class="drawer-foot">
-            Now showing: refreshed demo shell with responsive sections and stronger visual hierarchy.
+            A living workbench for composing, testing, and refining every element.
           </div>
         </div>
 
@@ -347,11 +474,11 @@ export class DemoShell extends LiteElement {
           <section class="panel" route="overview">
             <div class="hero">
               <div class="hero-card">
-                <small class="drawer-kicker">Refreshed Demo</small>
-                <h1>Sharper surfaces, clearer structure, better scanability</h1>
+                <small class="drawer-kicker">Lite Elements · Component Lab</small>
+                <h1>Small elements. Beautiful systems.</h1>
                 <p>
-                  This page is reworked to feel like a real product UI, not only a component dump. Explore the routes
-                  to see interactive controls, layout patterns, and the new Material time picker.
+                  Explore expressive, lightweight building blocks in a tactile playground. Try every state, compose
+                  real patterns, and see changes instantly.
                 </p>
                 <div class="hero-actions">
                   <custom-button id="jump-time-picker" type="filled" label="Open time picker"></custom-button>

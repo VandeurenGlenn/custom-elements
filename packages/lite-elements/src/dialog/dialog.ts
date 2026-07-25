@@ -1,4 +1,4 @@
-import { customElement, LiteElement, html, css, property, query } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, css, property, query, listen } from '@vandeurenglenn/lite'
 import '../elevation/elevation.js'
 import '../icon/icon.js'
 
@@ -18,11 +18,6 @@ export class CustomDialog extends LiteElement {
 
   @property({ type: Boolean, reflect: true, attribute: 'has-hero' })
   accessor hasHero: boolean
-
-  constructor() {
-    super()
-    this._close = this._close.bind(this)
-  }
 
   firstRender() {
     const actionsSlot = this.shadowRoot.querySelector('slot[name="actions"]')
@@ -45,18 +40,15 @@ export class CustomDialog extends LiteElement {
     const heroSlot = this.shadowRoot.querySelector('slot[name="hero-icon"]')
     // @ts-ignore
     this.hasHero = Array.from(heroSlot?.assignedNodes() || []).length !== 0
+
   }
 
-  onChange(propertyKey: any, value: any) {
-    if (propertyKey === 'open') {
-      this.open
-        ? this.querySelector('[slot="actions"]')?.addEventListener('click', this._close)
-        : this.querySelector('[slot="actions"]')?.removeEventListener('click', this._close)
-    }
-  }
-
+  @listen('click')
   _close(event: Event) {
     const target = event.composedPath()[0] as HTMLElement
+    const actions = this.querySelector('[slot="actions"]')
+    if (!actions?.contains(target)) return
+
     this.dispatchEvent(new CustomEvent('close', { detail: target.getAttribute('action') || 'close' }))
     this.open = false
   }

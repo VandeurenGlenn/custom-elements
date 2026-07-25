@@ -1,4 +1,4 @@
-import { customElement, LiteElement, html, css, property } from '@vandeurenglenn/lite'
+import { customElement, LiteElement, html, property, listen } from '@vandeurenglenn/lite'
 import './drawer.js'
 import './drawer-button.js'
 import './drawer-item.js'
@@ -9,6 +9,17 @@ import '@vandeurenglenn/flex-elements/column.js'
 
 @customElement('custom-drawer-layout')
 export class CustomDrawerLayout extends LiteElement {
+  constructor() {
+    super()
+    this.addConnectionEffect(() => {
+      this.#watchMobileTrigger(this.mobileTrigger)
+      return () => {
+        this.#mediaQuery?.removeEventListener('change', this.#onMediaChange)
+        this.#mediaQuery = undefined
+      }
+    })
+  }
+
   // @subscribe('drawer-open', (value) => {return value})
   @property({ type: Boolean, reflect: true, attribute: 'drawer-open' })
   accessor drawerOpen: boolean = false
@@ -37,27 +48,19 @@ export class CustomDrawerLayout extends LiteElement {
     if (propertyKey === 'mobileTrigger' && typeof value === 'string') this.#watchMobileTrigger(value)
   }
 
-  connectedCallback(): void {
-    document.addEventListener('custom-pane-close', ({ detail }: CustomEvent) => {
-      if (this.mainDrawerId === detail) this.drawerOpen = false
-    })
-
-    document.addEventListener('custom-pane-open', ({ detail }: CustomEvent) => {
-      if (this.mainDrawerId === detail && !this.keepClosed) this.drawerOpen = true
-    })
-
-    document.addEventListener('custom-theme-narrow', this._onnarrow.bind(this))
+  @listen('custom-pane-close', { target: 'document' })
+  onPaneClose({ detail }: CustomEvent<string>): void {
+    if (this.mainDrawerId === detail) this.drawerOpen = false
   }
 
-  firstRender(): void {
-    // evaluate after first render so the nested drawer/pane are upgraded and
-    // reflect the `open` attribute the CSS relies on
-    this.#watchMobileTrigger(this.mobileTrigger)
+  @listen('custom-pane-open', { target: 'document' })
+  onPaneOpen({ detail }: CustomEvent<string>): void {
+    if (this.mainDrawerId === detail && !this.keepClosed) this.drawerOpen = true
   }
 
-  disconnectedCallback(): void {
-    this.#mediaQuery?.removeEventListener('change', this.#onMediaChange)
-    this.#mediaQuery = undefined
+  @listen('custom-theme-narrow', { target: 'document' })
+  onThemeNarrow(event: CustomEvent<boolean>): void {
+    this._onnarrow(event)
   }
 
   #watchMobileTrigger(value: string) {
