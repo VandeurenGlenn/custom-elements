@@ -112,8 +112,8 @@ export default css`
   }
 
   :host([has-label]) .label {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
     align-items: center;
     display: flex;
     justify-content: center;

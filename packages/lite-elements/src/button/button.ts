@@ -4,7 +4,7 @@ import style from './styles/button.css.js'
 
 @customElement('custom-button')
 export class CustomButton extends LiteElement {
-  @property({ attribute: 'has-icon', reflect: true })
+  @property({ type: Boolean, attribute: 'has-icon', reflect: true })
   accessor hasIcon: boolean
 
   @property({ attribute: 'type', reflect: true })
@@ -13,7 +13,7 @@ export class CustomButton extends LiteElement {
   @property({ attribute: true })
   accessor label
 
-  @property({ attribute: 'has-label', reflect: true })
+  @property({ type: Boolean, attribute: 'has-label', reflect: true })
   accessor hasLabel: boolean
 
   static styles = [style]
@@ -23,7 +23,10 @@ export class CustomButton extends LiteElement {
   }
 
   onChange(propertyKey, value) {
-    if (propertyKey === 'label') this.hasLabel = Boolean(value) || this.#hasSlottedLabel()
+    if (propertyKey === 'label') {
+      if (value) this.hasLabel = true
+      else this.hasLabel = false
+    }
   }
 
   @listen('slotchange', { target: 'slot' })
@@ -34,22 +37,15 @@ export class CustomButton extends LiteElement {
   #updateSlot(slot: HTMLSlotElement) {
     if (slot.getAttribute('name') === 'icon') {
       this.hasIcon = Array.from(slot?.assignedNodes() || []).length !== 0
-    } else {
-      this.hasLabel = Boolean(this.label) || this.#hasSlottedLabel()
     }
-  }
-
-  #hasSlottedLabel(): boolean {
-    const slot = this.shadowRoot?.querySelector('slot:not([name])') as HTMLSlotElement | null
-    return Boolean(slot?.assignedNodes().some((node) => node.textContent?.trim()))
   }
 
   render() {
     return html`
-      <button type="button" aria-label=${this.label || ''}>
+      <button label=${this.label}>
         <custom-elevation></custom-elevation>
         <slot name="icon"></slot>
-        <span class="label">${this.label || html`<slot></slot>`}</span>
+        <span class="label">${this.label}</span>
         <span class="hover"></span>
       </button>
     `
