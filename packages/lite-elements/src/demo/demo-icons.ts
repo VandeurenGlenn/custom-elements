@@ -32,6 +32,8 @@ export class DemoIcons extends LiteElement {
         <span name="dashboard">@symbol-dashboard</span>
         <span name="analytics">@symbol-analytics</span>
         <span name="settings">@symbol-settings</span>
+        <span name="add">@symbol-add</span>
+        <span name="search">@symbol-search</span>
       </template>
     </custom-icon-set>`
   }

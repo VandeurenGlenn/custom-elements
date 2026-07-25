@@ -39,8 +39,9 @@ export class CustomTimePicker extends LiteElement {
       this.#syncDraftFromValue(value)
     }
 
-    if (propertyKey === 'minuteStep' && typeof value === 'number' && (value < 1 || value > 30)) {
-      this.minuteStep = 5
+    if (propertyKey === 'minuteStep' && typeof value === 'number') {
+      const normalized = Number.isFinite(value) ? Math.round(value) : 5
+      if (normalized < 1 || normalized > 30) this.minuteStep = 5
     }
   }
 
@@ -90,10 +91,9 @@ export class CustomTimePicker extends LiteElement {
   }
 
   #minuteOptions(): number[] {
-    const step = Math.max(1, Math.min(30, this.minuteStep || 5))
+    const step = Math.max(1, Math.min(30, Math.round(this.minuteStep || 5)))
     const result: number[] = []
     for (let minute = 0; minute < 60; minute += step) result.push(minute)
-    if (result[result.length - 1] !== 59 && step !== 1) result.push(59)
     return result
   }
 
@@ -137,11 +137,13 @@ export class CustomTimePicker extends LiteElement {
 
   #cancel = () => {
     this.#syncDraftFromValue(this.value)
+    this.mode = 'hour'
   }
 
   #confirm = () => {
     const nextValue = `${this.#twoDigits(this.draftHour24)}:${this.#twoDigits(this.draftMinute)}`
     this.value = nextValue
+    this.mode = 'hour'
     this.dispatchEvent(
       new CustomEvent('time-change', {
         detail: {
