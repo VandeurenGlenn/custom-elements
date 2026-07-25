@@ -29,6 +29,7 @@ import { CustomToggleButton } from './toggle/toggle-button.js'
 import { CustomTimePicker } from './time-picker/time-picker.js'
 import { CustomNotification } from './notification/notification.js'
 import { CustomNotifications } from './notification/notifications.js'
+import { CustomThemeEditor } from './theme/theme-editor.js'
 
 export {
   CustomTheme,
@@ -61,7 +62,8 @@ export {
   CustomToggleButton,
   CustomTimePicker,
   CustomNotification,
-  CustomNotifications
+  CustomNotifications,
+  CustomThemeEditor
 }
 
 declare global {
@@ -97,5 +99,6 @@ declare global {
     'custom-toggle-button': CustomToggleButton
     'custom-notification': CustomNotification
     'custom-notifications': CustomNotifications
+    'custom-theme-editor': CustomThemeEditor
   }
 }

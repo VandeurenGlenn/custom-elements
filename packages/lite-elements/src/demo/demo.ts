@@ -91,26 +91,6 @@ export class DemoShell extends LiteElement {
     await (globalThis as typeof globalThis & { customPrompt?: (title: string) => Promise<string> }).customPrompt?.('Try a prompt')
   }
 
-  @listen('click', { target: '.theme-preset' })
-  onThemePreset(event: Event): void {
-    const preset = (event.target as HTMLElement).closest<HTMLElement>('.theme-preset')?.dataset.theme
-    if (preset) this.#applyTheme(preset)
-  }
-
-  @listen('input', { target: '#theme-accent' })
-  onAccentInput(event: Event): void {
-    this.#applyTheme((event.target as HTMLInputElement).value)
-  }
-
-  #applyTheme(accent: string): void {
-    const root = document.documentElement
-    root.style.setProperty('--md-sys-color-primary', accent)
-    root.style.setProperty('--md-sys-color-primary-container', `color-mix(in srgb, ${accent} 32%, var(--md-sys-color-surface-container-high))`)
-    root.style.setProperty('--md-sys-color-on-primary', '#ffffff')
-    root.style.setProperty('--md-sys-color-on-primary-container', '#ffffff')
-    root.style.setProperty('--demo-accent', accent)
-  }
-
   static styles = [
     css`
       :host {
@@ -948,18 +928,10 @@ export class DemoShell extends LiteElement {
             <div class="surface stack theme-lab">
               <h2>Theme lab</h2>
               <p class="picker-state">Try a preset or create an accent color. The playground updates live through CSS custom properties.</p>
-              <div class="theme-presets">
-                <button class="theme-preset" data-theme="#a78bfa"><span style="background:#a78bfa"></span>Violet</button>
-                <button class="theme-preset" data-theme="#65a30d"><span style="background:#65a30d"></span>Lime</button>
-                <button class="theme-preset" data-theme="#06b6d4"><span style="background:#06b6d4"></span>Cyan</button>
-                <button class="theme-preset" data-theme="#f97316"><span style="background:#f97316"></span>Sunset</button>
-                <label class="theme-color"><span>Custom accent</span><input id="theme-accent" type="color" value="#a78bfa" /></label>
-              </div>
-              <div class="theme-preview">
-                <div><small>Live preview</small><strong>One token changes the mood</strong><span>Use the same token system in your own elements.</span></div>
+              <custom-theme-editor>
                 <div class="cluster"><custom-button type="filled" label="Primary action"></custom-button><custom-button type="outlined" label="Secondary"></custom-button></div>
-              </div>
-              <demo-code .code=${':root {\n  --md-sys-color-primary: #a78bfa;\n  --md-sys-color-primary-container: ...;\n}'}></demo-code>
+              </custom-theme-editor>
+              <demo-code .code=${'<custom-theme-editor>\n  <custom-button type="filled" label="Primary action"></custom-button>\n</custom-theme-editor>'}></demo-code>
             </div>
           </section>
 
