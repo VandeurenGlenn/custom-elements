@@ -5,16 +5,16 @@ globalThis.pubsub = globalThis.pubsub || new PubSub(true)
 
 @customElement('custom-icon')
 export class CustomIcon extends LiteElement {
-  @property()
+  @property({ type: String })
   accessor host
 
   @property({ type: String })
   accessor icon
 
-  @property()
+  @property({ type: String })
   accessor setName
 
-  @property()
+  @property({ type: String })
   accessor _icon
 
   onChange(propertyKey: any, value: any) {

@@ -8,7 +8,7 @@ export class CustomToggle extends LiteElement {
   @property({ type: Array })
   accessor togglers: string[]
 
-  @property()
+  @property({ type: String })
   accessor icon: string
 
   restartOnEnd: boolean = true

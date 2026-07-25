@@ -7,11 +7,11 @@ export class CustomButton extends LiteElement {
   @property({ type: Boolean, attribute: 'has-icon', reflect: true })
   accessor hasIcon: boolean
 
-  @property({ attribute: 'type', reflect: true })
+  @property({ type: String, attribute: 'type', reflect: true })
   accessor type: 'elevated' | 'filled' | 'text' | 'tonal' | 'outlined' = 'text'
 
-  @property({ attribute: true })
-  accessor label
+  @property({ type: String, attribute: true })
+  accessor label: string
 
   @property({ type: Boolean, attribute: 'has-label', reflect: true })
   accessor hasLabel: boolean

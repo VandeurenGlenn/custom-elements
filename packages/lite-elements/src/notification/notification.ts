@@ -6,16 +6,16 @@ import '@vandeurenglenn/flex-elements/row.js'
 
 @customElement('custom-notification')
 export class CustomNotification extends LitElement {
-  @property()
+  @property({ type: String })
   accessor title: string
 
-  @property()
+  @property({ type: String })
   accessor message: string
 
-  @property()
+  @property({ type: String })
   accessor image: string
 
-  @property()
+  @property({ type: String })
   accessor type: 'error' | 'info' | 'warning'
 
   #onclick = () => {
