@@ -85,6 +85,11 @@ export class DemoShell extends LiteElement {
     this.toggleHourModeButton.label = uses24Hour ? 'Switch to 24h' : 'Switch to 12h'
   }
 
+  @listen('click', { target: '#demo-prompt' })
+  async openPrompt(): Promise<void> {
+    await (globalThis as typeof globalThis & { customPrompt?: (title: string) => Promise<string> }).customPrompt?.('Try a prompt')
+  }
+
   static styles = [
     css`
       :host {
@@ -364,6 +369,12 @@ export class DemoShell extends LiteElement {
         gap: 16px;
       }
 
+      .cards-grid > custom-card {
+        display: block;
+        width: 100%;
+        min-width: 0;
+      }
+
       .cards-grid custom-card {
         transition:
           transform 220ms ease,
@@ -399,6 +410,66 @@ export class DemoShell extends LiteElement {
         border: 1px solid color-mix(in srgb, var(--md-sys-color-secondary) 18%, transparent);
       }
 
+      .layout-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .layout-demo {
+        position: relative;
+        min-height: 230px;
+        overflow: hidden;
+        border: 1px solid var(--demo-line);
+        border-radius: 22px;
+        background: var(--md-sys-color-surface-container);
+      }
+
+      .layout-demo custom-top-app-bar {
+        display: block;
+        height: 64px;
+      }
+
+      .layout-demo custom-pane,
+      .layout-demo custom-rail {
+        --custom-pane-width: 190px;
+      }
+
+      .layout-content {
+        display: grid;
+        gap: 8px;
+        padding: 18px;
+      }
+
+      .layout-content strong {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.1rem;
+      }
+
+      .layout-content span {
+        color: var(--md-sys-color-on-surface-variant);
+        line-height: 1.45;
+      }
+
+      .icon-set-example {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+        border: 1px solid var(--demo-line);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--md-sys-color-surface-container-highest) 48%, transparent);
+      }
+
+      .icon-set-example custom-icon {
+        --custom-icon-size: 28px;
+        --custom-icon-color: var(--md-sys-color-primary);
+      }
+
+      .icon-set-example code {
+        color: var(--md-sys-color-on-surface-variant);
+        font: 0.78rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
       @media (max-width: 1100px) {
         .hero {
           grid-template-columns: 1fr;
@@ -411,6 +482,10 @@ export class DemoShell extends LiteElement {
 
       @media (max-width: 760px) {
         .cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .layout-grid {
           grid-template-columns: 1fr;
         }
 
@@ -454,7 +529,11 @@ export class DemoShell extends LiteElement {
             <custom-drawer-item route="buttons">Buttons</custom-drawer-item>
             <custom-drawer-item route="cards">Cards</custom-drawer-item>
             <custom-drawer-item route="navigation">Navigation</custom-drawer-item>
+            <custom-drawer-item route="layouts">Layouts</custom-drawer-item>
+            <custom-drawer-item route="more">More components</custom-drawer-item>
             <custom-drawer-item route="dialogs">Dialogs</custom-drawer-item>
+            <custom-drawer-item route="foundations">Foundations</custom-drawer-item>
+            <custom-drawer-item route="feedback">Feedback</custom-drawer-item>
             <custom-drawer-item route="time-picker">Time picker</custom-drawer-item>
           </custom-selector>
 
@@ -654,6 +733,130 @@ export class DemoShell extends LiteElement {
             </div>
           </section>
 
+          <section class="panel" route="layouts">
+            <div class="surface stack">
+              <h2>Layout patterns</h2>
+              <p class="picker-state">The same primitives used by the studio shell, shown as composable building blocks.</p>
+              <div class="layout-grid">
+                <div class="layout-demo">
+                  <custom-top-app-bar type="small">
+                    <custom-icon-button slot="start" icon="menu"></custom-icon-button>
+                    <span slot="title">Top app bar</span>
+                    <custom-icon-button slot="end" icon="more_vert"></custom-icon-button>
+                  </custom-top-app-bar>
+                  <div class="layout-content">
+                    <strong>Small, medium, and large</strong>
+                    <span>App bars respond to scroll state and keep actions anchored.</span>
+                  </div>
+                </div>
+
+                <div class="layout-demo">
+                  <custom-rail open>
+                    <span slot="headline">Rail</span>
+                    <div slot="content" class="layout-content">
+                      <custom-icon icon="home"></custom-icon>
+                      <custom-icon icon="widgets"></custom-icon>
+                      <custom-icon icon="settings"></custom-icon>
+                    </div>
+                  </custom-rail>
+                  <div class="layout-content">
+                    <strong>Navigation rail</strong>
+                    <span>Compact navigation for spacious desktop layouts.</span>
+                  </div>
+                </div>
+
+                <div class="layout-demo">
+                  <custom-supporting-pane open variant="expanded" id="demo-supporting-pane">
+                    <div class="layout-content">
+                      <strong>Main content</strong>
+                      <span>Supporting content can sit beside the primary task.</span>
+                    </div>
+                    <div slot="supporting-content" class="layout-content">
+                      <strong>Supporting pane</strong>
+                      <span>Details, filters, or contextual actions.</span>
+                    </div>
+                  </custom-supporting-pane>
+                </div>
+
+                <div class="layout-demo">
+                  <custom-pane open right id="demo-pane">
+                    <span slot="headline">Pane</span>
+                    <div slot="content" class="layout-content">
+                      <strong>Modal or persistent</strong>
+                      <span>Use a pane for focused navigation and secondary tasks.</span>
+                    </div>
+                  </custom-pane>
+                  <div class="layout-content">
+                    <strong>Flexible pane</strong>
+                    <span>Left and right placement, mobile mode, and custom content slots.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" route="more">
+            <div class="surface stack">
+              <h2>More components</h2>
+              <p class="picker-state">Every public component gets a small, practical example here.</p>
+
+              <div class="surface stack">
+                <h2>Forms &amp; time inputs</h2>
+                <div class="cluster">
+                  <text-field>
+                    <custom-icon slot="leading-icon" icon="search"></custom-icon>
+                    <input aria-label="Search" placeholder="Search components" />
+                  </text-field>
+                  <custom-upload-file multiple></custom-upload-file>
+                  <custom-time-picker-input></custom-time-picker-input>
+                  <custom-time-picker-minute-field></custom-time-picker-minute-field>
+                </div>
+              </div>
+
+              <div class="surface stack">
+                <h2>Summaries</h2>
+                <custom-summary>
+                  <div slot="left" class="layout-content">
+                    <strong>Primary content</strong>
+                    <span>Summary layouts pair a main column with a supporting column.</span>
+                  </div>
+                  <div slot="right" class="layout-content">
+                    <strong>Supporting content</strong>
+                    <span>Responsive behavior is built into the element.</span>
+                  </div>
+                </custom-summary>
+                <custom-summary-mirror>
+                  <div slot="left" class="layout-content"><strong>Mirrored left</strong></div>
+                  <div slot="right" class="layout-content"><strong>Mirrored right</strong></div>
+                </custom-summary-mirror>
+              </div>
+
+              <div class="surface stack">
+                <h2>Dropdowns, drawers &amp; prompts</h2>
+                <div class="cluster">
+                  <div class="layout-demo">
+                    <custom-dropdown open>
+                      <custom-list-item type="menu">Dropdown item</custom-list-item>
+                      <custom-list-item type="menu">Another item</custom-list-item>
+                    </custom-dropdown>
+                  </div>
+                  <custom-drawer-button id="demo-drawer" label="Open drawer"></custom-drawer-button>
+                  <custom-button id="demo-prompt" type="tonal" label="Open prompt"></custom-button>
+                </div>
+                <custom-drawer id="demo-drawer" open>
+                  <span slot="headline">Standalone drawer</span>
+                  <div slot="content" class="layout-content"><span>A drawer can be used independently of the shell.</span></div>
+                </custom-drawer>
+              </div>
+
+              <div class="surface stack">
+                <h2>Upload image</h2>
+                <p class="picker-state">Camera and library flows are available as a composable upload surface.</p>
+                <custom-upload-image></custom-upload-image>
+              </div>
+            </div>
+          </section>
+
           <section class="panel" route="dialogs">
             <div class="surface stack">
               <h2>Dialog interactions</h2>
@@ -681,6 +884,63 @@ export class DemoShell extends LiteElement {
                   <custom-button type="text" action="close" label="Close"></custom-button>
                 </div>
               </custom-dialog>
+            </div>
+          </section>
+
+          <section class="panel" route="foundations">
+            <div class="surface stack">
+              <h2>Foundations</h2>
+              <p class="picker-state">The small primitives that give larger interfaces their rhythm and depth.</p>
+              <div class="cluster">
+                <custom-elevation level="1"><span>Elevation 1</span></custom-elevation>
+                <custom-elevation level="2"><span>Elevation 2</span></custom-elevation>
+                <custom-elevation level="3"><span>Elevation 3</span></custom-elevation>
+              </div>
+              <custom-typography>
+                <h1 slot="headline">Typography that scales</h1>
+                <p slot="supporting-text">Compose expressive type with the same lightweight element model.</p>
+              </custom-typography>
+              <div class="icon-set-example">
+                <custom-icon-set set-name="studio">
+                  <template>
+                    <span name="sparkle">@symbol-auto_awesome</span>
+                    <span name="favorite">@symbol-favorite</span>
+                    <span name="code">@symbol-code</span>
+                  </template>
+                </custom-icon-set>
+                <div class="cluster">
+                  <custom-icon set-name="studio" icon="sparkle"></custom-icon>
+                  <custom-icon set-name="studio" icon="favorite"></custom-icon>
+                  <custom-icon set-name="studio" icon="code"></custom-icon>
+                </div>
+                <code>&lt;custom-icon-set set-name="studio"&gt; … &lt;/custom-icon-set&gt;</code>
+              </div>
+              <div class="cluster">
+                <custom-divider></custom-divider>
+                <custom-icon icon="palette"></custom-icon>
+                <custom-icon icon="widgets"></custom-icon>
+                <custom-icon icon="explore"></custom-icon>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" route="feedback">
+            <div class="surface stack">
+              <h2>Feedback &amp; status</h2>
+              <p class="picker-state">Try the compact feedback elements used around actions and asynchronous work.</p>
+              <div class="cluster">
+                <custom-button type="filled" label="Save changes"></custom-button>
+                <custom-button type="tonal" label="Undo"></custom-button>
+                <custom-fab><custom-icon icon="add"></custom-icon></custom-fab>
+              </div>
+              <custom-notification title="Changes saved" message="Your component configuration is ready to preview."></custom-notification>
+              <custom-notifications open>
+                <custom-notification title="Recent activity" message="Notifications can be grouped in a pane."></custom-notification>
+              </custom-notifications>
+              <custom-list-item>
+                <custom-icon slot="start" icon="check_box"></custom-icon>
+                <span>Accessible status message</span>
+              </custom-list-item>
             </div>
           </section>
 
